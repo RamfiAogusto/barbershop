@@ -163,14 +163,33 @@ export default function BookingPage() {
         barberName: selectedBarber?.name || "",
       })
 
+      // Generar el mensaje para WhatsApp
+      const whatsappMessage = `
+Nueva Reserva:
+Servicio: ${selectedService?.name}
+Barbero: ${selectedBarber?.name}
+Fecha: ${format(formData.date, "EEEE d MMMM, yyyy", { locale: es })}
+Hora: ${formData.time}
+Cliente: ${formData.name}
+Teléfono: ${formData.phone}
+Email: ${formData.email}
+${formData.notes ? `Notas: ${formData.notes}` : ""}
+      `.trim()
+
+      // Generar el enlace de WhatsApp
+      const whatsappLink = `https://wa.me/18097672490?text=${encodeURIComponent(whatsappMessage)}`
+
       // Mostrar confirmación
       setBookingComplete(true)
 
       // Notificar al usuario
       toast({
         title: "¡Reserva confirmada!",
-        description: "Hemos recibido tu solicitud de reserva. Te enviaremos un correo de confirmación.",
+        description: "Hemos recibido tu solicitud de reserva. Por favor, envía el mensaje por WhatsApp para confirmar tu cita.",
       })
+
+      // Abrir WhatsApp en una nueva pestaña
+      window.open(whatsappLink, '_blank')
     } catch (error) {
       toast({
         title: "Error al procesar la reserva",
