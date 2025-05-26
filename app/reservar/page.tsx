@@ -78,6 +78,10 @@ const getAvailableSlots = (date: Date, barberId: string, serviceId: string) => {
   return timeSlots.filter((slot) => !randomUnavailable.includes(slot))
 }
 
+const isMobile = () => {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+};
+
 export default function BookingPage() {
   const router = useRouter()
   const { toast } = useToast()
@@ -189,7 +193,11 @@ ${formData.notes ? `Notas: ${formData.notes}` : ""}
       })
 
       // Abrir WhatsApp en una nueva pestaña
-      window.open(whatsappLink, '_blank')
+      if (isMobile()) {
+        window.location.href = whatsappLink;
+      } else {
+        window.open(whatsappLink, '_blank');
+      }
     } catch (error) {
       toast({
         title: "Error al procesar la reserva",
