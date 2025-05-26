@@ -32,6 +32,7 @@ const services = [
 // Barberos disponibles
 const barbers = [
   { id: "rafa", name: "Rafa", specialty: "Maestro Barbero" },
+  { id: "any", name: "Cualquier Persona", specialty: "Disponible" },
   // Puedes añadir más barberos si los hay
 ]
 
@@ -51,6 +52,10 @@ const timeSlots = generateTimeSlots()
 
 // Función para generar disponibilidad simulada
 const getAvailableSlots = (date: Date, barberId: string, serviceId: string) => {
+  // Si se selecciona 'cualquier persona', mostrar todos los horarios disponibles
+  if (barberId === "any") {
+    return timeSlots;
+  }
   // Simulamos que algunos horarios ya están ocupados
   const day = date.getDay()
   const randomUnavailable: string[] = []
@@ -96,6 +101,15 @@ export default function BookingPage() {
     phone: "",
     notes: "",
   })
+  const [errors, setErrors] = useState({
+    service: "",
+    barber: "",
+    date: "",
+    time: "",
+    name: "",
+    email: "",
+    phone: "",
+  })
   const [availableSlots, setAvailableSlots] = useState<string[]>([])
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [bookingComplete, setBookingComplete] = useState(false)
@@ -119,6 +133,8 @@ export default function BookingPage() {
   // Manejar cambios en el formulario
   const handleChange = (field: string, value: any) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
+    // Limpiar el error del campo que se está modificando
+    setErrors((prev) => ({ ...prev, [field]: "" }))
 
     // Actualizar slots disponibles cuando cambia la fecha o el barbero
     if (field === "date" || field === "barber") {
@@ -126,24 +142,92 @@ export default function BookingPage() {
     }
   }
 
-  // Avanzar al siguiente paso
-  const nextStep = () => {
-    if (step === 1 && (!formData.service || !formData.barber || !formData.date || !formData.time)) {
-      toast({
-        title: "Información incompleta",
-        description: "Por favor completa todos los campos para continuar",
-        variant: "destructive",
-      })
-      return
+  // Validar el primer paso
+  const validateStep1 = () => {
+    const newErrors = {
+      service: "",
+      barber: "",
+      date: "",
+      time: "",
+      name: "",
+      email: "",
+      phone: "",
+    }
+    let isValid = true
+
+    if (!formData.service) {
+      newErrors.service = "Por favor selecciona un servicio"
+      isValid = false
+    }
+    if (!formData.barber) {
+      newErrors.barber = "Por favor selecciona un barbero"
+      isValid = false
+    }
+    if (!formData.date) {
+      newErrors.date = "Por favor selecciona una fecha"
+      isValid = false
+    }
+    if (!formData.time) {
+      newErrors.time = "Por favor selecciona una hora"
+      isValid = false
     }
 
-    if (step === 2 && (!formData.name || !formData.email || !formData.phone)) {
-      toast({
-        title: "Información incompleta",
-        description: "Por favor completa tu información de contacto",
-        variant: "destructive",
-      })
-      return
+    setErrors(newErrors)
+    return isValid
+  }
+
+  // Validar el segundo paso
+  const validateStep2 = () => {
+    const newErrors = {
+      ...errors,
+      name: "",
+      email: "",
+      phone: "",
+    }
+    let isValid = true
+
+    if (!formData.name.trim()) {
+      newErrors.name = "Por favor ingresa tu nombre completo"
+      isValid = false
+    }
+    if (!formData.email.trim()) {
+      newErrors.email = "Por favor ingresa tu correo electrónico"
+      isValid = false
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Por favor ingresa un correo electrónico válido"
+      isValid = false
+    }
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Por favor ingresa tu número de teléfono"
+      isValid = false
+    }
+
+    setErrors(newErrors)
+    return isValid
+  }
+
+  // Avanzar al siguiente paso
+  const nextStep = () => {
+    if (step === 1) {
+      if (!validateStep1()) {
+        toast({
+          title: "Campos incompletos",
+          description: "Por favor completa todos los campos requeridos",
+          variant: "destructive",
+        })
+        return
+      }
+    }
+
+    if (step === 2) {
+      if (!validateStep2()) {
+        toast({
+          title: "Campos incompletos",
+          description: "Por favor completa correctamente tu información de contacto",
+          variant: "destructive",
+        })
+        return
+      }
     }
 
     setStep((prev) => prev + 1)
@@ -430,7 +514,7 @@ ${formData.notes ? `Notas: ${formData.notes}` : ""}
                       Selecciona un Servicio
                     </Label>
                     <Select value={formData.service} onValueChange={(value) => handleChange("service", value)}>
-                      <SelectTrigger className="bg-gray-800 border-gray-700">
+                      <SelectTrigger className={`bg-gray-800 border-gray-700 ${errors.service ? "border-red-500" : ""}`}>
                         <SelectValue placeholder="Selecciona un servicio" />
                       </SelectTrigger>
                       <SelectContent className="bg-gray-800 border-gray-700">
@@ -444,6 +528,7 @@ ${formData.notes ? `Notas: ${formData.notes}` : ""}
                         ))}
                       </SelectContent>
                     </Select>
+                    {errors.service && <p className="text-red-500 text-sm mt-1">{errors.service}</p>}
                   </div>
 
                   <div>
@@ -451,7 +536,7 @@ ${formData.notes ? `Notas: ${formData.notes}` : ""}
                       Selecciona un Barbero
                     </Label>
                     <Select value={formData.barber} onValueChange={(value) => handleChange("barber", value)}>
-                      <SelectTrigger className="bg-gray-800 border-gray-700">
+                      <SelectTrigger className={`bg-gray-800 border-gray-700 ${errors.barber ? "border-red-500" : ""}`}>
                         <SelectValue placeholder="Selecciona un barbero" />
                       </SelectTrigger>
                       <SelectContent className="bg-gray-800 border-gray-700">
@@ -465,18 +550,22 @@ ${formData.notes ? `Notas: ${formData.notes}` : ""}
                         ))}
                       </SelectContent>
                     </Select>
+                    {errors.barber && <p className="text-red-500 text-sm mt-1">{errors.barber}</p>}
                   </div>
 
                   <div>
                     <Label className="text-white mb-2 block">Selecciona una Fecha</Label>
-                    <Calendar
-                      mode="single"
-                      selected={formData.date}
-                      onSelect={(date) => date && handleChange("date", date)}
-                      disabled={(date) => date < today || date > maxDate || date.getDay() === 1}
-                      initialFocus
-                      className="rounded-md border bg-gray-900 text-white"
-                    />
+                    <div className={`${errors.date ? "border-2 border-red-500 rounded-md" : ""}`}>
+                      <Calendar
+                        mode="single"
+                        selected={formData.date}
+                        onSelect={(date) => date && handleChange("date", date)}
+                        disabled={(date) => date < today || date > maxDate || date.getDay() === 1}
+                        initialFocus
+                        className="rounded-md border bg-gray-900 text-white"
+                      />
+                    </div>
+                    {errors.date && <p className="text-red-500 text-sm mt-1">{errors.date}</p>}
                   </div>
 
                   <div>
@@ -488,7 +577,7 @@ ${formData.notes ? `Notas: ${formData.notes}` : ""}
                       onValueChange={(value) => handleChange("time", value)}
                       disabled={!formData.date || !formData.barber || !formData.service || availableSlots.length === 0}
                     >
-                      <SelectTrigger className="bg-gray-800 border-gray-700">
+                      <SelectTrigger className={`bg-gray-800 border-gray-700 ${errors.time ? "border-red-500" : ""}`}>
                         <SelectValue
                           placeholder={
                             !formData.date || !formData.barber || !formData.service
@@ -507,6 +596,7 @@ ${formData.notes ? `Notas: ${formData.notes}` : ""}
                         ))}
                       </SelectContent>
                     </Select>
+                    {errors.time && <p className="text-red-500 text-sm mt-1">{errors.time}</p>}
                   </div>
 
                   {selectedService && (
@@ -539,10 +629,11 @@ ${formData.notes ? `Notas: ${formData.notes}` : ""}
                         id="name"
                         value={formData.name}
                         onChange={(e) => handleChange("name", e.target.value)}
-                        className="bg-gray-800 border-gray-700 pl-10"
+                        className={`bg-gray-800 border-gray-700 pl-10 ${errors.name ? "border-red-500" : ""}`}
                         placeholder="Tu nombre completo"
                       />
                     </div>
+                    {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
                   </div>
 
                   <div>
@@ -556,10 +647,11 @@ ${formData.notes ? `Notas: ${formData.notes}` : ""}
                         type="email"
                         value={formData.email}
                         onChange={(e) => handleChange("email", e.target.value)}
-                        className="bg-gray-800 border-gray-700 pl-10"
+                        className={`bg-gray-800 border-gray-700 pl-10 ${errors.email ? "border-red-500" : ""}`}
                         placeholder="tu@email.com"
                       />
                     </div>
+                    {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
                   </div>
 
                   <div>
@@ -572,10 +664,11 @@ ${formData.notes ? `Notas: ${formData.notes}` : ""}
                         id="phone"
                         value={formData.phone}
                         onChange={(e) => handleChange("phone", e.target.value)}
-                        className="bg-gray-800 border-gray-700 pl-10"
+                        className={`bg-gray-800 border-gray-700 pl-10 ${errors.phone ? "border-red-500" : ""}`}
                         placeholder="+1 (809) 000-0000"
                       />
                     </div>
+                    {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
                   </div>
 
                   <div>
