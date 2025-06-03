@@ -256,24 +256,16 @@ export default function Home() {
               >
                 <Card className="bg-gray-900 border-gray-800 hover:border-amber-500/50 transition-all duration-300 h-full overflow-hidden group">
                   <CardContent className="p-6 flex flex-col h-full">
-                    <div className="mb-4 bg-amber-500/10 p-3 rounded-full w-14 h-14 flex items-center justify-center">
-                      <Scissors className="h-6 w-6 text-amber-500" />
+                    <div className="mb-4 flex items-center justify-between">
+                      <div className="bg-amber-500/10 p-3 rounded-full w-14 h-14 flex items-center justify-center">
+                        <Scissors className="h-6 w-6 text-amber-500" />
+                      </div>
+                      <span className="text-2xl font-bold text-amber-500">{service.price}</span>
                     </div>
                     <h3 className="text-xl font-bold mb-2 text-white group-hover:text-amber-500 transition-colors">
                       {service.title}
                     </h3>
                     <p className="text-gray-400 mb-4 flex-grow">{service.description}</p>
-                    <div className="flex justify-between items-center">
-                      <span className="text-2xl font-bold text-amber-500">{service.price}</span>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={handleBookNow}
-                        className="border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-black"
-                      >
-                        Reservar
-                      </Button>
-                    </div>
                   </CardContent>
                 </Card>
               </motion.div>
