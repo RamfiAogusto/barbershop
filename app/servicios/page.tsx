@@ -20,6 +20,14 @@ import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 
 export default function ServiciosPage() {
+  const handleWhatsAppReservation = (serviceName?: string) => {
+    const message = serviceName 
+      ? `Hola, me gustaría reservar una cita para el servicio de ${serviceName} en D' Rafa Peluquería`
+      : "Hola, me gustaría reservar una cita en D' Rafa Peluquería"
+    const whatsappLink = `https://wa.me/18097672490?text=${encodeURIComponent(message)}`
+    window.open(whatsappLink, '_blank')
+  }
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -94,7 +102,12 @@ export default function ServiciosPage() {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button className="w-full bg-amber-700 hover:bg-amber-800">Reservar este servicio</Button>
+                <Button 
+                  className="w-full bg-amber-700 hover:bg-amber-800"
+                  onClick={() => handleWhatsAppReservation("Corte Clásico")}
+                >
+                  Reservar este servicio
+                </Button>
               </CardFooter>
             </Card>
 
@@ -125,7 +138,12 @@ export default function ServiciosPage() {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button className="w-full bg-amber-700 hover:bg-amber-800">Reservar este servicio</Button>
+                <Button 
+                  className="w-full bg-amber-700 hover:bg-amber-800"
+                  onClick={() => handleWhatsAppReservation("Corte a Tijera")}
+                >
+                  Reservar este servicio
+                </Button>
               </CardFooter>
             </Card>
 
@@ -156,7 +174,12 @@ export default function ServiciosPage() {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button className="w-full bg-amber-700 hover:bg-amber-800">Reservar este servicio</Button>
+                <Button 
+                  className="w-full bg-amber-700 hover:bg-amber-800"
+                  onClick={() => handleWhatsAppReservation("Corte para Adolescentes")}
+                >
+                  Reservar este servicio
+                </Button>
               </CardFooter>
             </Card>
 
@@ -187,7 +210,12 @@ export default function ServiciosPage() {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button className="w-full bg-amber-700 hover:bg-amber-800">Reservar este servicio</Button>
+                <Button 
+                  className="w-full bg-amber-700 hover:bg-amber-800"
+                  onClick={() => handleWhatsAppReservation("Corte para Niños")}
+                >
+                  Reservar este servicio
+                </Button>
               </CardFooter>
             </Card>
 
@@ -218,7 +246,12 @@ export default function ServiciosPage() {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button className="w-full bg-amber-700 hover:bg-amber-800">Reservar este servicio</Button>
+                <Button 
+                  className="w-full bg-amber-700 hover:bg-amber-800"
+                  onClick={() => handleWhatsAppReservation("Cerquillos / Flequillos")}
+                >
+                  Reservar este servicio
+                </Button>
               </CardFooter>
             </Card>
 
@@ -249,7 +282,12 @@ export default function ServiciosPage() {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button className="w-full bg-amber-700 hover:bg-amber-800">Reservar este servicio</Button>
+                <Button 
+                  className="w-full bg-amber-700 hover:bg-amber-800"
+                  onClick={() => handleWhatsAppReservation("Perfilado de Cejas")}
+                >
+                  Reservar este servicio
+                </Button>
               </CardFooter>
             </Card>
           </div>
@@ -483,7 +521,12 @@ export default function ServiciosPage() {
               <h2 className="text-3xl md:text-4xl font-bold">¿Listo para lucir tu mejor versión?</h2>
               <p className="text-xl">Reserva ahora tu cita en la barbería preferida de Santo Domingo</p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button className="bg-amber-700 hover:bg-amber-800 text-lg px-8 py-6">Reservar Mi Cita</Button>
+                <Button 
+                  className="bg-amber-700 hover:bg-amber-800 text-lg px-8 py-6"
+                  onClick={() => handleWhatsAppReservation()}
+                >
+                  Reservar Mi Cita
+                </Button>
                 <div className="flex items-center">
                   <p>O llámanos al</p>
                   <a href="tel:+18097672490" className="ml-2 font-bold hover:text-amber-300">

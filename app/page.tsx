@@ -35,7 +35,9 @@ export default function Home() {
   }
 
   const handleBookNow = () => {
-    window.location.href = "/reservar"
+    const whatsappMessage = "Hola, me gustaría reservar una cita en D' Rafa Peluquería"
+    const whatsappLink = `https://wa.me/18097672490?text=${encodeURIComponent(whatsappMessage)}`
+    window.open(whatsappLink, '_blank')
   }
 
   const fadeInUp = {
