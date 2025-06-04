@@ -34,8 +34,8 @@ export default function Home() {
     setIsMenuOpen(!isMenuOpen)
   }
 
-  const handleBookNow = () => {
-    const whatsappMessage = "Hola, me gustaría reservar una cita en D' Rafa Peluquería"
+  const handleWhatsAppReservation = () => {
+    const whatsappMessage = "Hola, me gustaría reservar una cita"
     const whatsappLink = `https://wa.me/18097672490?text=${encodeURIComponent(whatsappMessage)}`
     window.open(whatsappLink, '_blank')
   }
@@ -104,7 +104,7 @@ export default function Home() {
 
             <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4">
               <Button
-                onClick={handleBookNow}
+                onClick={handleWhatsAppReservation}
                 className="bg-amber-500 hover:bg-amber-600 text-black font-bold text-lg py-6 px-8"
                 size="lg"
               >
@@ -180,7 +180,7 @@ export default function Home() {
                 te ofrece cortes que trascienden el tiempo. Descubre la pericia de un experto, donde cada detalle
                 cuenta. Tu estilo es nuestra prioridad; únete a Rafa para una experiencia única de barbería.
               </p>
-              <Button onClick={handleBookNow} className="bg-amber-500 hover:bg-amber-600 text-black font-bold">
+              <Button onClick={handleWhatsAppReservation} className="bg-amber-500 hover:bg-amber-600 text-black font-bold">
                 Reservar Ahora
               </Button>
             </motion.div>
@@ -598,7 +598,7 @@ export default function Home() {
               </p>
             </div>
             <Button
-              onClick={handleBookNow}
+              onClick={handleWhatsAppReservation}
               className="bg-black hover:bg-gray-900 text-white font-bold text-lg py-6 px-8"
               size="lg"
             >

@@ -24,8 +24,8 @@ import { Footer } from "@/components/layout/footer"
 export default function ServiciosPage() {
   const handleWhatsAppReservation = (serviceName?: string) => {
     const message = serviceName 
-      ? `Hola, me gustaría reservar una cita para el servicio de ${serviceName} en D' Rafa Peluquería`
-      : "Hola, me gustaría reservar una cita en D' Rafa Peluquería"
+      ? `Hola, me gustaría reservar una cita para el servicio de ${serviceName}`
+      : "Hola, me gustaría reservar una cita"
     const whatsappLink = `https://wa.me/18097672490?text=${encodeURIComponent(message)}`
     window.open(whatsappLink, '_blank')
   }

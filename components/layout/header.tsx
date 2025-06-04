@@ -25,8 +25,8 @@ export function Header() {
     setIsMenuOpen(!isMenuOpen)
   }
 
-  const handleBookNow = () => {
-    const whatsappMessage = "Hola, me gustaría reservar una cita en D' Rafa Peluquería"
+  const handleWhatsAppClick = () => {
+    const whatsappMessage = "Hola, me gustaría reservar una cita"
     const whatsappLink = `https://wa.me/18097672490?text=${encodeURIComponent(whatsappMessage)}`
     window.open(whatsappLink, '_blank')
   }
@@ -72,7 +72,7 @@ export function Header() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.6, duration: 0.5 }}
           >
-            <Button onClick={handleBookNow} className="bg-amber-500 hover:bg-amber-600 text-black font-bold">
+            <Button onClick={handleWhatsAppClick} className="bg-amber-500 hover:bg-amber-600 text-black font-bold">
               Reservar Ahora
             </Button>
           </motion.div>
@@ -105,7 +105,7 @@ export function Header() {
             ))}
             <Button
               onClick={() => {
-                handleBookNow()
+                handleWhatsAppClick()
                 setIsMenuOpen(false)
               }}
               className="bg-amber-500 hover:bg-amber-600 text-black font-bold mt-2"
