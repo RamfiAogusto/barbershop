@@ -14,6 +14,7 @@ import {
   Twitter,
   ChevronRight,
   Check,
+  Coffee,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -339,13 +340,13 @@ export default function ServiciosPage() {
             </div>
 
             <div className="flex items-start space-x-4">
-              <div className="bg-amber-700 p-2 rounded-full text-white">
-                <Check className="h-5 w-5" />
+              <div className="bg-green-600 p-2 rounded-full text-white">
+                <Coffee className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="font-medium mb-2">Productos de alta calidad para el cuidado del cabello</h3>
+                <h3 className="font-medium mb-2">Bebidas y comestibles ligeros disponibles</h3>
                 <p className="text-sm text-muted-foreground">
-                  Utilizamos solo las mejores marcas para garantizar resultados profesionales.
+                  Disfruta de bebidas refrescantes y snacks ligeros mientras esperas tu turno o durante el servicio.
                 </p>
               </div>
             </div>
