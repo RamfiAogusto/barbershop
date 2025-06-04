@@ -255,116 +255,6 @@ export default function ServiciosPage() {
           </div>
         </section>
 
-        {/* Servicios Premium */}
-        <section className="container py-12 bg-black text-white">
-          <h2 className="text-3xl font-bold text-center mb-4">Servicios Premium de Barbería</h2>
-          <p className="text-center text-lg mb-12 text-amber-300">
-            Eleva tu experiencia con nuestros servicios especializados
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Servicio Premium 1 */}
-            <div className="bg-zinc-900 rounded-lg overflow-hidden">
-              <div className="relative h-72">
-                <Image
-                  src="/placeholder.svg?height=300&width=500"
-                  alt="Afeitado clásico con navaja en D' Rafa Peluquería Santo Domingo"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-2xl font-bold mb-2 text-amber-300">Afeitado Clásico con Navaja</h3>
-                <p className="mb-4 text-zinc-300">
-                  Experimenta el ritual tradicional de barbería con toallas calientes, aceites pre-afeitado y after
-                  shave premium. Una experiencia relajante y resultado impecable.
-                </p>
-                <div className="flex justify-between items-center mb-6">
-                  <div className="text-2xl font-bold text-amber-300">RD$400</div>
-                  <div className="flex items-center text-zinc-400">
-                    <Clock className="h-4 w-4 mr-1" />
-                    <span>40-50 minutos</span>
-                  </div>
-                </div>
-                <Button className="w-full bg-amber-700 hover:bg-amber-800">Reservar este servicio premium</Button>
-              </div>
-            </div>
-
-            {/* Servicio Premium 2 */}
-            <div className="bg-zinc-900 rounded-lg overflow-hidden">
-              <div className="relative h-72">
-                <Image
-                  src="/placeholder.svg?height=300&width=500"
-                  alt="Tratamiento completo de barba en D' Rafa Peluquería Santo Domingo"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-2xl font-bold mb-2 text-amber-300">Tratamiento Completo de Barba</h3>
-                <p className="mb-4 text-zinc-300">
-                  Incluye diseño, recorte, afeitado de líneas, lavado con productos especializados y aplicación de
-                  aceites nutritivos para una barba saludable y con estilo.
-                </p>
-                <div className="flex justify-between items-center mb-6">
-                  <div className="text-2xl font-bold text-amber-300">RD$450</div>
-                  <div className="flex items-center text-zinc-400">
-                    <Clock className="h-4 w-4 mr-1" />
-                    <span>45-55 minutos</span>
-                  </div>
-                </div>
-                <Button className="w-full bg-amber-700 hover:bg-amber-800">Reservar este servicio premium</Button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Paquetes Promocionales */}
-        <section className="container py-12">
-          <h2 className="text-3xl font-bold text-center mb-12">Paquetes Especiales de Barbería en Santo Domingo</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* Paquete 1 */}
-            <Card className="border-2 border-amber-700">
-              <CardHeader className="bg-amber-700 text-white">
-                <CardTitle className="text-center">Paquete Padre e Hijo</CardTitle>
-              </CardHeader>
-              <CardContent className="pt-6">
-                <p className="mb-6">
-                  Corte para adulto + corte para niño con 15% de descuento. Una experiencia para compartir.
-                </p>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="text-2xl font-bold text-amber-700">RD$450</div>
-                  <div className="text-sm bg-amber-100 text-amber-800 px-2 py-1 rounded">ahorra RD$100</div>
-                </div>
-              </CardContent>
-              <CardFooter>
-                <Button className="w-full bg-amber-700 hover:bg-amber-800">Reservar este paquete</Button>
-              </CardFooter>
-            </Card>
-
-            {/* Paquete 2 */}
-            <Card className="border-2 border-amber-700">
-              <CardHeader className="bg-amber-700 text-white">
-                <CardTitle className="text-center">Experiencia Completa D&apos; Rafa</CardTitle>
-              </CardHeader>
-              <CardContent className="pt-6">
-                <p className="mb-6">
-                  Corte a tijera + tratamiento de barba + perfilado de cejas. El servicio completo para un look
-                  impecable.
-                </p>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="text-2xl font-bold text-amber-700">RD$900</div>
-                  <div className="text-sm bg-amber-100 text-amber-800 px-2 py-1 rounded">ahorra RD$150</div>
-                </div>
-              </CardContent>
-              <CardFooter>
-                <Button className="w-full bg-amber-700 hover:bg-amber-800">Reservar este paquete</Button>
-              </CardFooter>
-            </Card>
-          </div>
-        </section>
-
         {/* Por Qué Elegirnos */}
         <section className="container py-12 bg-muted/30">
           <h2 className="text-3xl font-bold text-center mb-12">
@@ -379,7 +269,7 @@ export default function ServiciosPage() {
               <div>
                 <h3 className="font-medium mb-2">Más de 20 años de experiencia en barbería profesional</h3>
                 <p className="text-sm text-muted-foreground">
-                  Maestros barberos con décadas perfeccionando el arte del corte masculino.
+                  Maestro barbero con décadas perfeccionando el arte del corte masculino.
                 </p>
               </div>
             </div>
@@ -403,7 +293,7 @@ export default function ServiciosPage() {
               <div>
                 <h3 className="font-medium mb-2">Atención personalizada y asesoramiento profesional</h3>
                 <p className="text-sm text-muted-foreground">
-                  Cada cliente recibe recomendaciones específicas según su tipo de rostro y estilo.
+                  Cada cliente recibe recomendaciones específicas y atención de calidad.
                 </p>
               </div>
             </div>
@@ -541,28 +431,6 @@ export default function ServiciosPage() {
                   Aunque atendemos clientes sin cita previa, recomendamos reservar con anticipación para garantizar
                   disponibilidad y minimizar tiempos de espera, especialmente durante fines de semana y días festivos.
                   Puedes reservar llamando al +1 (809)-767-2490 o a través de nuestra página web.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-2">
-                <AccordionTrigger>¿Cuánto tiempo debo esperar entre cortes de pelo?</AccordionTrigger>
-                <AccordionContent>
-                  Recomendamos un intervalo de 3-4 semanas para mantener la forma y el estilo de tu corte. Para estilos
-                  más cortos, cada 2-3 semanas es ideal. Si prefieres mantener el cabello más largo, cada 6-8 semanas
-                  puede ser suficiente. Nuestros barberos pueden darte recomendaciones personalizadas según tu tipo de
-                  cabello y estilo.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-3">
-                <AccordionTrigger>
-                  ¿Ofrecen asesoramiento sobre qué estilo se adapta mejor a mi rostro?
-                </AccordionTrigger>
-                <AccordionContent>
-                  Absolutamente. Nuestros maestros barberos están capacitados para analizar la forma de tu rostro, tipo
-                  de cabello y estilo personal para recomendarte el corte que mejor te favorezca. Parte de nuestra
-                  consulta inicial incluye una conversación sobre tus preferencias y necesidades para lograr el mejor
-                  resultado.
                 </AccordionContent>
               </AccordionItem>
 
