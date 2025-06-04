@@ -158,11 +158,11 @@ export default function Home() {
               transition={{ duration: 0.5 }}
             >
               <Image
-                src="/placeholder.svg?height=600&width=500"
-                width={500}
-                height={600}
-                alt="Rafa - Maestro Barbero"
-                className="rounded-lg object-cover w-full"
+                src="/assets/quienesomos.jpg"
+                width={400}
+                height={480}
+                alt="Rafa - Maestro Barbero trabajando con precisión en D' Rafa Peluquería, Santo Domingo"
+                className="rounded-lg object-cover w-full max-w-md mx-auto"
               />
             </motion.div>
 
@@ -486,6 +486,20 @@ export default function Home() {
                       className="bg-gray-800 hover:bg-amber-500 text-white hover:text-black p-3 rounded-full transition-colors"
                     >
                       <Facebook className="h-5 w-5" />
+                    </a>
+                    <a
+                      href="https://wa.me/18097672490"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-gray-800 hover:bg-amber-500 text-white hover:text-black p-3 rounded-full transition-colors"
+                    >
+                      <Image
+                        src="/assets/whatsapp.svg"
+                        alt="WhatsApp"
+                        width={20}
+                        height={20}
+                        className="h-5 w-5 filter invert brightness-0 contrast-100 transition-all duration-200 hover:brightness-200 hover:sepia hover:saturate-200 hover:hue-rotate-15"
+                      />
                     </a>
                   </div>
                 </div>

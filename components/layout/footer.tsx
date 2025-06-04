@@ -1,6 +1,7 @@
 'use client'
 
 import Link from "next/link"
+import Image from "next/image"
 import { Scissors, Instagram, Facebook } from "lucide-react"
 
 export function Footer() {
@@ -34,6 +35,20 @@ export function Footer() {
                 className="text-gray-400 hover:text-amber-500 transition-colors"
               >
                 <Facebook className="h-5 w-5" />
+              </a>
+              <a
+                href="https://wa.me/18097672490"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-amber-500 transition-colors"
+              >
+                <Image
+                  src="/assets/whatsapp.svg"
+                  alt="WhatsApp"
+                  width={20}
+                  height={20}
+                  className="h-5 w-5 filter invert brightness-0 contrast-100 opacity-60 hover:opacity-100 transition-all duration-200 hover:brightness-200 hover:sepia hover:saturate-200 hover:hue-rotate-15"
+                />
               </a>
             </div>
           </div>
