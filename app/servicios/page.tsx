@@ -83,15 +83,7 @@ export default function ServiciosPage() {
           <h2 className="text-3xl font-bold text-center mb-12">Nuestros Servicios</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Servicio 1 */}
-            <Card className="overflow-hidden">
-              <div className="relative h-60">
-                <Image
-                  src="/placeholder.svg?height=240&width=400"
-                  alt="Corte clásico de cabello para hombre en D' Rafa Peluquería Santo Domingo"
-                  fill
-                  className="object-cover"
-                />
-              </div>
+            <Card>
               <CardHeader>
                 <CardTitle>Corte Clásico</CardTitle>
                 <CardDescription>
@@ -119,15 +111,7 @@ export default function ServiciosPage() {
             </Card>
 
             {/* Servicio 2 */}
-            <Card className="overflow-hidden">
-              <div className="relative h-60">
-                <Image
-                  src="/placeholder.svg?height=240&width=400"
-                  alt="Corte a tijera profesional en D' Rafa Peluquería Santo Domingo"
-                  fill
-                  className="object-cover"
-                />
-              </div>
+            <Card>
               <CardHeader>
                 <CardTitle>Corte a Tijera</CardTitle>
                 <CardDescription>
@@ -155,15 +139,7 @@ export default function ServiciosPage() {
             </Card>
 
             {/* Servicio 3 */}
-            <Card className="overflow-hidden">
-              <div className="relative h-60">
-                <Image
-                  src="/placeholder.svg?height=240&width=400"
-                  alt="Corte juvenil moderno para adolescentes en D' Rafa Peluquería Santo Domingo"
-                  fill
-                  className="object-cover"
-                />
-              </div>
+            <Card>
               <CardHeader>
                 <CardTitle>Corte para Adolescentes</CardTitle>
                 <CardDescription>
@@ -191,15 +167,7 @@ export default function ServiciosPage() {
             </Card>
 
             {/* Servicio 4 */}
-            <Card className="overflow-hidden">
-              <div className="relative h-60">
-                <Image
-                  src="/placeholder.svg?height=240&width=400"
-                  alt="Corte para niños en D' Rafa Peluquería Santo Domingo"
-                  fill
-                  className="object-cover"
-                />
-              </div>
+            <Card>
               <CardHeader>
                 <CardTitle>Corte para Niños</CardTitle>
                 <CardDescription>
@@ -227,17 +195,9 @@ export default function ServiciosPage() {
             </Card>
 
             {/* Servicio 5 */}
-            <Card className="overflow-hidden">
-              <div className="relative h-60">
-                <Image
-                  src="/placeholder.svg?height=240&width=400"
-                  alt="Cerquillos y flequillos estilizados en D' Rafa Peluquería Santo Domingo"
-                  fill
-                  className="object-cover"
-                />
-              </div>
+            <Card>
               <CardHeader>
-                <CardTitle>Cerquillos / Flequillos</CardTitle>
+                <CardTitle>Cerquillos</CardTitle>
                 <CardDescription>
                   Ajuste y diseño de cerquillos para complementar tu estilo personal. Servicio rápido y preciso para
                   mantener tu look entre cortes completos.
@@ -255,7 +215,7 @@ export default function ServiciosPage() {
               <CardFooter>
                 <Button 
                   className="w-full bg-amber-700 hover:bg-amber-800"
-                  onClick={() => handleWhatsAppReservation("Cerquillos / Flequillos")}
+                  onClick={() => handleWhatsAppReservation("Cerquillos")}
                 >
                   Reservar este servicio
                 </Button>
@@ -263,15 +223,7 @@ export default function ServiciosPage() {
             </Card>
 
             {/* Servicio 6 */}
-            <Card className="overflow-hidden">
-              <div className="relative h-60">
-                <Image
-                  src="/placeholder.svg?height=240&width=400"
-                  alt="Perfilado de cejas masculino en D' Rafa Peluquería Santo Domingo"
-                  fill
-                  className="object-cover"
-                />
-              </div>
+            <Card>
               <CardHeader>
                 <CardTitle>Perfilado de Cejas</CardTitle>
                 <CardDescription>
@@ -495,7 +447,7 @@ export default function ServiciosPage() {
                   Para mantener tu corte en óptimas condiciones, recomendamos utilizar los productos adecuados para tu
                   tipo de cabello, seguir una rutina de lavado apropiada y evitar el uso excesivo de calor. Nuestros
                   barberos te darán consejos específicos sobre cómo mantener tu estilo según el corte elegido. Para
-                  retoques menores, ofrecemos servicios de cerquillo/flequillo entre cortes completos.
+                  retoques menores, ofrecemos servicios de cerquillo entre cortes completos.
                 </AccordionContent>
               </AccordionItem>
 
