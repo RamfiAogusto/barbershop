@@ -6,6 +6,7 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { Scissors, Calendar, Clock, MapPin, Phone, Instagram, Facebook, Menu, X, ChevronRight, Palette, Sparkles } from "lucide-react"
 import Head from "next/head"
+import Script from "next/script"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -14,6 +15,7 @@ import { useToast } from "@/components/ui/use-toast"
 import { useMobile } from "@/hooks/use-mobile"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
+import { LocalBusinessSchema } from "@/components/seo/local-business-schema"
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -59,6 +61,125 @@ export default function Home() {
     },
   }
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "HairSalon",
+    "name": "D' Rafa Peluquería",
+    "description": "Barbería premium en Santo Domingo con más de 20 años de experiencia. Especialistas en cortes masculinos y femeninos, tintura temporal y servicios de alta calidad.",
+    "url": "https://tu-dominio.com",
+    "telephone": "+1-809-767-2490",
+    "priceRange": "$$",
+    "image": [
+      "https://drafapeluqueria.com/assets/vintage-.webp",
+      "https://drafapeluqueria.com/assets/quienesomos.jpg"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Respaldo Calle 4, Ensanche Carmelita",
+      "addressLocality": "Santo Domingo",
+      "addressRegion": "Distrito Nacional",
+      "addressCountry": "DO"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "18.4861",
+      "longitude": "-69.9312"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "08:00",
+        "closes": "20:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Sunday",
+        "opens": "08:00",
+        "closes": "19:00"
+      }
+    ],
+    "sameAs": [
+      "https://www.instagram.com/rafa_eldon/",
+      "https://www.facebook.com/RafaelDondelcorte",
+      "https://wa.me/18097672490"
+    ],
+    "founder": {
+      "@type": "Person",
+      "name": "Rafael",
+      "jobTitle": "Master Barber",
+      "worksFor": {
+        "@type": "HairSalon",
+        "name": "D' Rafa Peluquería"
+      }
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Servicios de Peluquería",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Corte a Tijeras",
+            "description": "Cortes de pelo con técnicas tradicionales y modernas"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Tintura Temporal",
+            "description": "Colores temporales para ocasiones especiales"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Corte Femenino",
+            "description": "Cortes y diseños especializados para mujeres"
+          }
+        }
+      ]
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "50"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Alejandro Gómez"
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "reviewBody": "El mejor lugar para un corte de pelo. Rafa es un profesional que sabe lo que hace y te aconseja según tu tipo de rostro. Ambiente increíble."
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "David Fernández"
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "reviewBody": "Experiencia de primera clase. El servicio es espectacular, te hacen sentir como en casa. Volveré sin duda."
+      }
+    ]
+  }
+
   return (
     <div className="min-h-screen bg-black text-white">
       <Head>
@@ -69,6 +190,8 @@ export default function Home() {
           type="image/jpeg"
         />
       </Head>
+      
+      <LocalBusinessSchema />
       
       <Header />
 
