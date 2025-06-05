@@ -91,14 +91,6 @@ export default function ServiciosPage() {
                   final. Ideal para mantener un look profesional y cuidado.
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="flex justify-between items-center mb-4">
-                  <div className="flex items-center text-sm text-muted-foreground">
-                    <Clock className="h-4 w-4 mr-1" />
-                    <span>30-40 minutos</span>
-                  </div>
-                </div>
-              </CardContent>
               <CardFooter>
                 <Button 
                   className="w-full bg-amber-700 hover:bg-amber-800"
@@ -118,14 +110,6 @@ export default function ServiciosPage() {
                   estilos que requieren mayor detalle y acabado natural.
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="flex justify-between items-center mb-4">
-                  <div className="flex items-center text-sm text-muted-foreground">
-                    <Clock className="h-4 w-4 mr-1" />
-                    <span>45-60 minutos</span>
-                  </div>
-                </div>
-              </CardContent>
               <CardFooter>
                 <Button 
                   className="w-full bg-amber-700 hover:bg-amber-800"
@@ -145,14 +129,6 @@ export default function ServiciosPage() {
                   encontrar el look que mejor se adapte a su personalidad y estilo de vida.
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="flex justify-between items-center mb-4">
-                  <div className="flex items-center text-sm text-muted-foreground">
-                    <Clock className="h-4 w-4 mr-1" />
-                    <span>25-35 minutos</span>
-                  </div>
-                </div>
-              </CardContent>
               <CardFooter>
                 <Button 
                   className="w-full bg-amber-700 hover:bg-amber-800"
@@ -172,14 +148,6 @@ export default function ServiciosPage() {
                   crear un ambiente cómodo para que los niños disfruten de su corte.
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="flex justify-between items-center mb-4">
-                  <div className="flex items-center text-sm text-muted-foreground">
-                    <Clock className="h-4 w-4 mr-1" />
-                    <span>20-30 minutos</span>
-                  </div>
-                </div>
-              </CardContent>
               <CardFooter>
                 <Button 
                   className="w-full bg-amber-700 hover:bg-amber-800"
