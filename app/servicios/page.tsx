@@ -83,10 +83,10 @@ export default function ServiciosPage() {
           <h2 className="text-3xl font-bold text-center mb-12">Nuestros Servicios</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Servicio 1 */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Corte Clásico</CardTitle>
-                <CardDescription>
+            <Card className="w-full max-w-[400px] flex flex-col h-full">
+              <CardHeader className="space-y-4 flex-1">
+                <CardTitle className="mb-2">Corte Clásico</CardTitle>
+                <CardDescription className="h-full flex items-center">
                   El servicio de corte tradicional incluye lavado, corte personalizado según tu tipo de rostro y peinado
                   final. Ideal para mantener un look profesional y cuidado.
                 </CardDescription>
@@ -102,10 +102,10 @@ export default function ServiciosPage() {
             </Card>
 
             {/* Servicio 2 */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Corte a Tijera</CardTitle>
-                <CardDescription>
+            <Card className="w-full max-w-[400px] flex flex-col h-full">
+              <CardHeader className="space-y-4 flex-1">
+                <CardTitle className="mb-2">Corte a Tijera</CardTitle>
+                <CardDescription className="h-full flex items-center">
                   Técnica de precisión para lograr mayor definición y textura. Perfecto para cabellos con volumen o
                   estilos que requieren mayor detalle y acabado natural.
                 </CardDescription>
@@ -121,10 +121,10 @@ export default function ServiciosPage() {
             </Card>
 
             {/* Servicio 3 */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Corte para Adolescentes</CardTitle>
-                <CardDescription>
+            <Card className="w-full max-w-[400px] flex flex-col h-full">
+              <CardHeader className="space-y-4 flex-1">
+                <CardTitle className="mb-2">Corte para Adolescentes</CardTitle>
+                <CardDescription className="h-full flex items-center">
                   Estilos contemporáneos y tendencias actuales para jóvenes. Incluye asesoramiento personalizado para
                   encontrar el look que mejor se adapte a su personalidad y estilo de vida.
                 </CardDescription>
@@ -140,10 +140,10 @@ export default function ServiciosPage() {
             </Card>
 
             {/* Servicio 4 */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Corte para Niños</CardTitle>
-                <CardDescription>
+            <Card className="w-full max-w-[400px] flex flex-col h-full">
+              <CardHeader className="space-y-4 flex-1">
+                <CardTitle className="mb-2">Corte para Niños</CardTitle>
+                <CardDescription className="h-full flex items-center">
                   Experiencia amigable y divertida para los más pequeños. Nuestros barberos están especializados en
                   crear un ambiente cómodo para que los niños disfruten de su corte.
                 </CardDescription>
@@ -159,22 +159,14 @@ export default function ServiciosPage() {
             </Card>
 
             {/* Servicio 5 */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Cerquillos</CardTitle>
-                <CardDescription>
-                  Ajuste y diseño de cerquillos para complementar tu estilo personal. Servicio rápido y preciso para
-                  mantener tu look entre cortes completos.
+            <Card className="w-full max-w-[400px] flex flex-col h-full">
+              <CardHeader className="space-y-4 flex-1">
+                <CardTitle className="mb-2">Cerquillos</CardTitle>
+                <CardDescription className="h-full flex items-center">
+                  Mantenimiento profesional de cerquillos y diseño de barba. Incluye delineado preciso y arreglo con
+                  tijera para un acabado impecable.
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="flex justify-between items-center mb-4">
-                  <div className="flex items-center text-sm text-muted-foreground">
-                    <Clock className="h-4 w-4 mr-1" />
-                    <span>15-20 minutos</span>
-                  </div>
-                </div>
-              </CardContent>
               <CardFooter>
                 <Button 
                   className="w-full bg-amber-700 hover:bg-amber-800"
@@ -186,26 +178,18 @@ export default function ServiciosPage() {
             </Card>
 
             {/* Servicio 6 */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Perfilado de Cejas</CardTitle>
-                <CardDescription>
-                  Diseño y definición de cejas para realzar tus rasgos faciales. Un detalle que marca la diferencia en
-                  la apariencia general y enmarca perfectamente el rostro.
+            <Card className="w-full max-w-[400px] flex flex-col h-full">
+              <CardHeader className="space-y-4 flex-1">
+                <CardTitle className="mb-2">Cejas</CardTitle>
+                <CardDescription className="h-full flex items-center">
+                  Diseño profesional de cejas para un look simétrico y natural. Técnica precisa que realza tu mirada
+                  manteniendo un aspecto masculino y bien cuidado.
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="flex justify-between items-center mb-4">
-                  <div className="flex items-center text-sm text-muted-foreground">
-                    <Clock className="h-4 w-4 mr-1" />
-                    <span>10-15 minutos</span>
-                  </div>
-                </div>
-              </CardContent>
               <CardFooter>
                 <Button 
                   className="w-full bg-amber-700 hover:bg-amber-800"
-                  onClick={() => handleWhatsAppReservation("Perfilado de Cejas")}
+                  onClick={() => handleWhatsAppReservation("Cejas")}
                 >
                   Reservar este servicio
                 </Button>
