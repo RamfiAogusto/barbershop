@@ -38,10 +38,14 @@ export default function ServiciosPage() {
       <main className="flex-1">
         {/* Banner Principal */}
         <section className="relative">
-          <div className="absolute inset-0 bg-black/60 z-10"></div>
+          <div className="absolute inset-0 bg-black/70 z-10"></div>
           <div className="relative h-[400px] md:h-[500px]">
             <Image
-              src="/placeholder.svg?height=500&width=1920"
+              style={{
+                objectFit: "cover",
+                objectPosition: "center",
+              }}
+              src="/assets/banner2.webp"
               alt="Interior de D' Rafa Peluquería en Santo Domingo mostrando estaciones de barbería profesional"
               fill
               className="object-cover"
@@ -509,32 +513,36 @@ export default function ServiciosPage() {
         </section>
 
         {/* Llamada a la Acción */}
-        <section className="relative py-16">
-          <div className="absolute inset-0 bg-black/70 z-10"></div>
-          <div className="relative h-[300px]">
-            <Image
-              src="/placeholder.svg?height=300&width=1920"
-              alt="Interior de D' Rafa Peluquería en Santo Domingo"
-              fill
-              className="object-cover"
-            />
-          </div>
-          <div className="absolute inset-0 z-20 flex items-center justify-center">
-            <div className="container text-center text-white space-y-6">
-              <h2 className="text-3xl md:text-4xl font-bold">¿Listo para lucir tu mejor versión?</h2>
-              <p className="text-xl">Reserva ahora tu cita en la barbería preferida de Santo Domingo</p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button 
-                  className="bg-amber-700 hover:bg-amber-800 text-lg px-8 py-6"
-                  onClick={() => handleWhatsAppReservation()}
-                >
-                  Reservar Mi Cita
-                </Button>
-                <div className="flex items-center">
-                  <p>O llámanos al</p>
-                  <a href="tel:+18097672490" className="ml-2 font-bold hover:text-amber-300">
-                    +1 (809)-767-2490
-                  </a>
+        <section className="relative ">
+          <div 
+            className="relative h-[300px] bg-cover bg-center"
+            style={{ 
+              backgroundImage: "url('/assets/banner3.webp')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              backgroundAttachment: "fixed",
+              backgroundBlendMode: "multiply",
+              backgroundColor: "rgba(0, 0, 0, 0.7)"
+            }}
+          >
+            <div className="absolute inset-0 z-20 flex items-center justify-center">
+              <div className="container text-center text-white space-y-6">
+                <h2 className="text-3xl md:text-4xl font-bold">¿Listo para lucir tu mejor versión?</h2>
+                <p className="text-xl">Reserva ahora tu cita en la barbería preferida de Santo Domingo</p>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <Button 
+                    className="bg-amber-700 hover:bg-amber-800 text-lg px-8 py-6"
+                    onClick={() => handleWhatsAppReservation()}
+                  >
+                    Reservar Mi Cita
+                  </Button>
+                  <div className="flex items-center">
+                    <p>O llámanos al</p>
+                    <a href="tel:+18097672490" className="ml-2 font-bold hover:text-amber-300">
+                      +1 (809)-767-2490
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

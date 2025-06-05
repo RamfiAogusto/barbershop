@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Scissors, Calendar, Clock, MapPin, Phone, Instagram, Facebook, Menu, X, ChevronRight } from "lucide-react"
+import { Scissors, Calendar, Clock, MapPin, Phone, Instagram, Facebook, Menu, X, ChevronRight, Palette, Sparkles } from "lucide-react"
 import Head from "next/head"
 
 import { Button } from "@/components/ui/button"
@@ -199,79 +199,74 @@ export default function Home() {
             className="text-center mb-16"
           >
             <motion.h2 variants={fadeInUp} className="text-3xl md:text-4xl font-bold mb-4">
-              Nuestros <span className="text-amber-500">Servicios</span>
+              Servicios <span className="text-amber-500">Destacados</span>
             </motion.h2>
             <motion.div variants={fadeInUp} className="w-20 h-1 bg-amber-500 mx-auto mb-6"></motion.div>
             <motion.p variants={fadeInUp} className="text-gray-400 max-w-2xl mx-auto">
-              Ofrecemos una amplia gama de servicios de barbería de primera calidad, adaptados a tus necesidades y
-              estilo personal.
+              Experimenta nuestros servicios de barbería premium con el estilo y la precisión que caracterizan a D' Rafa Peluquería.
             </motion.p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Corte",
-                description:
-                  "Experimenta la excelencia en el arte del corte de pelo, desde estilos clásicos hasta tendencias modernas.",
-                price: "$350",
-                icon: "scissors",
-              },
-              {
-                title: "Corte a Tijera",
-                description:
-                  "Precisión y detalle en cada corte, ideal para estilos que requieren mayor definición y textura.",
-                price: "$500",
-                icon: "scissors",
-              },
-              {
-                title: "Corte a Adolescentes",
-                description: "Estilos modernos y actuales especialmente diseñados para adolescentes.",
-                price: "$250",
-                icon: "scissors",
-              },
-              {
-                title: "Corte a Niños",
-                description: "Cortes divertidos y cómodos para los más pequeños en un ambiente amigable.",
-                price: "$200",
-                icon: "scissors",
-              },
-              {
-                title: "Cerquillos",
-                description: "Ajuste y diseño de cerquillos para complementar tu estilo personal.",
-                price: "$200",
-                icon: "scissors",
-              },
-              {
-                title: "Cejas",
-                description: "Perfilado y diseño de cejas para realzar tus rasgos faciales.",
-                price: "$100",
-                icon: "scissors",
-              },
-            ].map((service, index) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 * index, duration: 0.5 }}
-              >
-                <Card className="bg-gray-900 border-gray-800 hover:border-amber-500/50 transition-all duration-300 h-full overflow-hidden group">
-                  <CardContent className="p-6 flex flex-col h-full">
-                    <div className="mb-4 flex items-center justify-between">
-                      <div className="bg-amber-500/10 p-3 rounded-full w-14 h-14 flex items-center justify-center">
-                        <Scissors className="h-6 w-6 text-amber-500" />
-                      </div>
-                      <span className="text-2xl font-bold text-amber-500">{service.price}</span>
-                    </div>
-                    <h3 className="text-xl font-bold mb-2 text-white group-hover:text-amber-500 transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="text-gray-400 mb-4 flex-grow">{service.description}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Corte a tijeras */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1, duration: 0.5 }}
+            >
+              <Card className="bg-gray-900 border-gray-800 hover:border-amber-500/50 transition-all duration-300 h-full overflow-hidden">
+                <CardContent className="p-6 text-center">
+                  <div className="bg-amber-500/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                    <Scissors className="h-8 w-8 text-amber-500" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-amber-500">Corte a Tijeras</h3>
+                  <p className="text-gray-400">
+                    Experimenta la excelencia en el arte del corte de pelo con técnicas tradicionales. Desde estilos clásicos hasta tendencias modernas, cada corte es una obra de arte que resalta tu personalidad y estilo único.
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Tintura temporal */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+            >
+              <Card className="bg-gray-900 border-gray-800 hover:border-purple-500/50 transition-all duration-300 h-full overflow-hidden">
+                <CardContent className="p-6 text-center">
+                  <div className="bg-purple-500/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                    <Palette className="h-8 w-8 text-purple-500" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-purple-500">Tintura Temporal</h3>
+                  <p className="text-gray-400">
+                    Agrega un toque de color y diversión a tu look con nuestra tintura temporal. Disfruta de la libertad de expresarte con colores únicos que se eliminan fácilmente con solo lavar el cabello, perfecta para ocasiones especiales.
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Corte femenino */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+            >
+              <Card className="bg-gray-900 border-gray-800 hover:border-pink-500/50 transition-all duration-300 h-full overflow-hidden">
+                <CardContent className="p-6 text-center">
+                  <div className="bg-pink-500/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                    <Sparkles className="h-8 w-8 text-pink-500" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-pink-500">Corte Femenino</h3>
+                  <p className="text-gray-400">
+                    Déjate sorprender por la creatividad y precisión en cada corte femenino. Desde cortes modernos hasta estilos audaces con maquinilla. Ya sea rayas, degradados o diseños personalizados, te ayudaremos a lucir tu mejor versión.
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
           </div>
         </div>
       </section>
