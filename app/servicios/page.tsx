@@ -278,7 +278,15 @@ export default function ServiciosPage() {
               <div>
                 <h3 className="font-medium mb-2">Ubicación conveniente en Ensanche Carmelita, Santo Domingo</h3>
                 <p className="text-sm text-muted-foreground">
-                  Fácil acceso desde cualquier punto de la ciudad con estacionamiento disponible.
+                  Fácil acceso desde cualquier punto de la ciudad con estacionamiento disponible.{" "}
+                  <a 
+                    href="https://maps.app.goo.gl/NqoWKyHeQdFNAD8D9" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-amber-600 hover:underline"
+                  >
+                    Ver en mapa
+                  </a>
                 </p>
               </div>
             </div>
@@ -491,7 +499,10 @@ export default function ServiciosPage() {
                   </Button>
                   <div className="flex items-center">
                     <p>O llámanos al</p>
-                    <a href="tel:+18097672490" className="ml-2 font-bold hover:text-amber-300">
+                    <a 
+                      href="tel:+18097672490" 
+                      className="ml-2 font-bold hover:text-amber-300 underline"
+                    >
                       +1 (809)-767-2490
                     </a>
                   </div>

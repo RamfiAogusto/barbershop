@@ -438,7 +438,14 @@ export default function Home() {
                     </div>
                     <div>
                       <h4 className="font-bold mb-1">Dirección</h4>
-                      <p className="text-gray-400">D.N, Respaldo Calle 4, Ensanche Carmelita, Santo Domingo</p>
+                      <a 
+                        href="https://maps.app.goo.gl/NqoWKyHeQdFNAD8D9" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-gray-400 hover:text-amber-500 hover:underline"
+                      >
+                        D.N, Respaldo Calle 4, Ensanche Carmelita, Santo Domingo
+                      </a>
                     </div>
                   </div>
 
@@ -448,7 +455,12 @@ export default function Home() {
                     </div>
                     <div>
                       <h4 className="font-bold mb-1">Teléfono</h4>
-                      <p className="text-gray-400">1+(809)-767-2490</p>
+                      <a 
+                        href="tel:+18097672490" 
+                        className="text-gray-400 hover:text-amber-500 hover:underline"
+                      >
+                        1+(809)-767-2490
+                      </a>
                     </div>
                   </div>
 
