@@ -93,7 +93,6 @@ export default function ServiciosPage() {
               </CardHeader>
               <CardContent>
                 <div className="flex justify-between items-center mb-4">
-                  <div className="text-2xl font-bold text-amber-700">RD$350</div>
                   <div className="flex items-center text-sm text-muted-foreground">
                     <Clock className="h-4 w-4 mr-1" />
                     <span>30-40 minutos</span>
@@ -121,7 +120,6 @@ export default function ServiciosPage() {
               </CardHeader>
               <CardContent>
                 <div className="flex justify-between items-center mb-4">
-                  <div className="text-2xl font-bold text-amber-700">RD$500</div>
                   <div className="flex items-center text-sm text-muted-foreground">
                     <Clock className="h-4 w-4 mr-1" />
                     <span>45-60 minutos</span>
@@ -149,7 +147,6 @@ export default function ServiciosPage() {
               </CardHeader>
               <CardContent>
                 <div className="flex justify-between items-center mb-4">
-                  <div className="text-2xl font-bold text-amber-700">RD$250</div>
                   <div className="flex items-center text-sm text-muted-foreground">
                     <Clock className="h-4 w-4 mr-1" />
                     <span>25-35 minutos</span>
@@ -177,7 +174,6 @@ export default function ServiciosPage() {
               </CardHeader>
               <CardContent>
                 <div className="flex justify-between items-center mb-4">
-                  <div className="text-2xl font-bold text-amber-700">RD$200</div>
                   <div className="flex items-center text-sm text-muted-foreground">
                     <Clock className="h-4 w-4 mr-1" />
                     <span>20-30 minutos</span>
@@ -205,7 +201,6 @@ export default function ServiciosPage() {
               </CardHeader>
               <CardContent>
                 <div className="flex justify-between items-center mb-4">
-                  <div className="text-2xl font-bold text-amber-700">RD$200</div>
                   <div className="flex items-center text-sm text-muted-foreground">
                     <Clock className="h-4 w-4 mr-1" />
                     <span>15-20 minutos</span>
@@ -233,7 +228,6 @@ export default function ServiciosPage() {
               </CardHeader>
               <CardContent>
                 <div className="flex justify-between items-center mb-4">
-                  <div className="text-2xl font-bold text-amber-700">RD$100</div>
                   <div className="flex items-center text-sm text-muted-foreground">
                     <Clock className="h-4 w-4 mr-1" />
                     <span>10-15 minutos</span>
