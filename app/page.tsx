@@ -16,6 +16,7 @@ import { useMobile } from "@/hooks/use-mobile"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { LocalBusinessSchema } from "@/components/seo/local-business-schema"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -190,7 +191,7 @@ export default function Home() {
           type="image/jpeg"
         />
       </Head>
-      
+      <SpeedInsights />
       <LocalBusinessSchema />
       
       <Header />
