@@ -415,9 +415,9 @@ export default function Home() {
           </motion.div>
 
           <Carousel className="w-full">
-            <CarouselContent>
+            <CarouselContent className="-ml-2 md:-ml-4">
               {[1, 2, 3, 4, 5, 6].map((item) => (
-                <CarouselItem key={item} className="md:basis-1/2 lg:basis-1/3">
+                <CarouselItem key={item} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
                   <div className="p-1">
                     <Card className="border-0 overflow-hidden bg-transparent">
                       <CardContent className="p-0 relative group">
@@ -442,8 +442,8 @@ export default function Home() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="text-amber-500 border-amber-500 hover:bg-amber-500 hover:text-black" />
-            <CarouselNext className="text-amber-500 border-amber-500 hover:bg-amber-500 hover:text-black" />
+            <CarouselPrevious className="hidden md:flex text-amber-500 border-amber-500 hover:bg-amber-500 hover:text-black" />
+            <CarouselNext className="hidden md:flex text-amber-500 border-amber-500 hover:bg-amber-500 hover:text-black" />
           </Carousel>
         </div>
       </section>
@@ -465,7 +465,7 @@ export default function Home() {
           </motion.div>
 
           <Carousel className="w-full">
-            <CarouselContent>
+            <CarouselContent className="-ml-2 md:-ml-4">
               {[
                 {
                   name: "Alejandro Gómez",
@@ -488,7 +488,7 @@ export default function Home() {
                   rating: 5,
                 },
               ].map((testimonial, index) => (
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                <CarouselItem key={index} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
                   <div className="p-1 h-full">
                     <Card className="border-gray-800 bg-gray-900 h-full">
                       <CardContent className="p-6 flex flex-col h-full">
@@ -520,8 +520,8 @@ export default function Home() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="text-amber-500 border-amber-500 hover:bg-amber-500 hover:text-black" />
-            <CarouselNext className="text-amber-500 border-amber-500 hover:bg-amber-500 hover:text-black" />
+            <CarouselPrevious className="hidden md:flex text-amber-500 border-amber-500 hover:bg-amber-500 hover:text-black" />
+            <CarouselNext className="hidden md:flex text-amber-500 border-amber-500 hover:bg-amber-500 hover:text-black" />
           </Carousel>
         </div>
       </section>
