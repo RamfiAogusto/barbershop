@@ -82,9 +82,9 @@ export const metadata: Metadata = {
   },
   category: 'business',
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
-    apple: '/assets/apple-touch-icon.png',
+    icon: '/iconbarber.svg',
+    shortcut: '/iconbarber.svg',
+    apple: '/iconbarber.svg',
   },
 }
 
