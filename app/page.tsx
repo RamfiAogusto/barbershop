@@ -219,11 +219,11 @@ export default function Home() {
         <div className="container mx-auto px-4 z-10 pt-20">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-3xl">
             <motion.h1 variants={fadeInUp} className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4">
-              Estilo y Precisión en <span className="text-amber-500">Cada Corte</span>
+              <span className="text-amber-500">Peluquería y Barbería</span> en Santo Domingo
             </motion.h1>
 
             <motion.p variants={fadeInUp} className="text-xl md:text-2xl text-gray-300 mb-8">
-              Donde la tradición se encuentra con el estilo moderno para crear tu mejor imagen
+              La mejor barbería cerca de ti en Ensanche Carmelita. +20 años de experiencia profesional en República Dominicana.
             </motion.p>
 
             <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4">
@@ -258,6 +258,45 @@ export default function Home() {
             <ChevronRight className="h-6 w-6 text-amber-500 rotate-90" />
           </a>
         </motion.div>
+      </section>
+
+      {/* Local SEO Section */}
+      <section className="py-16 bg-gray-900">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Barbería Premium en <span className="text-amber-500">Santo Domingo</span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-4xl mx-auto">
+              Ubicados en Ensanche Carmelita, somos la peluquería y barbería de confianza en República Dominicana. 
+              Si buscas "barbería cerca de mi" o "peluquería cerca de mi", estás en el lugar correcto.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div>
+              <MapPin className="h-12 w-12 text-amber-500 mx-auto mb-4" />
+              <h3 className="text-xl font-bold mb-2">Ubicación Estratégica</h3>
+              <p className="text-gray-400">
+                En el corazón de Ensanche Carmelita, Santo Domingo. Fácil acceso desde toda la ciudad.
+              </p>
+            </div>
+            <div>
+              <Scissors className="h-12 w-12 text-amber-500 mx-auto mb-4" />
+              <h3 className="text-xl font-bold mb-2">Experiencia Comprobada</h3>
+              <p className="text-gray-400">
+                Más de 20 años siendo la barbería preferida en Santo Domingo, República Dominicana.
+              </p>
+            </div>
+            <div>
+              <Clock className="h-12 w-12 text-amber-500 mx-auto mb-4" />
+              <h3 className="text-xl font-bold mb-2">Horarios Convenientes</h3>
+              <p className="text-gray-400">
+                Abierto 6 días a la semana para tu comodidad. La peluquería que se adapta a tu horario.
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* About Us Section */}

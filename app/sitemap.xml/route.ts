@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 
 export async function GET(): Promise<Response> {
-  const baseUrl = 'https://drafapeluqueria.com' // Reemplaza con tu dominio real
+  const baseUrl = 'https://drafapeluqueria.com'
   
   const sitemap: MetadataRoute.Sitemap = [
     {
@@ -14,10 +14,10 @@ export async function GET(): Promise<Response> {
       url: `${baseUrl}/servicios`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
-      priority: 0.8,
+      priority: 0.9,
     },
     {
-      url: `${baseUrl}/reservar`,
+      url: `${baseUrl}/faq`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
@@ -31,7 +31,7 @@ ${sitemap
     (item) => `
   <url>
     <loc>${item.url}</loc>
-    <lastmod>${item.lastModified?.toISOString()}</lastmod>
+    <lastmod>${item.lastModified instanceof Date ? item.lastModified.toISOString() : item.lastModified}</lastmod>
     <changefreq>${item.changeFrequency}</changefreq>
     <priority>${item.priority}</priority>
   </url>`

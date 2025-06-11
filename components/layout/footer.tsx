@@ -56,10 +56,14 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-bold mb-4">Enlaces Rápidos</h3>
             <ul className="space-y-2">
-              {["Inicio", "Nosotros", "Servicios", "Galería", "Contacto"].map((item) => (
+              {["Inicio", "Nosotros", "Servicios", "FAQ", "Galería", "Contacto"].map((item) => (
                 <li key={item}>
                   <Link
-                    href={item === "Servicios" ? "/servicios" : `/#${item.toLowerCase()}`}
+                    href={
+                      item === "Servicios" ? "/servicios" : 
+                      item === "FAQ" ? "/faq" : 
+                      `/#${item.toLowerCase()}`
+                    }
                     className="text-gray-400 hover:text-amber-500 transition-colors"
                   >
                     {item}

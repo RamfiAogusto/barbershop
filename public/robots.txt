@@ -9,10 +9,16 @@ Disallow: /admin/
 Disallow: /api/
 Disallow: /_next/
 Disallow: /private/
+Disallow: /reservar
 
 # Allow all crawlers access to CSS and JS files
 Allow: /_next/static/
 Allow: /assets/
+
+# Google-specific crawlers
+User-agent: Googlebot
+Allow: /
+Disallow: /reservar
 
 # Crawl delay (optional, for heavy crawlers)
 Crawl-delay: 1 

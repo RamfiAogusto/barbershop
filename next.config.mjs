@@ -38,6 +38,28 @@ const nextConfig = {
             key: 'Referrer-Policy',
             value: 'origin-when-cross-origin',
           },
+          {
+            key: 'X-Robots-Tag',
+            value: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+          },
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, stale-while-revalidate=86400',
+          },
+        ],
+      },
+      // Specific headers for sitemap
+      {
+        source: '/sitemap.xml',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'application/xml',
+          },
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=3600, stale-while-revalidate=86400',
+          },
         ],
       },
     ]
@@ -55,6 +77,11 @@ const nextConfig = {
         source: '/inicio',
         destination: '/',
         permanent: true,
+      },
+      {
+        source: '/reservar',
+        destination: 'https://wa.me/18097672490?text=Hola,%20me%20gustar%C3%ADa%20reservar%20una%20cita',
+        permanent: false,
       },
     ]
   },

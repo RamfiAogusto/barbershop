@@ -5,13 +5,19 @@ export const metadata: Metadata = {
   description: "Descubre nuestros servicios de barbería premium en Santo Domingo. Cortes clásicos, a tijera, para niños y adolescentes. +20 años de experiencia. Reserva tu cita ahora.",
   keywords: [
     "servicios barbería Santo Domingo",
-    "corte clásico hombre",
-    "corte tijera profesional",
-    "barbería niños Santo Domingo",
-    "peluquería adolescentes",
-    "servicios premium barbería",
-    "Ensanche Carmelita barbería",
-    "corte masculino profesional"
+    "servicios peluquería Santo Domingo",
+    "barbería cerca de mi",
+    "peluquería cerca de mi",
+    "corte de pelo Santo Domingo",
+    "barbería Ensanche Carmelita",
+    "peluquería Ensanche Carmelita",
+    "barbería República Dominicana",
+    "servicios barbería cerca de mi",
+    "corte masculino Santo Domingo",
+    "corte femenino Santo Domingo",
+    "barbería profesional Santo Domingo",
+    "mejor barbería Santo Domingo",
+    "peluquería Distrito Nacional"
   ],
   openGraph: {
     title: "Servicios de Barbería Premium en Santo Domingo - D' Rafa Peluquería",
