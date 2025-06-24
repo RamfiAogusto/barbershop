@@ -5,7 +5,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { Scissors, Calendar, Clock, MapPin, Phone, Instagram, Facebook, Menu, X, ChevronRight, Palette, Sparkles } from "lucide-react"
-import Head from "next/head"
 import Script from "next/script"
 
 import { Button } from "@/components/ui/button"
@@ -183,14 +182,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <Head>
-        <link
-          rel="preload"
-          href="/placeholder.jpg"
-          as="image"
-          type="image/jpeg"
-        />
-      </Head>
       <SpeedInsights />
       <LocalBusinessSchema />
       
@@ -455,16 +446,23 @@ export default function Home() {
 
           <Carousel className="w-full">
             <CarouselContent className="-ml-2 md:-ml-4">
-              {[1, 2, 3, 4, 5, 6].map((item) => (
+              {[
+                { src: "/assets/vintage-.webp", alt: "Trabajo de barbería vintage" },
+                { src: "/assets/quienesomos.jpg", alt: "Rafa trabajando en la barbería" },
+                { src: "/assets/banner2.webp", alt: "Servicios de barbería premium" },
+                { src: "/assets/banner3.webp", alt: "Cortes profesionales" },
+                { src: "/assets/vintage-.webp", alt: "Estilo clásico de barbería" },
+                { src: "/assets/quienesomos.jpg", alt: "Experiencia profesional" }
+              ].map((image, item) => (
                 <CarouselItem key={item} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
                   <div className="p-1">
                     <Card className="border-0 overflow-hidden bg-transparent">
                       <CardContent className="p-0 relative group">
                         <Image
-                          src={`/placeholder.svg?height=400&width=600`}
+                          src={image.src}
                           width={600}
                           height={400}
-                          alt={`Trabajo de barbería ${item}`}
+                          alt={image.alt}
                           className="rounded-lg object-cover w-full aspect-[3/2] transition-transform duration-500 group-hover:scale-105"
                         />
                         <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">

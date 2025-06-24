@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     siteName: "D' Rafa Peluquería",
     images: [
       {
-        url: '/assets/og-image.jpg',
+        url: '/assets/vintage-.webp',
         width: 1200,
         height: 630,
         alt: "D' Rafa Peluquería - Barbería Premium Santo Domingo",
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "D' Rafa Peluquería - Barbería Premium en Santo Domingo",
     description: "Barbería premium con más de 20 años de experiencia. Cortes profesionales y servicios de alta calidad.",
-    images: ['/assets/og-image.jpg'],
+    images: ['/assets/vintage-.webp'],
   },
   robots: {
     index: true,
@@ -101,16 +101,10 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <head>
-        <link
-          rel="preload"
-          href="/placeholder.jpg"
-          as="image"
-          type="image/jpeg"
-        />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#f59e0b" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" href="/iconbarber.svg" />
       </head>
       <body className={inter.className}>
         <Providers attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>

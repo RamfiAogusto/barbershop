@@ -28,7 +28,7 @@ export const LocalBusinessSchema = ({
       "https://drafapeluqueria.com/assets/quienesomos.jpg",
       "https://drafapeluqueria.com/assets/banner2.webp"
     ],
-    "logo": "https://drafapeluqueria.com/assets/logo.png",
+    "logo": "https://drafapeluqueria.com/iconbarber.svg",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Respaldo Calle 4, Ensanche Carmelita",
