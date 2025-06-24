@@ -59,6 +59,12 @@
   html {
     scroll-behavior: smooth;
   }
+  
+  /* Prevenir overflow horizontal globalmente */
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
 }
 
 /* Estilos para react-datepicker */
