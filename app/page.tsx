@@ -17,11 +17,106 @@ import { Footer } from "@/components/layout/footer"
 import { LocalBusinessSchema } from "@/components/seo/local-business-schema"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
+// Componente para evitar problemas de hidratación
+const NoSSR = ({ children }: { children: React.ReactNode }) => {
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
+  if (!isClient) {
+    return null
+  }
+
+  return <>{children}</>
+}
+
+// Componente para la galería con navegación móvil
+const GalleryCarousel = ({ onImageClick }: { onImageClick: (src: string) => void }) => {
+  const [api, setApi] = useState<any>()
+  const [current, setCurrent] = useState(0)
+  const [count, setCount] = useState(0)
+
+  const images = [
+    { src: "/assets/cortes/corte1.jpg", alt: "Corte profesional estilo clásico - D' Rafa Peluquería" },
+    { src: "/assets/cortes/corte2.jpg", alt: "Corte moderno con degradado - Barbería Santo Domingo" },
+    { src: "/assets/cortes/corte3.jpg", alt: "Corte a tijera con precisión - Servicios premium" },
+    { src: "/assets/cortes/corte4.PNG", alt: "Corte especializado para adolescentes - Estilo actual" }
+  ]
+
+  useEffect(() => {
+    if (!api) {
+      return
+    }
+
+    setCount(api.scrollSnapList().length)
+    setCurrent(api.selectedScrollSnap() + 1)
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1)
+    })
+  }, [api])
+
+  return (
+    <div className="relative">
+      <Carousel setApi={setApi} className="w-full">
+        <CarouselContent className="-ml-2 md:-ml-4">
+          {images.map((image, item) => (
+            <CarouselItem key={item} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
+              <div className="p-1">
+                <Card className="border-0 overflow-hidden bg-transparent">
+                  <CardContent className="p-0 relative group">
+                    <Image
+                      src={image.src}
+                      width={600}
+                      height={400}
+                      alt={image.alt}
+                      className="rounded-lg object-cover w-full aspect-[3/2] transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <Button
+                        variant="outline"
+                        className="border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-black"
+                        onClick={() => onImageClick(image.src)}
+                      >
+                        Ver Detalle
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        {/* Flechas visibles en móvil y desktop */}
+        <CarouselPrevious className="flex text-amber-500 border-amber-500 hover:bg-amber-500 hover:text-black -left-6 md:-left-12" />
+        <CarouselNext className="flex text-amber-500 border-amber-500 hover:bg-amber-500 hover:text-black -right-6 md:-right-12" />
+      </Carousel>
+      
+      {/* Dots indicadores */}
+      <div className="flex justify-center mt-4 space-x-2">
+        {Array.from({ length: count }, (_, index) => (
+          <button
+            key={index}
+            className={`w-2 h-2 rounded-full transition-all ${
+              index + 1 === current ? 'bg-amber-500 w-4' : 'bg-gray-400'
+            }`}
+            onClick={() => api?.scrollTo(index)}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const isMobile = useMobile()
   const { toast } = useToast()
   const [scrollY, setScrollY] = useState(0)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedImage, setSelectedImage] = useState('')
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,6 +135,16 @@ export default function Home() {
     const whatsappMessage = "Hola, me gustaría reservar una cita"
     const whatsappLink = `https://wa.me/18097672490?text=${encodeURIComponent(whatsappMessage)}`
     window.open(whatsappLink, '_blank')
+  }
+
+  const handleOpenModal = (imageSrc: string) => {
+    setSelectedImage(imageSrc)
+    setIsModalOpen(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setSelectedImage('')
   }
 
   const fadeInUp = {
@@ -184,9 +289,8 @@ export default function Home() {
     <div className="min-h-screen bg-black text-white">
       <SpeedInsights />
       <LocalBusinessSchema />
-      
       <Header />
-
+      
       {/* Hero Section */}
       <section id="inicio" className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -239,13 +343,13 @@ export default function Home() {
         </div>
 
         <motion.div
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-10 left-0 right-0 flex justify-center items-center"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5, duration: 0.5, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse" }}
         >
-          <a href="#nosotros" className="flex flex-col items-center gap-2">
-            <span className="text-amber-500">Descubre más</span>
+          <a href="#nosotros" className="flex flex-col items-center gap-2 text-center">
+            <span className="text-amber-500 text-center">Descubre más</span>
             <ChevronRight className="h-6 w-6 text-amber-500 rotate-90" />
           </a>
         </motion.div>
@@ -444,44 +548,58 @@ export default function Home() {
             </motion.p>
           </motion.div>
 
-          <Carousel className="w-full">
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {[
-                { src: "/assets/vintage-.webp", alt: "Trabajo de barbería vintage" },
-                { src: "/assets/quienesomos.jpg", alt: "Rafa trabajando en la barbería" },
-                { src: "/assets/banner2.webp", alt: "Servicios de barbería premium" },
-                { src: "/assets/banner3.webp", alt: "Cortes profesionales" },
-                { src: "/assets/vintage-.webp", alt: "Estilo clásico de barbería" },
-                { src: "/assets/quienesomos.jpg", alt: "Experiencia profesional" }
-              ].map((image, item) => (
-                <CarouselItem key={item} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
-                  <div className="p-1">
-                    <Card className="border-0 overflow-hidden bg-transparent">
-                      <CardContent className="p-0 relative group">
-                        <Image
-                          src={image.src}
-                          width={600}
-                          height={400}
-                          alt={image.alt}
-                          className="rounded-lg object-cover w-full aspect-[3/2] transition-transform duration-500 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                          <Button
-                            variant="outline"
-                            className="border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-black"
-                          >
-                            Ver Detalle
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="hidden md:flex text-amber-500 border-amber-500 hover:bg-amber-500 hover:text-black" />
-            <CarouselNext className="hidden md:flex text-amber-500 border-amber-500 hover:bg-amber-500 hover:text-black" />
-          </Carousel>
+          <NoSSR>
+            <div className="relative px-12 md:px-16">
+              <Carousel className="w-full">
+                <CarouselContent className="-ml-2 md:-ml-4">
+                  {[
+                    { src: "/assets/cortes/corte1.jpg", alt: "Corte profesional estilo clásico - D' Rafa Peluquería" },
+                    { src: "/assets/cortes/corte2.jpg", alt: "Corte moderno con degradado - Barbería Santo Domingo" },
+                    { src: "/assets/cortes/corte3.jpg", alt: "Corte a tijera con precisión - Servicios premium" },
+                    { src: "/assets/cortes/corte4.PNG", alt: "Corte especializado para adolescentes - Estilo actual" }
+                  ].map((image, item) => (
+                    <CarouselItem key={item} className="pl-2 md:pl-4 basis-full sm:basis-1/2 md:basis-1/2 lg:basis-1/3">
+                      <div className="p-2">
+                        <Card className="border-0 overflow-hidden bg-transparent max-w-sm mx-auto">
+                          <CardContent className="p-0 relative group">
+                            <Image
+                              src={image.src}
+                              width={400}
+                              height={300}
+                              alt={image.alt}
+                              className="rounded-lg object-cover w-full aspect-[4/3] transition-transform duration-500 group-hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                              <Button
+                                variant="outline"
+                                className="border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-black"
+                                onClick={() => handleOpenModal(image.src)}
+                              >
+                                Ver Detalle
+                              </Button>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                {/* Flechas con más separación de los bordes */}
+                <CarouselPrevious className="flex text-amber-500 border-amber-500 hover:bg-amber-500 hover:text-black -left-12 md:-left-16" />
+                <CarouselNext className="flex text-amber-500 border-amber-500 hover:bg-amber-500 hover:text-black -right-12 md:-right-16" />
+              </Carousel>
+              
+              {/* Dots indicadores para móvil */}
+              <div className="flex justify-center mt-4 space-x-2 md:hidden">
+                {[0, 1, 2, 3].map((index) => (
+                  <div
+                    key={index}
+                    className="w-2 h-2 rounded-full bg-gray-400"
+                  />
+                ))}
+              </div>
+            </div>
+          </NoSSR>
         </div>
       </section>
 
@@ -501,65 +619,67 @@ export default function Home() {
             <motion.div variants={fadeInUp} className="w-20 h-1 bg-amber-500 mx-auto mb-6"></motion.div>
           </motion.div>
 
-          <Carousel className="w-full">
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {[
-                {
-                  name: "Alejandro Gómez",
-                  text: "El mejor lugar para un corte de pelo. Rafa es un profesional que sabe lo que hace y te aconseja según tu tipo de rostro. Ambiente increíble.",
-                  rating: 5,
-                },
-                {
-                  name: "David Fernández",
-                  text: "Experiencia de primera clase. El servicio es espectacular, te hacen sentir como en casa. Volveré sin duda.",
-                  rating: 5,
-                },
-                {
-                  name: "Marcos López",
-                  text: "Llevo años buscando una peluquería donde me entiendan y por fin la encontré. Excelente atención y resultados impecables.",
-                  rating: 5,
-                },
-                {
-                  name: "Roberto Sánchez",
-                  text: "Ambiente exclusivo, atención personalizada y resultados profesionales. Vale cada peso que pagas.",
-                  rating: 5,
-                },
-              ].map((testimonial, index) => (
-                <CarouselItem key={index} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
-                  <div className="p-1 h-full">
-                    <Card className="border-gray-800 bg-gray-900 h-full">
-                      <CardContent className="p-6 flex flex-col h-full">
-                        <div className="flex gap-1 mb-4">
-                          {Array(testimonial.rating)
-                            .fill(0)
-                            .map((_, i) => (
-                              <svg
-                                key={i}
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-5 w-5 text-amber-500"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                              >
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                              </svg>
-                            ))}
-                        </div>
-                        <p className="text-gray-300 mb-4 flex-grow italic">"{testimonial.text}"</p>
-                        <div className="flex items-center">
-                          <div className="w-10 h-10 rounded-full bg-amber-500 flex items-center justify-center text-black font-bold mr-3">
-                            {testimonial.name.charAt(0)}
+          <NoSSR>
+            <Carousel className="w-full">
+              <CarouselContent className="-ml-2 md:-ml-4">
+                {[
+                  {
+                    name: "Alejandro Gómez",
+                    text: "El mejor lugar para un corte de pelo. Rafa es un profesional que sabe lo que hace y te aconseja según tu tipo de rostro. Ambiente increíble.",
+                    rating: 5,
+                  },
+                  {
+                    name: "David Fernández",
+                    text: "Experiencia de primera clase. El servicio es espectacular, te hacen sentir como en casa. Volveré sin duda.",
+                    rating: 5,
+                  },
+                  {
+                    name: "Marcos López",
+                    text: "Llevo años buscando una peluquería donde me entiendan y por fin la encontré. Excelente atención y resultados impecables.",
+                    rating: 5,
+                  },
+                  {
+                    name: "Roberto Sánchez",
+                    text: "Ambiente exclusivo, atención personalizada y resultados profesionales. Vale cada peso que pagas.",
+                    rating: 5,
+                  },
+                ].map((testimonial, index) => (
+                  <CarouselItem key={index} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
+                    <div className="p-1 h-full">
+                      <Card className="border-gray-800 bg-gray-900 h-full">
+                        <CardContent className="p-6 flex flex-col h-full">
+                          <div className="flex gap-1 mb-4">
+                            {Array(testimonial.rating)
+                              .fill(0)
+                              .map((_, i) => (
+                                <svg
+                                  key={i}
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  className="h-5 w-5 text-amber-500"
+                                  viewBox="0 0 20 20"
+                                  fill="currentColor"
+                                >
+                                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                              ))}
                           </div>
-                          <span className="font-medium">{testimonial.name}</span>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="hidden md:flex text-amber-500 border-amber-500 hover:bg-amber-500 hover:text-black" />
-            <CarouselNext className="hidden md:flex text-amber-500 border-amber-500 hover:bg-amber-500 hover:text-black" />
-          </Carousel>
+                          <p className="text-gray-300 mb-4 flex-grow italic">"{testimonial.text}"</p>
+                          <div className="flex items-center">
+                            <div className="w-10 h-10 rounded-full bg-amber-500 flex items-center justify-center text-black font-bold mr-3">
+                              {testimonial.name.charAt(0)}
+                            </div>
+                            <span className="font-medium">{testimonial.name}</span>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="hidden md:flex text-amber-500 border-amber-500 hover:bg-amber-500 hover:text-black" />
+              <CarouselNext className="hidden md:flex text-amber-500 border-amber-500 hover:bg-amber-500 hover:text-black" />
+            </Carousel>
+          </NoSSR>
         </div>
       </section>
 
@@ -776,6 +896,15 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50">
+          <div className="relative">
+            <button onClick={handleCloseModal} className="absolute top-2 right-2 text-white text-2xl">✖</button>
+            <Image src={selectedImage} alt="Imagen ampliada" width={800} height={600} className="rounded-lg" />
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>

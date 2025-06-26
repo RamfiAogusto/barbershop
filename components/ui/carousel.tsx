@@ -140,6 +140,7 @@ const Carousel = React.forwardRef<
           className={cn("relative", className)}
           role="region"
           aria-roledescription="carousel"
+          suppressHydrationWarning
           {...props}
         >
           {children}
@@ -188,6 +189,7 @@ const CarouselItem = React.forwardRef<
         orientation === "horizontal" ? "pl-4" : "pt-4",
         className
       )}
+      suppressHydrationWarning
       {...props}
     />
   )
