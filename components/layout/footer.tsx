@@ -108,8 +108,19 @@ export function Footer() {
         </div>
 
         <div className="border-t border-gray-800 mt-12 pt-8 text-center">
-          <p className="text-gray-500">
+          <p className="text-gray-500 mb-2">
             &copy; {new Date().getFullYear()} D' Rafa Peluquería. Todos los derechos reservados.
+          </p>
+          <p className="text-gray-600 text-sm">
+            Powered by{" "}
+            <a
+              href="https://www.instagram.com/vityde_web/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-amber-500 hover:text-amber-400 transition-colors font-medium"
+            >
+              @vityde_web
+            </a>
           </p>
         </div>
       </div>
