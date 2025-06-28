@@ -6,6 +6,7 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { Scissors, Calendar, Clock, MapPin, Phone, Instagram, Facebook, Menu, X, ChevronRight, Palette, Sparkles } from "lucide-react"
 import Script from "next/script"
+import { useForm, ValidationError } from '@formspree/react'
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -117,6 +118,7 @@ export default function Home() {
   const [scrollY, setScrollY] = useState(0)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectedImage, setSelectedImage] = useState('')
+  const [state, handleSubmit] = useForm("xoqgwzab")
 
   useEffect(() => {
     const handleScroll = () => {
@@ -805,70 +807,104 @@ export default function Home() {
               <div className="bg-gray-900 p-8 rounded-lg border border-gray-800">
                 <h3 className="text-2xl font-bold mb-6">Envíanos un Mensaje</h3>
 
-                <form className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {state.succeeded ? (
+                  <div className="text-center py-8">
+                    <div className="bg-green-500/10 border border-green-500/50 rounded-lg p-6">
+                      <h4 className="text-green-500 font-bold text-xl mb-2">¡Mensaje Enviado!</h4>
+                      <p className="text-gray-300">Gracias por contactarnos. Nos pondremos en contacto contigo pronto.</p>
+                    </div>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label htmlFor="name" className="block text-sm font-medium mb-2">
+                          Nombre
+                        </label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          required
+                          className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                          placeholder="Tu nombre"
+                        />
+                        <ValidationError 
+                          prefix="Nombre" 
+                          field="name"
+                          errors={state.errors}
+                          className="text-red-400 text-sm mt-1"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="email" className="block text-sm font-medium mb-2">
+                          Email *
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          required
+                          className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                          placeholder="Tu email"
+                        />
+                        <ValidationError 
+                          prefix="Email" 
+                          field="email"
+                          errors={state.errors}
+                          className="text-red-400 text-sm mt-1"
+                        />
+                      </div>
+                    </div>
+
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium mb-2">
-                        Nombre
+                      <label htmlFor="subject" className="block text-sm font-medium mb-2">
+                        Asunto
                       </label>
                       <input
                         type="text"
-                        id="name"
+                        id="subject"
+                        name="subject"
                         className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                        placeholder="Tu nombre"
+                        placeholder="Asunto del mensaje"
+                      />
+                      <ValidationError 
+                        prefix="Asunto" 
+                        field="subject"
+                        errors={state.errors}
+                        className="text-red-400 text-sm mt-1"
                       />
                     </div>
+
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium mb-2">
-                        Email
+                      <label htmlFor="message" className="block text-sm font-medium mb-2">
+                        Mensaje *
                       </label>
-                      <input
-                        type="email"
-                        id="email"
+                      <textarea
+                        id="message"
+                        name="message"
+                        rows={5}
+                        required
                         className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                        placeholder="Tu email"
+                        placeholder="Tu mensaje"
+                      ></textarea>
+                      <ValidationError 
+                        prefix="Mensaje" 
+                        field="message"
+                        errors={state.errors}
+                        className="text-red-400 text-sm mt-1"
                       />
                     </div>
-                  </div>
 
-                  <div>
-                    <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                      Asunto
-                    </label>
-                    <input
-                      type="text"
-                      id="subject"
-                      className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                      placeholder="Asunto del mensaje"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium mb-2">
-                      Mensaje
-                    </label>
-                    <textarea
-                      id="message"
-                      rows={5}
-                      className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                      placeholder="Tu mensaje"
-                    ></textarea>
-                  </div>
-
-                  <Button
-                    type="submit"
-                    className="w-full bg-amber-500 hover:bg-amber-600 text-black font-bold py-3"
-                    onClick={(e) => {
-                      e.preventDefault()
-                      toast({
-                        title: "Mensaje enviado",
-                        description: "Nos pondremos en contacto contigo pronto",
-                      })
-                    }}
-                  >
-                    Enviar Mensaje
-                  </Button>
-                </form>
+                    <Button
+                      type="submit"
+                      disabled={state.submitting}
+                      className="w-full bg-amber-500 hover:bg-amber-600 text-black font-bold py-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {state.submitting ? 'Enviando...' : 'Enviar Mensaje'}
+                    </Button>
+                  </form>
+                )}
               </div>
             </motion.div>
           </div>
