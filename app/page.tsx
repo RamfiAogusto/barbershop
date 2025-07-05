@@ -528,6 +528,25 @@ export default function Home() {
               </Card>
             </motion.div>
           </div>
+
+          {/* Botón para ver todos los servicios */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+            className="text-center mt-12"
+          >
+            <Link href="/servicios">
+              <Button
+                className="bg-amber-500 hover:bg-amber-600 text-black font-bold text-lg py-6 px-8"
+                size="lg"
+              >
+                Ver Todos los Servicios
+                <ChevronRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </motion.div>
         </div>
       </section>
 

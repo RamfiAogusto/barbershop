@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:clean": "node scripts/dev-clean.js",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "clean": "rimraf .next node_modules/.cache"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",
@@ -74,6 +76,7 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "postcss": "^8",
+    "rimraf": "^6.0.1",
     "tailwindcss": "^3.4.17",
     "typescript": "^5"
   }

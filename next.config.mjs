@@ -20,6 +20,36 @@ const nextConfig = {
   generateEtags: false,
   compress: true,
   
+  // Optimizaciones para el cache y hidratación
+  experimental: {
+    optimizeCss: true,
+    optimizePackageImports: ['framer-motion'],
+  },
+  
+  // Configuración para el bundler
+  webpack: (config, { dev, isServer }) => {
+    if (!dev && !isServer) {
+      config.optimization.splitChunks = {
+        chunks: 'all',
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            priority: 10,
+            chunks: 'all',
+          },
+          framerMotion: {
+            test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
+            name: 'framer-motion',
+            priority: 15,
+            chunks: 'all',
+          },
+        },
+      }
+    }
+    return config
+  },
+  
   // Headers for SEO and security
   async headers() {
     return [
