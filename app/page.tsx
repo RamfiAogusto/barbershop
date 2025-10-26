@@ -482,7 +482,7 @@ export default function Home() {
                   </div>
                   <h3 className="text-xl font-bold mb-3 text-amber-500">Corte a Tijeras</h3>
                   <p className="text-gray-400">
-                    Experimenta la excelencia en el arte del corte de pelo y con técnicas tradicionales. Desde estilos clásicos hasta tendencias modernas, cada corte es una obra de arte que resalta tu personalidad y estilo único y moderno.
+                    Experimenta la excelencia en el arte del corte de pelo y con excelentes técnicas tradicionales. Desde estilos clásicos hasta tendencias modernas, cada corte es una obra de arte que resalta tu personalidad y estilo único y moderno.
                   </p>
                 </CardContent>
               </Card>
