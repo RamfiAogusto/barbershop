@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { getAllPosts } from '@/lib/blog-posts'
 
 export async function GET(): Promise<Response> {
-  const baseUrl = 'https://drafapeluqueria.com'
+  const baseUrl = 'https://www.drafapeluqueria.com'
   const allPosts = getAllPosts()
 
   const sitemap: MetadataRoute.Sitemap = [

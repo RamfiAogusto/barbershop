@@ -22,11 +22,11 @@ export const metadata: Metadata = {
     title: "Blog D' Rafa Peluquería - Consejos de barbería y estilo masculino",
     description:
       "Guías reales y consejos prácticos sobre cortes, cuidado del cabello, barba y tendencias. Por nuestro maestro barbero en Santo Domingo.",
-    url: "https://drafapeluqueria.com/blog",
+    url: "https://www.drafapeluqueria.com/blog",
     siteName: "D' Rafa Peluquería",
     images: [
       {
-        url: "https://drafapeluqueria.com/assets/banner2.webp",
+        url: "https://www.drafapeluqueria.com/assets/banner2.webp",
         width: 1200,
         height: 630,
         alt: "Blog D' Rafa Peluquería",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     title: "Blog D' Rafa Peluquería - Consejos de barbería y estilo masculino",
     description:
       "Guías reales y consejos prácticos sobre cortes, cuidado del cabello, barba y tendencias.",
-    images: ["https://drafapeluqueria.com/assets/banner2.webp"],
+    images: ["https://www.drafapeluqueria.com/assets/banner2.webp"],
   },
 }
 

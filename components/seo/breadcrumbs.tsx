@@ -21,7 +21,7 @@ export const Breadcrumbs = ({ items, className }: BreadcrumbsProps) => {
       "@type": "ListItem",
       "position": index + 1,
       "name": item.name,
-      "item": `https://drafapeluqueria.com${item.href}`
+      "item": `https://www.drafapeluqueria.com${item.href}`
     }))
   }
 

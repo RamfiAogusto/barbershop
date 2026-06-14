@@ -18,17 +18,17 @@ export const LocalBusinessSchema = ({
     "@type": organizationType,
     "name": "D' Rafa Peluquería",
     "description": "Barbería y peluquería premium en Santo Domingo, República Dominicana con más de 20 años de experiencia. La mejor barbería cerca de ti en Ensanche Carmelita. Especialistas en cortes masculinos y femeninos, servicios profesionales de alta calidad.",
-    "url": "https://drafapeluqueria.com",
+    "url": "https://www.drafapeluqueria.com",
     "telephone": "+1-809-767-2490",
     "priceRange": "$$",
     "currenciesAccepted": "DOP",
     "paymentAccepted": "Cash, Credit Card",
     "image": [
-      "https://drafapeluqueria.com/assets/vintage-.webp",
-      "https://drafapeluqueria.com/assets/quienesomos.jpg",
-      "https://drafapeluqueria.com/assets/banner2.webp"
+      "https://www.drafapeluqueria.com/assets/vintage-.webp",
+      "https://www.drafapeluqueria.com/assets/quienesomos.jpg",
+      "https://www.drafapeluqueria.com/assets/banner2.webp"
     ],
-    "logo": "https://drafapeluqueria.com/iconbarber.svg",
+    "logo": "https://www.drafapeluqueria.com/iconbarber.svg",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Respaldo Calle 4, Ensanche Carmelita",

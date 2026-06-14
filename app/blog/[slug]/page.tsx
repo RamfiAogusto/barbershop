@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
-  const baseUrl = "https://drafapeluqueria.com"
+  const baseUrl = "https://www.drafapeluqueria.com"
 
   return {
     title: `${post.title} | Blog D' Rafa Peluquería`,
@@ -74,7 +74,7 @@ export default async function BlogPostPage({ params }: Props) {
     notFound()
   }
 
-  const baseUrl = "https://drafapeluqueria.com"
+  const baseUrl = "https://www.drafapeluqueria.com"
 
   const recentPosts = getRecentPosts(4).filter((p) => p.slug !== post.slug).slice(0, 3)
 

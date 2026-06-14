@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://drafapeluqueria.com'), // Reemplaza con tu dominio real
+  metadataBase: new URL('https://www.drafapeluqueria.com'),
   alternates: {
     canonical: '/',
     languages: {
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'es_DO',
-    url: 'https://drafapeluqueria.com',
+    url: 'https://www.drafapeluqueria.com',
     title: "D' Rafa Peluquería - Barbería Premium en Santo Domingo",
     description: "Barbería premium con más de 20 años de experiencia en Santo Domingo. Cortes profesionales, tintura temporal y servicios de alta calidad.",
     siteName: "D' Rafa Peluquería",
