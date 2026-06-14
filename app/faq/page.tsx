@@ -7,6 +7,8 @@ import { Footer } from "@/components/layout/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Script from "next/script"
+import { trackWhatsAppClick } from "@/lib/analytics"
+import { Breadcrumbs } from "@/components/seo/breadcrumbs"
 
 interface FAQItem {
   question: string
@@ -84,6 +86,7 @@ export default function FAQPage() {
   }
 
   const handleWhatsAppContact = () => {
+    trackWhatsAppClick('faq-contact')
     window.open('https://wa.me/18097672490?text=Hola,%20tengo%20una%20pregunta%20sobre%20sus%20servicios', '_blank')
   }
 
@@ -100,6 +103,10 @@ export default function FAQPage() {
       <Header />
 
       <main className="flex-1">
+        <div className="container mx-auto px-4 pt-24 pb-2">
+          <Breadcrumbs items={[{ name: "Inicio", href: "/" }, { name: "FAQ", href: "/faq" }]} />
+        </div>
+
         {/* Hero Section */}
         <section className="bg-gradient-to-r from-black to-gray-900 py-16 text-white">
           <div className="container mx-auto px-4 text-center">
@@ -139,7 +146,7 @@ export default function FAQPage() {
           <div className="container mx-auto px-4 max-w-4xl">
             {categories.map((category) => (
               <div key={category} className="mb-12">
-                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-amber-700">
+                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-amber-500">
                   {category}
                 </h2>
                 
@@ -155,7 +162,7 @@ export default function FAQPage() {
                           <CardContent className="p-0">
                             <button
                               onClick={() => toggleItem(globalIndex)}
-                              className="w-full p-6 text-left hover:bg-gray-50 transition-colors flex items-center justify-between"
+                              className="w-full p-6 text-left hover:bg-gray-800/60 transition-colors flex items-center justify-between"
                             >
                               <h3 className="text-lg font-medium pr-4">
                                 {item.question}
@@ -169,7 +176,7 @@ export default function FAQPage() {
                             
                             {isOpen && (
                               <div className="px-6 pb-6">
-                                <p className="text-gray-600 leading-relaxed">
+                                <p className="text-gray-300 leading-relaxed">
                                   {item.answer}
                                 </p>
                               </div>
@@ -183,16 +190,16 @@ export default function FAQPage() {
             ))}
 
             {/* Contact Section */}
-            <div className="mt-16 text-center bg-gray-50 rounded-lg p-8">
-              <h2 className="text-2xl font-bold mb-4">
+            <div className="mt-16 text-center bg-gray-900 border border-gray-800 rounded-lg p-8">
+              <h2 className="text-2xl font-bold mb-4 text-white">
                 ¿No encuentras la respuesta que buscas?
               </h2>
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-300 mb-6">
                 Contáctanos por WhatsApp y te responderemos todas tus preguntas sobre nuestra barbería en Santo Domingo
               </p>
-              <Button 
+              <Button
                 onClick={handleWhatsAppContact}
-                className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3"
+                className="bg-amber-500 hover:bg-amber-600 text-black font-bold px-8 py-3"
               >
                 Contactar por WhatsApp
               </Button>

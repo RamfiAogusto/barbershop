@@ -21,10 +21,13 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
+import { Breadcrumbs } from "@/components/seo/breadcrumbs"
+import { trackWhatsAppClick } from "@/lib/analytics"
 
 export default function ServiciosPage() {
   const handleWhatsAppReservation = (serviceName?: string) => {
-    const message = serviceName 
+    trackWhatsAppClick('service-card', serviceName ? { service: serviceName } : undefined)
+    const message = serviceName
       ? `Hola, me gustaría reservar una cita para el servicio de ${serviceName}`
       : "Hola, me gustaría reservar una cita"
     const whatsappLink = `https://wa.me/18097672490?text=${encodeURIComponent(message)}`
@@ -36,6 +39,10 @@ export default function ServiciosPage() {
       <Header />
 
       <main className="flex-1">
+        <div className="container mx-auto px-4 pt-24 pb-2">
+          <Breadcrumbs items={[{ name: "Inicio", href: "/" }, { name: "Servicios", href: "/servicios" }]} />
+        </div>
+
         {/* Banner Principal */}
         <section className="relative">
           <div className="absolute inset-0 bg-black/70 z-10"></div>
@@ -226,7 +233,7 @@ export default function ServiciosPage() {
                 <p className="text-sm text-muted-foreground">
                   Fácil acceso desde cualquier punto de la ciudad con estacionamiento disponible.{" "}
                   <a 
-                    href="https://maps.app.goo.gl/NqoWKyHeQdFNAD8D9" 
+                    href="https://maps.app.goo.gl/JbPhr1ojEVxKfuqR8"
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-amber-600 hover:underline"

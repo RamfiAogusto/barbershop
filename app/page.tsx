@@ -5,7 +5,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { Scissors, Calendar, Clock, MapPin, Phone, Instagram, Facebook, Menu, X, ChevronRight, Palette, Sparkles } from "lucide-react"
-import Script from "next/script"
 import { useForm, ValidationError } from '@formspree/react'
 
 import { Button } from "@/components/ui/button"
@@ -17,6 +16,7 @@ import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { LocalBusinessSchema } from "@/components/seo/local-business-schema"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { trackWhatsAppClick } from "@/lib/analytics"
 
 // Componente para evitar problemas de hidratación
 const NoSSR = ({ children }: { children: React.ReactNode }) => {
@@ -133,7 +133,8 @@ export default function Home() {
     setIsMenuOpen(!isMenuOpen)
   }
 
-  const handleWhatsAppReservation = () => {
+  const handleWhatsAppReservation = (source: 'hero-cta' | 'booking-cta' | 'contact-section' = 'hero-cta') => {
+    trackWhatsAppClick(source)
     const whatsappMessage = "Hola, me gustaría reservar una cita"
     const whatsappLink = `https://wa.me/18097672490?text=${encodeURIComponent(whatsappMessage)}`
     window.open(whatsappLink, '_blank')
@@ -168,125 +169,6 @@ export default function Home() {
     },
   }
 
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "HairSalon",
-    "name": "D' Rafa Peluquería",
-    "description": "Barbería premium en Santo Domingo con más de 20 años de experiencia. Especialistas en cortes masculinos y femeninos, tintura temporal y servicios de alta calidad.",
-    "url": "https://tu-dominio.com",
-    "telephone": "+1-809-767-2490",
-    "priceRange": "$$",
-    "image": [
-      "https://drafapeluqueria.com/assets/vintage-.webp",
-      "https://drafapeluqueria.com/assets/quienesomos.jpg"
-    ],
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Respaldo Calle 4, Ensanche Carmelita",
-      "addressLocality": "Santo Domingo",
-      "addressRegion": "Distrito Nacional",
-      "addressCountry": "DO"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "18.4861",
-      "longitude": "-69.9312"
-    },
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-        "opens": "08:00",
-        "closes": "20:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Sunday",
-        "opens": "08:00",
-        "closes": "19:00"
-      }
-    ],
-    "sameAs": [
-      "https://www.instagram.com/rafa_eldon/",
-      "https://www.facebook.com/RafaelDondelcorte",
-      "https://wa.me/18097672490"
-    ],
-    "founder": {
-      "@type": "Person",
-      "name": "Rafael",
-      "jobTitle": "Master Barber",
-      "worksFor": {
-        "@type": "HairSalon",
-        "name": "D' Rafa Peluquería"
-      }
-    },
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Servicios de Peluquería",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Corte a Tijeras",
-            "description": "Cortes de pelo con técnicas tradicionales y modernas"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Tintura Temporal",
-            "description": "Colores temporales para ocasiones especiales"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Corte Femenino",
-            "description": "Cortes y diseños especializados para mujeres"
-          }
-        }
-      ]
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5.0",
-      "bestRating": "5",
-      "worstRating": "1",
-      "ratingCount": "50"
-    },
-    "review": [
-      {
-        "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": "Alejandro Gómez"
-        },
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "reviewBody": "El mejor lugar para un corte de pelo. Rafa es un profesional que sabe lo que hace y te aconseja según tu tipo de rostro. Ambiente increíble."
-      },
-      {
-        "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": "David Fernández"
-        },
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "reviewBody": "Experiencia de primera clase. El servicio es espectacular, te hacen sentir como en casa. Volveré sin duda."
-      }
-    ]
-  }
-
   return (
     <div className="min-h-screen bg-black text-white">
       <SpeedInsights />
@@ -316,20 +198,20 @@ export default function Home() {
         <div className="container mx-auto px-4 z-10 pt-20">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-3xl">
             <motion.h1 variants={fadeInUp} className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4">
-              <span className="text-amber-500">Peluquería y Barbería</span> en Santo Domingo
+              <span className="text-amber-500">El don del corte</span> en Santo Domingo
             </motion.h1>
 
             <motion.p variants={fadeInUp} className="text-xl md:text-2xl text-gray-300 mb-8">
-              La mejor barbería cerca de ti en Ensanche Carmelita. +20 años de experiencia profesional en República Dominicana.
+              Maestro barbero +20 años en Ensanche Carmelita. Reserva por WhatsApp y te atendemos en el horario que elijas.
             </motion.p>
 
             <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4">
               <Button
-                onClick={handleWhatsAppReservation}
+                onClick={() => handleWhatsAppReservation('hero-cta')}
                 className="bg-amber-500 hover:bg-amber-600 text-black font-bold text-lg py-6 px-8"
                 size="lg"
               >
-                Reservar Cita
+                Reservar por WhatsApp
               </Button>
               <Link href="/servicios">
                 <Button
@@ -440,7 +322,7 @@ export default function Home() {
                 te ofrece cortes que trascienden el tiempo. Descubre la pericia de un experto, donde cada detalle
                 cuenta. Tu estilo es nuestra prioridad; únete a Rafa para una experiencia única de barbería.
               </p>
-              <Button onClick={handleWhatsAppReservation} className="bg-amber-500 hover:bg-amber-600 text-black font-bold">
+              <Button onClick={() => handleWhatsAppReservation('contact-section')} className="bg-amber-500 hover:bg-amber-600 text-black font-bold">
                 Reservar Ahora
               </Button>
             </motion.div>
@@ -725,6 +607,25 @@ export default function Home() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="lg:col-span-2"
+            >
+              <div className="rounded-lg overflow-hidden border border-gray-800">
+                <iframe
+                  title="Ubicación D' Rafa Peluquería"
+                  src="https://maps.google.com/maps?q=D%27RAFA+PELUQUER%C3%8DA+EL+DON+DEL+CORTE,+Santo+Domingo&t=&z=17&ie=UTF8&iwloc=&output=embed"
+                  className="w-full h-[300px] md:h-[400px]"
+                  loading="lazy"
+                  allowFullScreen
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+            </motion.div>
+
+            <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -741,7 +642,7 @@ export default function Home() {
                     <div>
                       <h4 className="font-bold mb-1">Dirección</h4>
                       <a 
-                        href="https://maps.app.goo.gl/NqoWKyHeQdFNAD8D9" 
+                        href="https://maps.app.goo.gl/JbPhr1ojEVxKfuqR8"
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="text-gray-400 hover:text-amber-500 hover:underline"
@@ -761,7 +662,7 @@ export default function Home() {
                         href="tel:+18097672490" 
                         className="text-gray-400 hover:text-amber-500 hover:underline"
                       >
-                        1+(809)-767-2490
+                        +1 (809) 767-2490
                       </a>
                     </div>
                   </div>
@@ -941,7 +842,7 @@ export default function Home() {
               </p>
             </div>
             <Button
-              onClick={handleWhatsAppReservation}
+              onClick={() => handleWhatsAppReservation('booking-cta')}
               className="bg-black hover:bg-gray-900 text-white font-bold text-lg py-6 px-8"
               size="lg"
             >

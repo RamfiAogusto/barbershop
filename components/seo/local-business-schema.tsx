@@ -39,8 +39,8 @@ export const LocalBusinessSchema = ({
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": "18.4861",
-      "longitude": "-69.9312"
+      "latitude": "18.4801674",
+      "longitude": "-69.9498448"
     },
     "openingHoursSpecification": [
       {
@@ -63,7 +63,7 @@ export const LocalBusinessSchema = ({
     ],
     "founder": {
       "@type": "Person",
-      "name": "Rafael",
+      "name": "Rafa",
       "jobTitle": "Master Barber",
       "worksFor": {
         "@type": "HairSalon",
@@ -73,7 +73,7 @@ export const LocalBusinessSchema = ({
     "employee": [
       {
         "@type": "Person",
-        "name": "Rafael",
+        "name": "Rafa",
         "jobTitle": "Master Barber",
         "worksFor": {
           "@type": "HairSalon",
@@ -147,10 +147,10 @@ export const LocalBusinessSchema = ({
     },
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "5.0",
+      "ratingValue": "4.9",
       "bestRating": "5",
-      "worstRating": "1", 
-      "ratingCount": "50"
+      "worstRating": "1",
+      "ratingCount": "47"
     },
     "review": [
       {
@@ -164,8 +164,7 @@ export const LocalBusinessSchema = ({
           "ratingValue": "5",
           "bestRating": "5"
         },
-        "reviewBody": "El mejor lugar para un corte de pelo. Rafa es un profesional que sabe lo que hace y te aconseja según tu tipo de rostro. Ambiente increíble.",
-        "datePublished": "2024-01-15"
+        "reviewBody": "El mejor lugar para un corte de pelo. Rafa es un profesional que sabe lo que hace y te aconseja según tu tipo de rostro. Ambiente increíble."
       },
       {
         "@type": "Review",
@@ -178,8 +177,7 @@ export const LocalBusinessSchema = ({
           "ratingValue": "5",
           "bestRating": "5"
         },
-        "reviewBody": "Experiencia de primera clase. El servicio es espectacular, te hacen sentir como en casa. Volveré sin duda.",
-        "datePublished": "2024-01-10"
+        "reviewBody": "Experiencia de primera clase. El servicio es espectacular, te hacen sentir como en casa. Volveré sin duda."
       }
     ]
   }

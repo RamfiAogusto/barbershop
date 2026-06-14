@@ -4,6 +4,8 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import { Providers } from "@/components/providers"
 import { Toaster } from "@/components/ui/toaster"
+import { FloatingWhatsApp } from "@/components/layout/floating-whatsapp"
+import { GoogleAnalytics } from "@next/third-parties/google"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -82,9 +84,6 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: 'tu-google-verification-code', // Reemplazar con tu código real
-  },
   category: 'business',
   icons: {
     icon: '/iconbarber.svg',
@@ -98,6 +97,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const gaId = process.env.NEXT_PUBLIC_GA_ID
+  const gscVerification = process.env.NEXT_PUBLIC_GSC_VERIFICATION
+
   return (
     <html lang="es" suppressHydrationWarning>
       <head>
@@ -105,12 +107,15 @@ export default function RootLayout({
         <meta name="theme-color" content="#f59e0b" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <link rel="apple-touch-icon" href="/iconbarber.svg" />
+        {gscVerification && <meta name="google-site-verification" content={gscVerification} />}
       </head>
       <body className={inter.className}>
         <Providers attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           {children}
+          <FloatingWhatsApp />
           <Toaster />
         </Providers>
+        {gaId && <GoogleAnalytics gaId={gaId} />}
       </body>
     </html>
   )

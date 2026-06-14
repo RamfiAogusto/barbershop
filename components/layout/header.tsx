@@ -6,6 +6,7 @@ import { motion } from "framer-motion"
 import { Scissors, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useMobile } from "@/hooks/use-mobile"
+import { trackWhatsAppClick } from "@/lib/analytics"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -26,6 +27,7 @@ export function Header() {
   }
 
   const handleWhatsAppClick = () => {
+    trackWhatsAppClick('header-cta')
     const whatsappMessage = "Hola, me gustaría reservar una cita"
     const whatsappLink = `https://wa.me/18097672490?text=${encodeURIComponent(whatsappMessage)}`
     window.open(whatsappLink, '_blank')
@@ -54,10 +56,10 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          {["Inicio", "Nosotros", "Servicios", "Galería", "Contacto"].map((item, index) => (
+          {["Inicio", "Nosotros", "Servicios", "FAQ", "Blog", "Galería", "Contacto"].map((item, index) => (
             <motion.a
               key={item}
-              href={item === "Servicios" ? "/servicios" : `/#${item.toLowerCase()}`}
+              href={item === "Servicios" ? "/servicios" : item === "FAQ" ? "/faq" : item === "Blog" ? "/blog" : `/#${item.toLowerCase()}`}
               className="text-white hover:text-amber-500 transition-colors relative group"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -93,10 +95,10 @@ export function Header() {
           exit={{ opacity: 0, height: 0 }}
         >
           <div className="container mx-auto px-4 flex flex-col gap-4">
-            {["Inicio", "Nosotros", "Servicios", "Galería", "Contacto"].map((item) => (
+            {["Inicio", "Nosotros", "Servicios", "FAQ", "Blog", "Galería", "Contacto"].map((item) => (
               <Link
                 key={item}
-                href={item === "Servicios" ? "/servicios" : `/#${item.toLowerCase()}`}
+                href={item === "Servicios" ? "/servicios" : item === "FAQ" ? "/faq" : item === "Blog" ? "/blog" : `/#${item.toLowerCase()}`}
                 className="text-white hover:text-amber-500 py-2 border-b border-gray-800"
                 onClick={() => setIsMenuOpen(false)}
               >
