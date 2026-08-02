@@ -17,7 +17,9 @@ const nextConfig = {
   },
   // SEO and Performance optimizations
   poweredByHeader: false,
-  generateEtags: false,
+  // ETags let the browser revalidate with a cheap 304 instead of
+  // blindly trusting a stale cached copy.
+  generateEtags: true,
   compress: true,
   
   // Optimizaciones experimentales más estables
@@ -26,8 +28,18 @@ const nextConfig = {
   },
   
   // Headers for SEO and security
+  //
+  // Cache-Control is deliberately NOT set on a catch-all source. A blanket
+  // `max-age` on `/(.*)` also lands on the HTML document and on
+  // `/_next/static/*`, which breaks the app: the browser keeps serving a stale
+  // document that references build chunks from a previous deploy, hydration
+  // fails, and every framer-motion element stays stuck at its SSR `opacity: 0`
+  // initial state until a hard reload. Next.js already emits the correct
+  // per-asset caching (immutable for hashed build output, no-store in dev), so
+  // only add Cache-Control to routes we own explicitly.
   async headers() {
     return [
+      // Security headers are safe to apply everywhere.
       {
         source: '/(.*)',
         headers: [
@@ -43,13 +55,26 @@ const nextConfig = {
             key: 'Referrer-Policy',
             value: 'origin-when-cross-origin',
           },
+        ],
+      },
+      // Indexing directives belong on documents, not on static assets.
+      {
+        source: '/((?!_next/|assets/).*)',
+        headers: [
           {
             key: 'X-Robots-Tag',
             value: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
           },
+        ],
+      },
+      // Static media in /public is content-stable and safe to cache long,
+      // with revalidation so a replaced file still propagates.
+      {
+        source: '/assets/:path*',
+        headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=86400, stale-while-revalidate=86400',
+            value: 'public, max-age=3600, stale-while-revalidate=86400',
           },
         ],
       },

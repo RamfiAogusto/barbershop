@@ -145,41 +145,10 @@ export const LocalBusinessSchema = ({
         }))
       ]
     },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "bestRating": "5",
-      "worstRating": "1",
-      "ratingCount": "47"
-    },
-    "review": [
-      {
-        "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": "Alejandro Gómez"
-        },
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "reviewBody": "El mejor lugar para un corte de pelo. Rafa es un profesional que sabe lo que hace y te aconseja según tu tipo de rostro. Ambiente increíble."
-      },
-      {
-        "@type": "Review",
-        "author": {
-          "@type": "Person", 
-          "name": "David Fernández"
-        },
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "reviewBody": "Experiencia de primera clase. El servicio es espectacular, te hacen sentir como en casa. Volveré sin duda."
-      }
-    ]
+    // `aggregateRating` y `review` se emiten aparte, en <GoogleReviewsSchema />,
+    // y solo cuando provienen de la Google Places API. Publicar calificaciones o
+    // reseñas inventadas incumple las guidelines de datos estructurados de
+    // Google y expone el sitio a una acción manual por spam.
   }
 
   return (
