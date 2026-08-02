@@ -14,7 +14,12 @@ import {
  */
 
 // Cachea la respuesta del handler para que las visitas no gasten cuota de API.
-export const revalidate = REVIEWS_REVALIDATE_SECONDS
+//
+// Tiene que ser un literal: Next.js analiza los route segment config de forma
+// estática en build time y no resuelve identificadores importados. Usar
+// REVIEWS_REVALIDATE_SECONDS acá rompe `next build`, aunque `next dev` y
+// `tsc --noEmit` no lo detecten. Mantener sincronizado con esa constante (24h).
+export const revalidate = 86400
 
 export async function GET() {
   const payload = await fetchGoogleReviews()
