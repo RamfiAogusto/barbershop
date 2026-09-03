@@ -110,7 +110,7 @@ export default async function BlogPostPage({ params }: Props) {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
@@ -119,10 +119,10 @@ export default async function BlogPostPage({ params }: Props) {
 
       <main className="pt-24 pb-16">
         <div className="container mx-auto px-4 max-w-3xl">
-          <Breadcrumbs items={breadcrumbs} className="text-gray-400 mb-8" />
+          <Breadcrumbs items={breadcrumbs} className="text-muted-foreground mb-8" />
 
           {/* Cover image */}
-          <div className="relative aspect-[16/9] rounded-lg overflow-hidden mb-8">
+          <div className="relative aspect-[16/9] rounded-none overflow-hidden mb-8">
             <Image
               src={post.coverImage}
               alt={post.title}
@@ -131,26 +131,26 @@ export default async function BlogPostPage({ params }: Props) {
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 768px"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
           </div>
 
           {/* H1 */}
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
+          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4 leading-tight">
             {post.title}
           </h1>
 
           {/* Meta line */}
-          <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400 mb-4 pb-4 border-b border-gray-800">
+          <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-4 pb-4 border-b border-border">
             <span className="flex items-center gap-1.5">
-              <User className="h-4 w-4 text-amber-500" />
+              <User className="h-4 w-4 text-primary" />
               {post.author}
             </span>
             <span className="flex items-center gap-1.5">
-              <Calendar className="h-4 w-4 text-amber-500" />
+              <Calendar className="h-4 w-4 text-primary" />
               {format(new Date(post.publishedAt), "dd 'de' MMMM 'de' yyyy", { locale: es })}
             </span>
             <span className="flex items-center gap-1.5">
-              <Clock className="h-4 w-4 text-amber-500" />
+              <Clock className="h-4 w-4 text-primary" />
               {post.readingMinutes} min de lectura
             </span>
           </div>
@@ -160,7 +160,7 @@ export default async function BlogPostPage({ params }: Props) {
             {post.tags.map((tag) => (
               <span
                 key={tag}
-                className="inline-block bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-medium px-3 py-1 rounded-full"
+                className="inline-block bg-primary/10 text-primary border border-primary/30 text-xs font-medium px-3 py-1 rounded-full"
               >
                 {tag}
               </span>
@@ -171,30 +171,30 @@ export default async function BlogPostPage({ params }: Props) {
           <article>
             <div
               className="prose prose-invert prose-amber max-w-none
-                prose-headings:text-white
-                prose-h2:text-2xl prose-h2:font-bold prose-h2:mt-8 prose-h2:mb-4 prose-h2:text-white
-                prose-h3:text-xl prose-h3:font-semibold prose-h3:mt-6 prose-h3:mb-3 prose-h3:text-amber-400
-                prose-p:text-gray-300 prose-p:leading-relaxed prose-p:mb-4
-                prose-ul:text-gray-300 prose-ul:my-4
-                prose-ol:text-gray-300 prose-ol:my-4
+                prose-headings:text-foreground
+                prose-h2:text-2xl prose-h2:font-bold prose-h2:mt-8 prose-h2:mb-4 prose-h2:text-foreground
+                prose-h3:text-xl prose-h3:font-semibold prose-h3:mt-6 prose-h3:mb-3 prose-h3:text-primary
+                prose-p:text-muted-foreground prose-p:leading-relaxed prose-p:mb-4
+                prose-ul:text-muted-foreground prose-ul:my-4
+                prose-ol:text-muted-foreground prose-ol:my-4
                 prose-li:mb-2
-                prose-strong:text-white
-                prose-em:text-gray-200
-                prose-blockquote:border-amber-500 prose-blockquote:bg-gray-900/50 prose-blockquote:rounded-r-lg prose-blockquote:px-4 prose-blockquote:py-2
-                prose-a:text-amber-400 prose-a:no-underline hover:prose-a:text-amber-300 hover:prose-a:underline"
+                prose-strong:text-foreground
+                prose-em:text-foreground
+                prose-blockquote:border-primary prose-blockquote:bg-surface/50 prose-blockquote:rounded-r-lg prose-blockquote:px-4 prose-blockquote:py-2
+                prose-a:text-primary prose-a:no-underline hover:prose-a:text-primary hover:prose-a:underline"
               dangerouslySetInnerHTML={{ __html: post.contentHtml }}
             />
           </article>
 
           {/* CTA */}
-          <div className="mt-12 bg-amber-500 rounded-lg p-8 text-center">
-            <h2 className="text-2xl font-bold text-black mb-2">¿Listo para tu próximo corte?</h2>
-            <p className="text-black/80 mb-4">Reserva por WhatsApp con Rafa en Ensanche Carmelita, Santo Domingo.</p>
+          <div className="mt-12 bg-primary rounded-none p-8 text-center">
+            <h2 className="text-2xl font-bold text-primary-foreground mb-2">¿Listo para tu próximo corte?</h2>
+            <p className="text-primary-foreground/80 mb-4">Reserva por WhatsApp con Rafa en Ensanche Carmelita, Santo Domingo.</p>
             <a
               href="https://wa.me/18097672490"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-black hover:bg-gray-900 text-white font-bold py-3 px-8 rounded-md transition-colors"
+              className="inline-block bg-background hover:bg-surface text-foreground font-bold py-3 px-8 rounded-none transition-colors"
             >
               Reservar ahora
             </a>
@@ -204,7 +204,7 @@ export default async function BlogPostPage({ params }: Props) {
           <div className="mt-8">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-amber-500 hover:text-amber-400 transition-colors text-sm font-medium"
+              className="inline-flex items-center gap-2 text-primary hover:text-primary transition-colors text-sm font-medium"
             >
               <ArrowLeft className="h-4 w-4" />
               Volver al Blog
@@ -214,18 +214,18 @@ export default async function BlogPostPage({ params }: Props) {
 
         {/* Other articles */}
         {recentPosts.length > 0 && (
-          <section className="mt-16 bg-gray-950 py-12">
+          <section className="mt-16 bg-surface py-12">
             <div className="container mx-auto px-4">
               <h2 className="text-2xl font-bold mb-2 text-center">
-                Otros <span className="text-amber-500">artículos</span>
+                Otros <span className="text-primary">artículos</span>
               </h2>
-              <div className="w-12 h-1 bg-amber-500 mx-auto mb-8" />
+              <div className="w-12 h-1 bg-primary mx-auto mb-8" />
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
                 {recentPosts.map((related) => (
                   <Link
                     key={related.slug}
                     href={`/blog/${related.slug}`}
-                    className="group flex flex-col bg-gray-900 border border-gray-800 rounded-lg overflow-hidden hover:border-amber-500/50 transition-all duration-300"
+                    className="group flex flex-col bg-surface border border-border rounded-none overflow-hidden hover:border-primary/50 transition-all duration-300"
                   >
                     <div className="relative aspect-[16/9] overflow-hidden">
                       <Image
@@ -237,11 +237,11 @@ export default async function BlogPostPage({ params }: Props) {
                       />
                     </div>
                     <div className="p-4">
-                      <h3 className="font-bold text-sm text-white mb-2 leading-snug group-hover:text-amber-400 transition-colors line-clamp-2">
+                      <h3 className="font-bold text-sm text-foreground mb-2 leading-snug group-hover:text-primary transition-colors line-clamp-2">
                         {related.title}
                       </h3>
-                      <span className="flex items-center gap-1 text-xs text-gray-500">
-                        <Clock className="h-3 w-3 text-amber-500" />
+                      <span className="flex items-center gap-1 text-xs text-muted-foreground">
+                        <Clock className="h-3 w-3 text-primary" />
                         {related.readingMinutes} min
                       </span>
                     </div>

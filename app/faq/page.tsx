@@ -136,7 +136,7 @@ export default function FAQPage() {
         </div>
 
         {/* Hero Section */}
-        <section className="bg-gradient-to-r from-black to-gray-900 py-16 text-white">
+        <section className="bg-gradient-to-r from-background to-surface py-16 text-foreground">
           <div className="container mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               Preguntas Frecuentes
@@ -146,24 +146,24 @@ export default function FAQPage() {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-12">
               <div className="text-center">
-                <MapPin className="h-8 w-8 text-amber-500 mx-auto mb-2" />
+                <MapPin className="h-8 w-8 text-primary mx-auto mb-2" />
                 <p className="font-medium">Ensanche Carmelita</p>
-                <p className="text-sm text-gray-300">Santo Domingo</p>
+                <p className="text-sm text-muted-foreground">Santo Domingo</p>
               </div>
               <div className="text-center">
-                <Phone className="h-8 w-8 text-amber-500 mx-auto mb-2" />
+                <Phone className="h-8 w-8 text-primary mx-auto mb-2" />
                 <p className="font-medium">+1 (809) 767-2490</p>
-                <p className="text-sm text-gray-300">WhatsApp</p>
+                <p className="text-sm text-muted-foreground">WhatsApp</p>
               </div>
               <div className="text-center">
-                <Clock className="h-8 w-8 text-amber-500 mx-auto mb-2" />
+                <Clock className="h-8 w-8 text-primary mx-auto mb-2" />
                 <p className="font-medium">Mar-Sáb 8AM-8PM</p>
-                <p className="text-sm text-gray-300">Dom 8AM-7PM</p>
+                <p className="text-sm text-muted-foreground">Dom 8AM-7PM</p>
               </div>
               <div className="text-center">
-                <Scissors className="h-8 w-8 text-amber-500 mx-auto mb-2" />
+                <Scissors className="h-8 w-8 text-primary mx-auto mb-2" />
                 <p className="font-medium">+20 Años</p>
-                <p className="text-sm text-gray-300">Experiencia</p>
+                <p className="text-sm text-muted-foreground">Experiencia</p>
               </div>
             </div>
           </div>
@@ -174,7 +174,7 @@ export default function FAQPage() {
           <div className="container mx-auto px-4 max-w-4xl">
             {categories.map((category) => (
               <div key={category} className="mb-12">
-                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-amber-500">
+                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-primary">
                   {category}
                 </h2>
                 
@@ -190,21 +190,21 @@ export default function FAQPage() {
                           <CardContent className="p-0">
                             <button
                               onClick={() => toggleItem(globalIndex)}
-                              className="w-full p-6 text-left hover:bg-gray-800/60 transition-colors flex items-center justify-between"
+                              className="w-full p-6 text-left hover:bg-surface-raised/60 transition-colors flex items-center justify-between"
                             >
                               <h3 className="text-lg font-medium pr-4">
                                 {item.question}
                               </h3>
                               {isOpen ? (
-                                <ChevronUp className="h-5 w-5 text-amber-600 flex-shrink-0" />
+                                <ChevronUp className="h-5 w-5 text-primary flex-shrink-0" />
                               ) : (
-                                <ChevronDown className="h-5 w-5 text-amber-600 flex-shrink-0" />
+                                <ChevronDown className="h-5 w-5 text-primary flex-shrink-0" />
                               )}
                             </button>
                             
                             {isOpen && (
                               <div className="px-6 pb-6">
-                                <p className="text-gray-300 leading-relaxed">
+                                <p className="text-muted-foreground leading-relaxed">
                                   {item.answer}
                                 </p>
                               </div>
@@ -218,16 +218,16 @@ export default function FAQPage() {
             ))}
 
             {/* Contact Section */}
-            <div className="mt-16 text-center bg-gray-900 border border-gray-800 rounded-lg p-8">
-              <h2 className="text-2xl font-bold mb-4 text-white">
+            <div className="mt-16 text-center bg-surface border border-border rounded-none p-8">
+              <h2 className="text-2xl font-bold mb-4 text-foreground">
                 ¿No encuentras la respuesta que buscas?
               </h2>
-              <p className="text-gray-300 mb-6">
+              <p className="text-muted-foreground mb-6">
                 Contáctanos por WhatsApp y te responderemos todas tus preguntas sobre nuestra barbería en Santo Domingo
               </p>
               <Button
                 onClick={handleWhatsAppContact}
-                className="bg-amber-500 hover:bg-amber-600 text-black font-bold px-8 py-3"
+                className="bg-primary hover:bg-primary text-primary-foreground font-bold px-8 py-3"
               >
                 Contactar por WhatsApp
               </Button>

@@ -45,7 +45,7 @@ export default function ServiciosPage() {
 
         {/* Banner Principal */}
         <section className="relative">
-          <div className="absolute inset-0 bg-black/70 z-10"></div>
+          <div className="absolute inset-0 bg-background/70 z-10"></div>
           <div className="relative h-[400px] md:h-[500px]">
             <Image
               style={{
@@ -60,7 +60,7 @@ export default function ServiciosPage() {
             />
           </div>
           <div className="absolute inset-0 z-20 flex items-center justify-center">
-            <div className="container text-center text-white space-y-4">
+            <div className="container text-center text-foreground space-y-4">
               <h1 className="text-3xl md:text-5xl font-bold">Servicios de Barbería Profesional en Santo Domingo</h1>
               <p className="text-lg md:text-xl max-w-3xl mx-auto">
                 Más de 20 años perfeccionando el arte del corte masculino
@@ -78,9 +78,9 @@ export default function ServiciosPage() {
               cada cliente. Descubre por qué somos la barbería más reconocida del Ensanche Carmelita.
             </p>
             <div className="flex items-center justify-center my-8">
-              <div className="h-px w-16 bg-amber-700"></div>
-              <Scissors className="h-6 w-6 mx-4 text-amber-700" />
-              <div className="h-px w-16 bg-amber-700"></div>
+              <div className="h-px w-16 bg-primary"></div>
+              <Scissors className="h-6 w-6 mx-4 text-primary" />
+              <div className="h-px w-16 bg-primary"></div>
             </div>
           </div>
         </section>
@@ -100,7 +100,7 @@ export default function ServiciosPage() {
               </CardHeader>
               <CardFooter>
                 <Button 
-                  className="w-full bg-amber-700 hover:bg-amber-800"
+                  className="w-full bg-primary hover:bg-primary"
                   onClick={() => handleWhatsAppReservation("Corte Clásico")}
                 >
                   Reservar este servicio
@@ -119,7 +119,7 @@ export default function ServiciosPage() {
               </CardHeader>
               <CardFooter>
                 <Button 
-                  className="w-full bg-amber-700 hover:bg-amber-800"
+                  className="w-full bg-primary hover:bg-primary"
                   onClick={() => handleWhatsAppReservation("Corte a Tijera")}
                 >
                   Reservar este servicio
@@ -138,7 +138,7 @@ export default function ServiciosPage() {
               </CardHeader>
               <CardFooter>
                 <Button 
-                  className="w-full bg-amber-700 hover:bg-amber-800"
+                  className="w-full bg-primary hover:bg-primary"
                   onClick={() => handleWhatsAppReservation("Corte para Adolescentes")}
                 >
                   Reservar este servicio
@@ -157,7 +157,7 @@ export default function ServiciosPage() {
               </CardHeader>
               <CardFooter>
                 <Button 
-                  className="w-full bg-amber-700 hover:bg-amber-800"
+                  className="w-full bg-primary hover:bg-primary"
                   onClick={() => handleWhatsAppReservation("Corte para Niños")}
                 >
                   Reservar este servicio
@@ -176,7 +176,7 @@ export default function ServiciosPage() {
               </CardHeader>
               <CardFooter>
                 <Button 
-                  className="w-full bg-amber-700 hover:bg-amber-800"
+                  className="w-full bg-primary hover:bg-primary"
                   onClick={() => handleWhatsAppReservation("Cerquillos")}
                 >
                   Reservar este servicio
@@ -195,7 +195,7 @@ export default function ServiciosPage() {
               </CardHeader>
               <CardFooter>
                 <Button 
-                  className="w-full bg-amber-700 hover:bg-amber-800"
+                  className="w-full bg-primary hover:bg-primary"
                   onClick={() => handleWhatsAppReservation("Cejas")}
                 >
                   Reservar este servicio
@@ -213,7 +213,7 @@ export default function ServiciosPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
             <div className="flex items-start space-x-4">
-              <div className="bg-amber-700 p-2 rounded-full text-white">
+              <div className="bg-primary p-2 rounded-full text-foreground">
                 <Check className="h-5 w-5" />
               </div>
               <div>
@@ -225,7 +225,7 @@ export default function ServiciosPage() {
             </div>
 
             <div className="flex items-start space-x-4">
-              <div className="bg-amber-700 p-2 rounded-full text-white">
+              <div className="bg-primary p-2 rounded-full text-foreground">
                 <Check className="h-5 w-5" />
               </div>
               <div>
@@ -236,7 +236,7 @@ export default function ServiciosPage() {
                     href="https://maps.app.goo.gl/JbPhr1ojEVxKfuqR8"
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-amber-600 hover:underline"
+                    className="text-primary hover:underline"
                   >
                     Ver en mapa
                   </a>
@@ -245,7 +245,7 @@ export default function ServiciosPage() {
             </div>
 
             <div className="flex items-start space-x-4">
-              <div className="bg-amber-700 p-2 rounded-full text-white">
+              <div className="bg-primary p-2 rounded-full text-foreground">
                 <Check className="h-5 w-5" />
               </div>
               <div>
@@ -257,7 +257,7 @@ export default function ServiciosPage() {
             </div>
 
             <div className="flex items-start space-x-4">
-              <div className="bg-green-600 p-2 rounded-full text-white">
+              <div className="bg-green-600 p-2 rounded-full text-foreground">
                 <Coffee className="h-5 w-5" />
               </div>
               <div>
@@ -269,7 +269,7 @@ export default function ServiciosPage() {
             </div>
 
             <div className="flex items-start space-x-4">
-              <div className="bg-amber-700 p-2 rounded-full text-white">
+              <div className="bg-primary p-2 rounded-full text-foreground">
                 <Check className="h-5 w-5" />
               </div>
               <div>
@@ -281,7 +281,7 @@ export default function ServiciosPage() {
             </div>
 
             <div className="flex items-start space-x-4">
-              <div className="bg-amber-700 p-2 rounded-full text-white">
+              <div className="bg-primary p-2 rounded-full text-foreground">
                 <Check className="h-5 w-5" />
               </div>
               <div>
@@ -307,11 +307,11 @@ export default function ServiciosPage() {
                 <div className="flex flex-col items-center mb-4">
                   <div className="w-16 h-16 rounded-full bg-muted mb-4"></div>
                   <div className="flex mb-2">
-                    <Star className="h-5 w-5 fill-amber-500 text-amber-500" />
-                    <Star className="h-5 w-5 fill-amber-500 text-amber-500" />
-                    <Star className="h-5 w-5 fill-amber-500 text-amber-500" />
-                    <Star className="h-5 w-5 fill-amber-500 text-amber-500" />
-                    <Star className="h-5 w-5 fill-amber-500 text-amber-500" />
+                    <Star className="h-5 w-5 fill-primary text-primary" />
+                    <Star className="h-5 w-5 fill-primary text-primary" />
+                    <Star className="h-5 w-5 fill-primary text-primary" />
+                    <Star className="h-5 w-5 fill-primary text-primary" />
+                    <Star className="h-5 w-5 fill-primary text-primary" />
                   </div>
                 </div>
                 <blockquote className="text-center italic mb-4">
@@ -331,11 +331,11 @@ export default function ServiciosPage() {
                 <div className="flex flex-col items-center mb-4">
                   <div className="w-16 h-16 rounded-full bg-muted mb-4"></div>
                   <div className="flex mb-2">
-                    <Star className="h-5 w-5 fill-amber-500 text-amber-500" />
-                    <Star className="h-5 w-5 fill-amber-500 text-amber-500" />
-                    <Star className="h-5 w-5 fill-amber-500 text-amber-500" />
-                    <Star className="h-5 w-5 fill-amber-500 text-amber-500" />
-                    <Star className="h-5 w-5 fill-amber-500 text-amber-500" />
+                    <Star className="h-5 w-5 fill-primary text-primary" />
+                    <Star className="h-5 w-5 fill-primary text-primary" />
+                    <Star className="h-5 w-5 fill-primary text-primary" />
+                    <Star className="h-5 w-5 fill-primary text-primary" />
+                    <Star className="h-5 w-5 fill-primary text-primary" />
                   </div>
                 </div>
                 <blockquote className="text-center italic mb-4">
@@ -355,11 +355,11 @@ export default function ServiciosPage() {
                 <div className="flex flex-col items-center mb-4">
                   <div className="w-16 h-16 rounded-full bg-muted mb-4"></div>
                   <div className="flex mb-2">
-                    <Star className="h-5 w-5 fill-amber-500 text-amber-500" />
-                    <Star className="h-5 w-5 fill-amber-500 text-amber-500" />
-                    <Star className="h-5 w-5 fill-amber-500 text-amber-500" />
-                    <Star className="h-5 w-5 fill-amber-500 text-amber-500" />
-                    <Star className="h-5 w-5 fill-amber-500 text-amber-500" />
+                    <Star className="h-5 w-5 fill-primary text-primary" />
+                    <Star className="h-5 w-5 fill-primary text-primary" />
+                    <Star className="h-5 w-5 fill-primary text-primary" />
+                    <Star className="h-5 w-5 fill-primary text-primary" />
+                    <Star className="h-5 w-5 fill-primary text-primary" />
                   </div>
                 </div>
                 <blockquote className="text-center italic mb-4">
@@ -440,12 +440,12 @@ export default function ServiciosPage() {
             }}
           >
             <div className="absolute inset-0 z-20 flex items-center justify-center">
-              <div className="container text-center text-white space-y-6">
+              <div className="container text-center text-foreground space-y-6">
                 <h2 className="text-3xl md:text-4xl font-bold">¿Listo para lucir tu mejor versión?</h2>
                 <p className="text-xl">Reserva ahora tu cita en la barbería preferida de Santo Domingo</p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <Button 
-                    className="bg-amber-700 hover:bg-amber-800 text-lg px-8 py-6"
+                    className="bg-primary hover:bg-primary text-lg px-8 py-6"
                     onClick={() => handleWhatsAppReservation()}
                   >
                     Reservar Mi Cita
@@ -454,7 +454,7 @@ export default function ServiciosPage() {
                     <p>O llámanos al</p>
                     <a 
                       href="tel:+18097672490" 
-                      className="ml-2 font-bold hover:text-amber-300 underline"
+                      className="ml-2 font-bold hover:text-primary underline"
                     >
                       +1 (809)-767-2490
                     </a>
