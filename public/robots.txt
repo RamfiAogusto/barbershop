@@ -1,22 +1,12 @@
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://www.drafapeluqueria.com/sitemap.xml
-
-# Disallow admin and private areas
 Disallow: /admin/
 Disallow: /api/
 Disallow: /_next/
 Disallow: /private/
 
-# Allow all crawlers access to CSS and JS files
 Allow: /_next/static/
 Allow: /assets/
 
-# Google-specific crawlers
-User-agent: Googlebot
-Allow: /
-
-# Crawl delay (optional, for heavy crawlers)
-Crawl-delay: 1 
+Sitemap: https://www.drafapeluqueria.com/sitemap.xml

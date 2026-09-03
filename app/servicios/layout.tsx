@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Servicios de Barbería Premium - Cortes Profesionales en Santo Domingo",
-  description: "Descubre nuestros servicios de barbería premium en Santo Domingo. Cortes clásicos, a tijera, para niños y adolescentes. +20 años de experiencia. Reserva tu cita ahora.",
+  title: "Servicios y Cortes en Santo Domingo",
+  description: "Corte a tijera, corte clásico, tintura temporal, corte femenino y de niños en Ensanche Carmelita. Más de 20 años de experiencia. Reserva por WhatsApp.",
   keywords: [
     "servicios barbería Santo Domingo",
     "servicios peluquería Santo Domingo",

@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Preguntas Frecuentes - Barbería D' Rafa Santo Domingo",
-  description: "Encuentra respuestas a las preguntas más frecuentes sobre nuestra barbería en Santo Domingo. Horarios, servicios, precios y ubicación en Ensanche Carmelita.",
+  title: "Preguntas Frecuentes",
+  description: "Horarios, ubicación, formas de pago, parqueo, cortes para niños y cómo reservar en nuestra barbería de Ensanche Carmelita, Santo Domingo.",
   keywords: [
     "FAQ barbería Santo Domingo",
     "preguntas barbería cerca de mi",
