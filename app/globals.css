@@ -2,50 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Sistema visual: carbon calido, un unico acento rojo, fotografia en blanco
+ * y negro. El sitio se compromete con un solo tema oscuro, asi que :root y
+ * .dark declaran los mismos valores y no existe un estado claro a medias.
+ *
+ * El negro puro y los grises frios de la version anterior se retiran a
+ * proposito: aplanaban la imagen y peleaban con el acento calido.
+ */
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 38 92% 50%;
-    --primary-foreground: 0 0% 0%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 38 92% 50%;
-    --radius: 0.5rem;
-  }
-
+  :root,
   .dark {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 38 92% 50%;
-    --primary-foreground: 0 0% 0%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 38 92% 50%;
+    /* Superficies, de mas profunda a mas elevada */
+    --background: 30 9% 7%;
+    --surface: 24 10% 10%;
+    --surface-raised: 25 9% 14%;
+
+    /* Tinta */
+    --foreground: 30 16% 94%;
+    --muted: 24 10% 13%;
+    --muted-foreground: 24 8% 63%;
+    --faint: 24 7% 42%;
+
+    /* Acento unico */
+    --primary: 355 66% 48%;
+    --primary-foreground: 30 16% 96%;
+    --primary-hot: 355 74% 56%;
+
+    --card: 24 10% 10%;
+    --card-foreground: 30 16% 94%;
+    --popover: 24 10% 10%;
+    --popover-foreground: 30 16% 94%;
+    --secondary: 25 9% 14%;
+    --secondary-foreground: 30 16% 94%;
+    --accent: 355 66% 48%;
+    --accent-foreground: 30 16% 96%;
+    --destructive: 355 66% 48%;
+    --destructive-foreground: 30 16% 96%;
+
+    --border: 30 9% 19%;
+    --input: 30 9% 19%;
+    --ring: 355 66% 48%;
+
+    /* Esquinas rectas en todo el sitio. La referencia es industrial y el
+       radio redondeado es justamente lo que la ablanda. */
+    --radius: 0px;
   }
 }
 
@@ -53,34 +54,129 @@
   * {
     @apply border-border;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
+
   html {
     scroll-behavior: smooth;
   }
-  
-  /* Prevenir overflow horizontal globalmente */
-  html, body {
+
+  html,
+  body {
     overflow-x: hidden;
     max-width: 100vw;
   }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: "ss01", "cv01";
+  }
+
+  /* La display va condensada y en mayusculas en todo el sitio. */
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-display), "Arial Narrow", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    line-height: 0.92;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 3px;
+  }
 }
 
-/* Estilos para react-datepicker */
+@layer components {
+  /*
+   * Grano de pelicula. Va en un pseudo-elemento fijo y sin eventos de puntero:
+   * aplicarlo sobre contenedores que scrollean obliga al GPU a repintar en
+   * cada frame y destruye el rendimiento en movil.
+   */
+  .grain::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.16;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /*
+   * Palabra fantasma detras del titulo de seccion. Es el recurso que da
+   * profundidad sin agregar un elemento visible mas: se apoya en el mismo
+   * texto de la seccion, escalado y casi apagado.
+   */
+  .ghost-word {
+    font-family: var(--font-display), "Arial Narrow", sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    line-height: 0.78;
+    letter-spacing: -0.03em;
+    color: hsl(var(--foreground) / 0.035);
+    user-select: none;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  /* Regla corta de acento que abre las secciones. */
+  .rule-accent {
+    display: block;
+    width: 3.5rem;
+    height: 3px;
+    background: hsl(var(--primary));
+  }
+
+  /* Numeracion del temario de servicios, en el margen. */
+  .tick {
+    font-family: var(--font-body), sans-serif;
+    font-variant-numeric: tabular-nums;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    color: hsl(var(--faint));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------------------------------------------------------------- */
+/* react-datepicker, alineado al sistema                             */
+/* ---------------------------------------------------------------- */
 .react-datepicker {
-  @apply bg-gray-900 border border-gray-700 text-white font-sans rounded-lg shadow-xl;
+  @apply border text-foreground;
+  background: hsl(var(--surface));
+  border-color: hsl(var(--border));
   font-family: inherit;
-  transition: all 0.3s ease;
 }
 
 .react-datepicker__header {
-  @apply bg-gray-900 border-b border-gray-700 rounded-t-lg;
+  @apply border-b;
+  background: hsl(var(--surface));
+  border-color: hsl(var(--border));
   padding: 1rem;
 }
 
 .react-datepicker__current-month {
-  @apply text-white font-bold text-lg mb-2 text-center;
+  @apply font-display text-lg mb-2 text-center text-foreground;
 }
 
 .react-datepicker__day-names {
@@ -88,7 +184,8 @@
 }
 
 .react-datepicker__day-name {
-  @apply text-gray-400 text-sm font-medium w-9 h-9 flex items-center justify-center;
+  @apply text-sm font-medium w-9 h-9 flex items-center justify-center;
+  color: hsl(var(--muted-foreground));
 }
 
 .react-datepicker__month {
@@ -100,117 +197,104 @@
 }
 
 .react-datepicker__day {
-  @apply text-white w-9 h-9 flex items-center justify-center rounded-full text-sm transition-all duration-200 outline-none;
+  @apply text-foreground w-9 h-9 flex items-center justify-center text-sm transition-colors duration-200 outline-none;
   margin: 0.2rem;
   border: none !important;
   box-shadow: none !important;
 }
 
 .react-datepicker__day:hover {
-  @apply bg-gray-700;
+  background: hsl(var(--surface-raised));
 }
 
 .react-datepicker__day--selected,
 .react-datepicker__day--keyboard-selected {
-  @apply bg-amber-500 text-black font-bold;
-  transform: scale(1.1);
+  @apply font-semibold;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
   border: none !important;
-  box-shadow: none !important;
 }
 
 .react-datepicker__day--selected:hover,
 .react-datepicker__day--keyboard-selected:hover {
-  @apply bg-amber-600;
+  background: hsl(var(--primary-hot));
 }
 
 .react-datepicker__day--today {
-  @apply text-amber-500 font-bold;
+  @apply font-semibold;
+  color: hsl(var(--primary));
 }
 
-.react-datepicker__day--outside-month {
-  @apply text-gray-600 opacity-40 bg-transparent;
+.react-datepicker__day--outside-month,
+.react-datepicker__day--disabled {
+  color: hsl(var(--faint));
+  background: transparent;
 }
 
 .react-datepicker__day--disabled {
-  @apply text-gray-600 cursor-not-allowed bg-transparent;
-}
-
-.react-datepicker__day--disabled:hover {
-  @apply bg-transparent;
+  @apply cursor-not-allowed;
 }
 
 .react-datepicker__navigation {
-  @apply text-white top-4;
+  @apply text-foreground top-4;
   width: 2rem;
   height: 2rem;
-  border-radius: 50%;
-  transition: all 0.2s ease;
   background: transparent !important;
   border: none !important;
 }
 
 .react-datepicker__navigation:hover {
-  @apply bg-gray-700;
+  background: hsl(var(--surface-raised)) !important;
 }
 
 .react-datepicker__navigation--previous {
   @apply left-2;
 }
-
 .react-datepicker__navigation--next {
   @apply right-2;
 }
 
-/* Animaciones */
-.react-datepicker-popper {
-  animation: fadeIn 0.3s ease;
-}
-
-.react-datepicker__day {
-  animation: fadeIn 0.2s ease;
-}
-
-.react-datepicker__day--selected,
-.react-datepicker__day--keyboard-selected {
-  animation: popIn 0.2s ease;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes popIn {
-  0% {
-    transform: scale(0.8);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-  100% {
-    transform: scale(1.1);
-  }
-}
-
-/* Estilos para el input del datepicker */
 .react-datepicker-wrapper {
   @apply w-full;
 }
 
 .react-datepicker__input-container input {
-  @apply w-full bg-gray-800 text-white border border-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all duration-200;
-}
-
-.react-datepicker__input-container input:hover {
-  @apply border-gray-600;
+  @apply w-full px-3 py-2 transition-colors duration-200 focus:outline-none;
+  background: hsl(var(--surface-raised));
+  color: hsl(var(--foreground));
+  border: 1px solid hsl(var(--border));
 }
 
 .react-datepicker__input-container input:focus {
-  @apply border-amber-500;
+  border-color: hsl(var(--primary));
+}
+
+/* ---------------------------------------------------------------- */
+/* Entrada del hero                                                  */
+/*                                                                   */
+/* Va en CSS y no en framer-motion a proposito. Un motion.h1 se       */
+/* sirve con opacity:0 en el HTML y solo aparece cuando hidrata: si   */
+/* el JS tarda o falla, el titulo principal queda invisible, que es   */
+/* justo el fallo que ya rompio este sitio una vez. Ademas el h1 es   */
+/* el LCP, y no debe esperar a JavaScript para pintarse.              */
+/* ---------------------------------------------------------------- */
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hero-rise {
+  animation: hero-rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-rise {
+    animation: none;
+  }
 }

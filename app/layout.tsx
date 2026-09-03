@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Barlow, Barlow_Condensed } from "next/font/google"
 import "./globals.css"
 import { Providers } from "@/components/providers"
 import { Toaster } from "@/components/ui/toaster"
@@ -10,7 +10,21 @@ import { LocalBusinessSchema } from "@/components/seo/local-business-schema"
 import { GoogleReviewsSchema } from "@/components/seo/google-reviews-schema"
 import { fetchGoogleReviews } from "@/lib/google-reviews"
 
-const inter = Inter({ subsets: ["latin"] })
+// Superfamilia Barlow. La condensada carga los titulos, la normal el texto
+// de lectura. Sustituye a Inter, que era el tono generico del sitio anterior.
+const display = Barlow_Condensed({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  variable: "--font-display",
+  display: "swap",
+})
+
+const body = Barlow({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-body",
+  display: "swap",
+})
 
 export const metadata: Metadata = {
   title: {
@@ -107,15 +121,15 @@ export default async function RootLayout({
   const reviews = await fetchGoogleReviews()
 
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html lang="es" className={`${display.variable} ${body.variable}`} suppressHydrationWarning>
       <head>
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#f59e0b" />
+        <meta name="theme-color" content="#141312" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <link rel="apple-touch-icon" href="/iconbarber.svg" />
         {gscVerification && <meta name="google-site-verification" content={gscVerification} />}
       </head>
-      <body className={inter.className}>
+      <body className="grain">
         <LocalBusinessSchema />
         <GoogleReviewsSchema payload={reviews} />
         <Providers attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
