@@ -8,11 +8,10 @@ import { Clock, User, Tag } from "lucide-react"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { Breadcrumbs } from "@/components/seo/breadcrumbs"
-import { LocalBusinessSchema } from "@/components/seo/local-business-schema"
 import { getAllPosts } from "@/lib/blog-posts"
 
 export const metadata: Metadata = {
-  title: "Blog D' Rafa Peluquería - Consejos de barbería, estilo y cuidado masculino",
+  title: "Blog de Barbería y Estilo Masculino",
   description:
     "Guías reales y consejos prácticos sobre cortes, cuidado del cabello, barba y tendencias. Por nuestro maestro barbero en Santo Domingo.",
   alternates: {
@@ -54,7 +53,6 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <LocalBusinessSchema />
       <Header />
 
       {/* Hero */}

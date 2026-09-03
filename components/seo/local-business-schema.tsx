@@ -1,5 +1,3 @@
-import Script from 'next/script'
-
 interface LocalBusinessSchemaProps {
   organizationType?: string
   additionalServices?: Array<{
@@ -16,6 +14,7 @@ export const LocalBusinessSchema = ({
   const baseSchema = {
     "@context": "https://schema.org",
     "@type": organizationType,
+    "@id": "https://www.drafapeluqueria.com/#business",
     "name": "D' Rafa Peluquería",
     "description": "Barbería y peluquería premium en Santo Domingo, República Dominicana con más de 20 años de experiencia. La mejor barbería cerca de ti en Ensanche Carmelita. Especialistas en cortes masculinos y femeninos, servicios profesionales de alta calidad.",
     "url": "https://www.drafapeluqueria.com",
@@ -25,7 +24,7 @@ export const LocalBusinessSchema = ({
     "paymentAccepted": "Cash, Credit Card",
     "image": [
       "https://www.drafapeluqueria.com/assets/vintage-.webp",
-      "https://www.drafapeluqueria.com/assets/quienesomos.jpg",
+      "https://www.drafapeluqueria.com/assets/quienesomos.webp",
       "https://www.drafapeluqueria.com/assets/banner2.webp"
     ],
     "logo": "https://www.drafapeluqueria.com/iconbarber.svg",
@@ -34,7 +33,7 @@ export const LocalBusinessSchema = ({
       "streetAddress": "Respaldo Calle 4, Ensanche Carmelita",
       "addressLocality": "Santo Domingo",
       "addressRegion": "Distrito Nacional",
-      "postalCode": "10000",
+      "postalCode": "10131",
       "addressCountry": "DO"
     },
     "geo": {
@@ -54,13 +53,23 @@ export const LocalBusinessSchema = ({
         "dayOfWeek": "Sunday",
         "opens": "08:00",
         "closes": "19:00"
+      },
+      {
+        // Declarar el día cerrado explícitamente evita que Google infiera
+        // horarios a partir de otras fuentes.
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Monday",
+        "opens": "00:00",
+        "closes": "00:00"
       }
     ],
     "sameAs": [
       "https://www.instagram.com/rafa_eldon/",
       "https://www.facebook.com/RafaelDondelcorte",
-      "https://wa.me/18097672490"
+      "https://wa.me/18097672490",
+      "https://www.google.com/maps/place/?q=place_id:ChIJqX-RDUiJr44RC2yG2fkCkTM"
     ],
+    "hasMap": "https://www.google.com/maps/place/?q=place_id:ChIJqX-RDUiJr44RC2yG2fkCkTM",
     "founder": {
       "@type": "Person",
       "name": "Rafa",
@@ -152,8 +161,7 @@ export const LocalBusinessSchema = ({
   }
 
   return (
-    <Script
-      id="local-business-schema"
+    <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
         __html: JSON.stringify(baseSchema),

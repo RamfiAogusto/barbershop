@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Script from 'next/script'
 import { ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -27,8 +26,7 @@ export const Breadcrumbs = ({ items, className }: BreadcrumbsProps) => {
 
   return (
     <>
-      <Script
-        id="breadcrumb-schema"
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(breadcrumbSchema),

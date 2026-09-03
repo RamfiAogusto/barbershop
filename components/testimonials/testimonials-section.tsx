@@ -4,7 +4,6 @@ import { useEffect, useState } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
 
-import { GoogleReviewsSchema } from "@/components/seo/google-reviews-schema"
 import { Card, CardContent } from "@/components/ui/card"
 import {
   Carousel,
@@ -139,7 +138,6 @@ export function TestimonialsSection() {
 
   return (
     <section className="py-20 bg-black">
-      <GoogleReviewsSchema payload={payload} />
       <div className="container mx-auto px-4">
         <motion.div
           initial="hidden"

@@ -6,15 +6,18 @@ import { Providers } from "@/components/providers"
 import { Toaster } from "@/components/ui/toaster"
 import { FloatingWhatsApp } from "@/components/layout/floating-whatsapp"
 import { GoogleAnalytics } from "@next/third-parties/google"
+import { LocalBusinessSchema } from "@/components/seo/local-business-schema"
+import { GoogleReviewsSchema } from "@/components/seo/google-reviews-schema"
+import { fetchGoogleReviews } from "@/lib/google-reviews"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: {
-    default: "D' Rafa Peluquería - Barbería Premium en Santo Domingo con +20 Años",
+    default: "Barbería en Santo Domingo · +20 Años — D' Rafa Peluquería",
     template: "%s | D' Rafa Peluquería"
   },
-  description: "Barbería premium en Santo Domingo con más de 20 años de experiencia. Cortes de pelo masculinos y femeninos, tintura temporal y servicios de alta calidad. Reserva tu cita ahora.",
+  description: "Barbería y peluquería en Ensanche Carmelita, Santo Domingo. Más de 20 años de experiencia en corte masculino, femenino y de niños. Reserva por WhatsApp.",
   keywords: [
     "peluquería Santo Domingo",
     "barbería Santo Domingo",
@@ -46,10 +49,6 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://www.drafapeluqueria.com'),
   alternates: {
     canonical: '/',
-    languages: {
-      'es-DO': '/',
-      'es': '/',
-    },
   },
   openGraph: {
     type: 'website',
@@ -60,7 +59,7 @@ export const metadata: Metadata = {
     siteName: "D' Rafa Peluquería",
     images: [
       {
-        url: '/assets/vintage-.webp',
+        url: '/assets/og-image.jpg',
         width: 1200,
         height: 630,
         alt: "D' Rafa Peluquería - Barbería Premium Santo Domingo",
@@ -71,7 +70,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "D' Rafa Peluquería - Barbería Premium en Santo Domingo",
     description: "Barbería premium con más de 20 años de experiencia. Cortes profesionales y servicios de alta calidad.",
-    images: ['/assets/vintage-.webp'],
+    images: ['/assets/og-image.jpg'],
   },
   robots: {
     index: true,
@@ -92,13 +91,20 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
   const gaId = process.env.NEXT_PUBLIC_GA_ID
   const gscVerification = process.env.NEXT_PUBLIC_GSC_VERIFICATION
+
+  // El schema vive en el layout, que es Server Component, para que salga en el
+  // HTML inicial. Las páginas son "use client" y no pueden hacer este fetch.
+  // `fetchGoogleReviews` trae su propio `revalidate`, así que las rutas siguen
+  // prerenderizadas. Ambos schemas comparten `@id`, de modo que Google los
+  // fusiona en una sola entidad de negocio con su calificación.
+  const reviews = await fetchGoogleReviews()
 
   return (
     <html lang="es" suppressHydrationWarning>
@@ -110,6 +116,8 @@ export default function RootLayout({
         {gscVerification && <meta name="google-site-verification" content={gscVerification} />}
       </head>
       <body className={inter.className}>
+        <LocalBusinessSchema />
+        <GoogleReviewsSchema payload={reviews} />
         <Providers attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           {children}
           <FloatingWhatsApp />

@@ -5,7 +5,6 @@ import { notFound } from "next/navigation"
 import { format } from "date-fns"
 import { es } from "date-fns/locale"
 import { Clock, User, Calendar, ArrowLeft } from "lucide-react"
-import Script from "next/script"
 
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
@@ -112,8 +111,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <Script
-        id="blog-posting-schema"
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
       />

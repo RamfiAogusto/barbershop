@@ -14,7 +14,6 @@ import { useToast } from "@/components/ui/use-toast"
 import { useMobile } from "@/hooks/use-mobile"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
-import { LocalBusinessSchema } from "@/components/seo/local-business-schema"
 import { TestimonialsSection } from "@/components/testimonials/testimonials-section"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { trackWhatsAppClick } from "@/lib/analytics"
@@ -44,7 +43,7 @@ const GalleryCarousel = ({ onImageClick }: { onImageClick: (src: string) => void
     { src: "/assets/cortes/corte1.jpg", alt: "Corte profesional estilo clásico - D' Rafa Peluquería" },
     { src: "/assets/cortes/corte2.jpg", alt: "Corte moderno con degradado - Barbería Santo Domingo" },
     { src: "/assets/cortes/corte3.jpg", alt: "Corte a tijera con precisión - Servicios premium" },
-    { src: "/assets/cortes/corte4.PNG", alt: "Corte especializado para adolescentes - Estilo actual" }
+    { src: "/assets/cortes/corte4.webp", alt: "Corte especializado para adolescentes - Estilo actual" }
   ]
 
   useEffect(() => {
@@ -173,7 +172,6 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white">
       <SpeedInsights />
-      <LocalBusinessSchema />
       <Header />
       
       {/* Hero Section */}
@@ -303,7 +301,7 @@ export default function Home() {
               transition={{ duration: 0.5 }}
             >
               <Image
-                src="/assets/quienesomos.jpg"
+                src="/assets/quienesomos.webp"
                 width={400}
                 height={480}
                 alt="Rafa - Maestro Barbero trabajando con precisión en D' Rafa Peluquería, Santo Domingo"
@@ -460,7 +458,7 @@ export default function Home() {
                     { src: "/assets/cortes/corte1.jpg", alt: "Corte profesional estilo clásico - D' Rafa Peluquería" },
                     { src: "/assets/cortes/corte2.jpg", alt: "Corte moderno con degradado - Barbería Santo Domingo" },
                     { src: "/assets/cortes/corte3.jpg", alt: "Corte a tijera con precisión - Servicios premium" },
-                    { src: "/assets/cortes/corte4.PNG", alt: "Corte especializado para adolescentes - Estilo actual" }
+                    { src: "/assets/cortes/corte4.webp", alt: "Corte especializado para adolescentes - Estilo actual" }
                   ].map((image, item) => (
                     <CarouselItem key={item} className="pl-2 md:pl-4 basis-full sm:basis-1/2 md:basis-1/2 lg:basis-1/3">
                       <div className="p-2">

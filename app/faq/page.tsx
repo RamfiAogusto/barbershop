@@ -6,7 +6,6 @@ import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import Script from "next/script"
 import { trackWhatsAppClick } from "@/lib/analytics"
 import { Breadcrumbs } from "@/components/seo/breadcrumbs"
 
@@ -56,6 +55,36 @@ const faqData: FAQItem[] = [
     category: "Experiencia",
     question: "¿Qué los diferencia de otras barberías?",
     answer: "Nos diferenciamos por nuestra experiencia de más de 20 años, ubicación estratégica en Santo Domingo, atención personalizada, y técnicas tanto tradicionales como modernas para lograr el corte perfecto."
+  },
+  {
+    category: "Ubicación y Horarios",
+    question: "¿Abren los lunes?",
+    answer: "Los lunes permanecemos cerrados. Atendemos de martes a sábado de 8:00 AM a 8:00 PM y los domingos de 8:00 AM a 7:00 PM."
+  },
+  {
+    category: "Ubicación y Horarios",
+    question: "¿Cómo llego a la barbería?",
+    answer: "Estamos en Respaldo Calle 4, Ensanche Carmelita, Santo Domingo. Puedes abrir nuestra ubicación directamente en Google Maps buscando \'D\'RAFA PELUQUERÍA EL DON DEL CORTE\', o escribirnos por WhatsApp al +1 (809) 767-2490 y te enviamos la ubicación exacta."
+  },
+  {
+    category: "Precios y Pagos",
+    question: "¿Cuánto cuesta un corte de pelo?",
+    answer: "El precio depende del servicio: no es lo mismo un corte a tijera que un corte con tintura temporal. Escríbenos por WhatsApp al +1 (809) 767-2490 y te confirmamos el precio del servicio que necesitas antes de que vengas."
+  },
+  {
+    category: "Precios y Pagos",
+    question: "¿Qué formas de pago aceptan?",
+    answer: "Aceptamos efectivo y tarjeta de crédito. Si prefieres otra forma de pago, consúltanos por WhatsApp antes de tu visita."
+  },
+  {
+    category: "Servicios",
+    question: "¿Le cortan el pelo a niños?",
+    answer: "Sí, atendemos niños y adolescentes. Tenemos experiencia manejando primeros cortes y niños que se ponen nerviosos con la máquina, con paciencia y sin apuro."
+  },
+  {
+    category: "Servicios",
+    question: "¿Hacen tintura o coloración?",
+    answer: "Sí, ofrecemos tintura temporal, ideal para ocasiones especiales o para probar un color sin compromiso permanente. Consúltanos por WhatsApp para ver qué tono te queda mejor."
   }
 ]
 
@@ -92,8 +121,7 @@ export default function FAQPage() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <Script
-        id="faq-schema"
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(faqSchema),
