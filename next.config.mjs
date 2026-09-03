@@ -7,7 +7,10 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    // El optimizador debe quedar activo: con `unoptimized: true` cada <Image>
+    // entrega el archivo original sin redimensionar, sin WebP/AVIF y sin
+    // srcset, lo que arruina el LCP en movil.
+    formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
         protocol: 'https',

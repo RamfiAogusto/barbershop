@@ -313,7 +313,7 @@ export const blogPosts: BlogPost[] = [
     title: "El primer corte de pelo de tu hijo: tips para que sea una buena experiencia",
     excerpt:
       "El primer corte de pelo puede ser emocionante o traumático según cómo se prepare. Esta guía para padres te ayuda a que sea una experiencia positiva de principio a fin.",
-    coverImage: "/assets/cortes/corte4.PNG",
+    coverImage: "/assets/cortes/corte4.webp",
     author: "Equipo D' Rafa Peluquería",
     publishedAt: "2026-05-05",
     readingMinutes: 8,
