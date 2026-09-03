@@ -16,7 +16,7 @@ export const blogPosts: BlogPost[] = [
     title: "Tendencias en cortes masculinos para 2026: lo que se está pidiendo en Santo Domingo",
     excerpt:
       "Desde el fade skin hasta el mullet renovado, estos son los cortes que están dominando las barberías en 2026 — y cuáles funcionan mejor en el clima tropical dominicano.",
-    coverImage: "/assets/cortes/corte2.jpg",
+    coverImage: "/assets/bw/corte2.webp",
     author: "Rafa",
     publishedAt: "2026-03-10",
     readingMinutes: 9,
@@ -87,7 +87,7 @@ export const blogPosts: BlogPost[] = [
     title: "Cómo elegir el corte ideal según la forma de tu rostro",
     excerpt:
       "Tu forma de rostro es el punto de partida para cualquier buen corte. Aprende a identificarla y a elegir el estilo que mejor te favorece.",
-    coverImage: "/assets/cortes/corte1.jpg",
+    coverImage: "/assets/bw/corte1.webp",
     author: "Rafa",
     publishedAt: "2026-03-25",
     readingMinutes: 10,
@@ -167,7 +167,7 @@ export const blogPosts: BlogPost[] = [
     title: "Cómo cuidar tu barba en clima tropical: guía para hombres en República Dominicana",
     excerpt:
       "La humedad, el calor y el salitre son los peores enemigos de una barba bien arreglada. Esta guía práctica te explica cómo mantenerla impecable todo el año en Santo Domingo.",
-    coverImage: "/assets/banner2.webp",
+    coverImage: "/assets/bw/interior.webp",
     author: "Equipo D' Rafa Peluquería",
     publishedAt: "2026-04-08",
     readingMinutes: 8,
@@ -251,7 +251,7 @@ export const blogPosts: BlogPost[] = [
     title: "Fade vs corte clásico: ¿cuál te queda mejor?",
     excerpt:
       "El fade y el corte clásico son los dos grandes estilos de la barbería moderna. Te explicamos las diferencias reales para que elijas según tu vida, no solo tu gusto.",
-    coverImage: "/assets/banner3.webp",
+    coverImage: "/assets/bw/hero.webp",
     author: "Rafa",
     publishedAt: "2026-04-22",
     readingMinutes: 7,
@@ -313,7 +313,7 @@ export const blogPosts: BlogPost[] = [
     title: "El primer corte de pelo de tu hijo: tips para que sea una buena experiencia",
     excerpt:
       "El primer corte de pelo puede ser emocionante o traumático según cómo se prepare. Esta guía para padres te ayuda a que sea una experiencia positiva de principio a fin.",
-    coverImage: "/assets/cortes/corte4.webp",
+    coverImage: "/assets/bw/corte4.webp",
     author: "Equipo D' Rafa Peluquería",
     publishedAt: "2026-05-05",
     readingMinutes: 8,
@@ -392,7 +392,7 @@ export const blogPosts: BlogPost[] = [
     title: "Cómo mantener tu corte impecable entre visitas a la barbería",
     excerpt:
       "El trabajo de tu barbero dura más cuando tú lo cuidas en casa. Aquí te enseñamos la rutina diaria y semanal para que tu corte siempre luzca fresco.",
-    coverImage: "/assets/quienesomos.webp",
+    coverImage: "/assets/bw/nosotros.webp",
     author: "Rafa",
     publishedAt: "2026-05-20",
     readingMinutes: 9,

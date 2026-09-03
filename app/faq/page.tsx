@@ -1,13 +1,10 @@
-"use client"
+import { CaretDown, Phone, WhatsappLogo } from "@phosphor-icons/react/dist/ssr"
 
-import { useState } from "react"
-import { ChevronDown, ChevronUp, MapPin, Phone, Clock, Scissors } from "lucide-react"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { trackWhatsAppClick } from "@/lib/analytics"
 import { Breadcrumbs } from "@/components/seo/breadcrumbs"
+import { SectionHeading } from "@/components/sections/section-heading"
+import { BUSINESS } from "@/lib/site-content"
 
 interface FAQItem {
   question: string
@@ -89,148 +86,138 @@ const faqData: FAQItem[] = [
 ]
 
 export default function FAQPage() {
-  const [openItems, setOpenItems] = useState<number[]>([])
-
-  const toggleItem = (index: number) => {
-    if (openItems.includes(index)) {
-      setOpenItems(openItems.filter(i => i !== index))
-    } else {
-      setOpenItems([...openItems, index])
-    }
-  }
-
-  const categories = Array.from(new Set(faqData.map(item => item.category)))
+  const categories = Array.from(new Set(faqData.map((item) => item.category)))
 
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": faqData.map(item => ({
+    mainEntity: faqData.map((item) => ({
       "@type": "Question",
-      "name": item.question,
-      "acceptedAnswer": {
+      name: item.question,
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": item.answer
-      }
-    }))
-  }
-
-  const handleWhatsAppContact = () => {
-    trackWhatsAppClick('faq-contact')
-    window.open('https://wa.me/18097672490?text=Hola,%20tengo%20una%20pregunta%20sobre%20sus%20servicios', '_blank')
+        text: item.answer,
+      },
+    })),
   }
 
   return (
     <div className="flex min-h-screen flex-col">
+      {/* Etiqueta <script> plana y no next/script: esta ultima inyecta el
+          JSON-LD despues de hidratar y el crawler nunca lo ve. */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(faqSchema),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      
+
       <Header />
 
       <main className="flex-1">
-        <div className="container mx-auto px-4 pt-24 pb-2">
-          <Breadcrumbs items={[{ name: "Inicio", href: "/" }, { name: "FAQ", href: "/faq" }]} />
-        </div>
-
-        {/* Hero Section */}
-        <section className="bg-gradient-to-r from-background to-surface py-16 text-foreground">
-          <div className="container mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Preguntas Frecuentes
+        <section className="border-b border-border pb-14 pt-32">
+          <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-10">
+            <Breadcrumbs
+              items={[
+                { name: "Inicio", href: "/" },
+                { name: "Preguntas frecuentes", href: "/faq" },
+              ]}
+            />
+            <span className="rule-accent" />
+            <h1 className="mt-5 font-display text-[clamp(2.6rem,7vw,4.8rem)] font-bold text-foreground">
+              Preguntas
+              <br />
+              frecuentes
             </h1>
-            <p className="text-xl mb-8 max-w-3xl mx-auto">
-              Encuentra respuestas sobre nuestra barbería en Santo Domingo, servicios, horarios y más
+            <p className="mt-5 max-w-[52ch] leading-relaxed text-muted-foreground">
+              Horarios, ubicación, formas de pago y cómo reservar. Si falta algo,
+              escríbenos por WhatsApp.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-12">
-              <div className="text-center">
-                <MapPin className="h-8 w-8 text-primary mx-auto mb-2" />
-                <p className="font-medium">Ensanche Carmelita</p>
-                <p className="text-sm text-muted-foreground">Santo Domingo</p>
-              </div>
-              <div className="text-center">
-                <Phone className="h-8 w-8 text-primary mx-auto mb-2" />
-                <p className="font-medium">+1 (809) 767-2490</p>
-                <p className="text-sm text-muted-foreground">WhatsApp</p>
-              </div>
-              <div className="text-center">
-                <Clock className="h-8 w-8 text-primary mx-auto mb-2" />
-                <p className="font-medium">Mar-Sáb 8AM-8PM</p>
-                <p className="text-sm text-muted-foreground">Dom 8AM-7PM</p>
-              </div>
-              <div className="text-center">
-                <Scissors className="h-8 w-8 text-primary mx-auto mb-2" />
-                <p className="font-medium">+20 Años</p>
-                <p className="text-sm text-muted-foreground">Experiencia</p>
+          </div>
+        </section>
+
+        {/* Acordeon con <details> nativo: accesible por teclado, funciona sin
+            JavaScript y permite que la pagina entera sea Server Component. */}
+        <section className="py-20 lg:py-28">
+          <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-10">
+            <div className="grid grid-cols-1 gap-14 lg:grid-cols-[minmax(0,16rem)_1fr] lg:gap-20">
+              <nav aria-label="Categorías" className="lg:sticky lg:top-28 lg:self-start">
+                <h2 className="font-display text-sm font-semibold tracking-[0.14em] text-foreground">
+                  Categorías
+                </h2>
+                <ul className="mt-5 space-y-3">
+                  {categories.map((category, i) => (
+                    <li key={category}>
+                      <a
+                        href={`#cat-${i}`}
+                        className="flex items-baseline gap-3 text-[0.95rem] text-muted-foreground transition-colors hover:text-primary"
+                      >
+                        <span className="tick">{String(i + 1).padStart(2, "0")}</span>
+                        {category}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+
+              <div className="space-y-14">
+                {categories.map((category, ci) => (
+                  <div key={category} id={`cat-${ci}`} className="scroll-mt-28">
+                    <h2 className="font-display text-2xl font-semibold text-foreground">
+                      {category}
+                    </h2>
+
+                    <div className="mt-6 border-t border-border">
+                      {faqData
+                        .filter((item) => item.category === category)
+                        .map((item) => (
+                          <details
+                            key={item.question}
+                            className="group border-b border-border"
+                          >
+                            <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5 text-[1.02rem] font-medium text-foreground transition-colors hover:text-primary [&::-webkit-details-marker]:hidden">
+                              {item.question}
+                              <CaretDown
+                                size={18}
+                                weight="bold"
+                                className="mt-1 shrink-0 text-primary transition-transform duration-300 group-open:rotate-180"
+                              />
+                            </summary>
+                            <p className="max-w-[68ch] pb-6 leading-relaxed text-muted-foreground">
+                              {item.answer}
+                            </p>
+                          </details>
+                        ))}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </section>
 
-        {/* FAQ Content */}
-        <section className="py-16">
-          <div className="container mx-auto px-4 max-w-4xl">
-            {categories.map((category) => (
-              <div key={category} className="mb-12">
-                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-primary">
-                  {category}
-                </h2>
-                
-                <div className="space-y-4">
-                  {faqData
-                    .filter(item => item.category === category)
-                    .map((item, index) => {
-                      const globalIndex = faqData.indexOf(item)
-                      const isOpen = openItems.includes(globalIndex)
-                      
-                      return (
-                        <Card key={globalIndex} className="overflow-hidden">
-                          <CardContent className="p-0">
-                            <button
-                              onClick={() => toggleItem(globalIndex)}
-                              className="w-full p-6 text-left hover:bg-surface-raised/60 transition-colors flex items-center justify-between"
-                            >
-                              <h3 className="text-lg font-medium pr-4">
-                                {item.question}
-                              </h3>
-                              {isOpen ? (
-                                <ChevronUp className="h-5 w-5 text-primary flex-shrink-0" />
-                              ) : (
-                                <ChevronDown className="h-5 w-5 text-primary flex-shrink-0" />
-                              )}
-                            </button>
-                            
-                            {isOpen && (
-                              <div className="px-6 pb-6">
-                                <p className="text-muted-foreground leading-relaxed">
-                                  {item.answer}
-                                </p>
-                              </div>
-                            )}
-                          </CardContent>
-                        </Card>
-                      )
-                    })}
-                </div>
-              </div>
-            ))}
-
-            {/* Contact Section */}
-            <div className="mt-16 text-center bg-surface border border-border rounded-none p-8">
-              <h2 className="text-2xl font-bold mb-4 text-foreground">
-                ¿No encuentras la respuesta que buscas?
-              </h2>
-              <p className="text-muted-foreground mb-6">
-                Contáctanos por WhatsApp y te responderemos todas tus preguntas sobre nuestra barbería en Santo Domingo
-              </p>
-              <Button
-                onClick={handleWhatsAppContact}
-                className="bg-primary hover:bg-primary text-primary-foreground font-bold px-8 py-3"
+        <section className="border-t border-border bg-surface py-20 lg:py-28">
+          <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-10">
+            <SectionHeading
+              title="¿Quedó algo afuera?"
+              ghost="Escribinos"
+              lead="Pregúntanos directamente. Contestamos por WhatsApp durante el horario del local."
+            />
+            <div className="mt-10 flex flex-wrap items-center gap-3">
+              <a
+                href={BUSINESS.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 bg-primary px-8 py-4 text-sm font-semibold uppercase tracking-[0.12em] text-primary-foreground transition-colors hover:bg-primary-hot active:translate-y-[1px]"
               >
-                Contactar por WhatsApp
-              </Button>
+                <WhatsappLogo size={18} weight="bold" />
+                Escribir por WhatsApp
+              </a>
+              <a
+                href={`tel:${BUSINESS.phoneRaw}`}
+                className="inline-flex items-center gap-3 border border-border px-8 py-4 text-sm font-semibold uppercase tracking-[0.12em] text-foreground transition-colors hover:border-primary hover:text-primary"
+              >
+                <Phone size={18} weight="bold" />
+                {BUSINESS.phone}
+              </a>
             </div>
           </div>
         </section>
@@ -239,4 +226,4 @@ export default function FAQPage() {
       <Footer />
     </div>
   )
-} 
+}

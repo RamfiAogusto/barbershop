@@ -3,7 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { format } from "date-fns"
 import { es } from "date-fns/locale"
-import { Clock, User, Tag } from "lucide-react"
+import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr"
 
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     siteName: "D' Rafa Peluquería",
     images: [
       {
-        url: "https://www.drafapeluqueria.com/assets/banner2.webp",
+        url: "https://www.drafapeluqueria.com/assets/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Blog D' Rafa Peluquería",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     title: "Blog D' Rafa Peluquería - Consejos de barbería y estilo masculino",
     description:
       "Guías reales y consejos prácticos sobre cortes, cuidado del cabello, barba y tendencias.",
-    images: ["https://www.drafapeluqueria.com/assets/banner2.webp"],
+    images: ["https://www.drafapeluqueria.com/assets/og-image.jpg"],
   },
 }
 
@@ -50,114 +50,111 @@ const breadcrumbs = [
 
 export default function BlogPage() {
   const posts = getAllPosts()
+  const [featured, ...rest] = posts
+
+  const stamp = (iso: string) => format(new Date(iso), "d 'de' MMMM, yyyy", { locale: es })
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="flex min-h-screen flex-col">
       <Header />
 
-      {/* Hero */}
-      <section className="relative pt-28 pb-16 bg-gradient-to-b from-background via-surface to-background">
-        <div className="absolute inset-0 opacity-10">
-          <Image
-            src="/assets/banner2.webp"
-            alt="Blog D' Rafa Peluquería"
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
-        <div className="container mx-auto px-4 relative z-10">
-          <Breadcrumbs items={breadcrumbs} className="text-muted-foreground mb-8" />
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-            <span className="text-primary">Blog</span> D' Rafa Peluquería
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl">
-            Guías prácticas, tendencias y consejos de cuidado masculino escritos por nuestro
-            maestro barbero en Santo Domingo.
-          </p>
-          <div className="w-20 h-1 bg-primary mt-6" />
-        </div>
-      </section>
+      <main className="flex-1">
+        <section className="border-b border-border pb-14 pt-32">
+          <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-10">
+            <Breadcrumbs items={breadcrumbs} />
+            <span className="rule-accent" />
+            <h1 className="mt-5 font-display text-[clamp(2.6rem,7vw,4.8rem)] font-bold text-foreground">
+              Blog
+            </h1>
+            <p className="mt-5 max-w-[54ch] leading-relaxed text-muted-foreground">
+              Guías prácticas y consejos de cuidado escritos desde la silla, no copiados
+              de internet.
+            </p>
+          </div>
+        </section>
 
-      {/* Posts grid */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.map((post) => (
+        <section className="py-20 lg:py-28">
+          <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-10">
+            {/* El más reciente ocupa una fila entera. Los demás van en lista,
+                no en una reja de tarjetas iguales. */}
+            {featured && (
               <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="group flex flex-col bg-surface border border-border rounded-none overflow-hidden hover:border-primary/50 transition-all duration-300"
+                href={`/blog/${featured.slug}`}
+                className="group grid grid-cols-1 gap-8 border-b border-border pb-14 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-14"
               >
-                {/* Cover image */}
-                <div className="relative aspect-[16/9] overflow-hidden">
+                <div className="relative aspect-[16/10] overflow-hidden bg-surface">
                   <Image
-                    src={post.coverImage}
-                    alt={post.title}
+                    src={featured.coverImage}
+                    alt={featured.title}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 58vw"
+                    className="object-cover transition-transform duration-[600ms] ease-out group-hover:scale-[1.03]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-surface/80 to-transparent" />
-                  {/* Tags overlay */}
-                  <div className="absolute bottom-3 left-3 flex flex-wrap gap-2">
-                    {post.tags.slice(0, 2).map((tag) => (
-                      <span
-                        key={tag}
-                        className="inline-flex items-center gap-1 bg-primary/90 text-primary-foreground text-xs font-semibold px-2 py-0.5 rounded"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
                 </div>
 
-                {/* Content */}
-                <div className="flex flex-col flex-1 p-5">
-                  <h2 className="text-lg font-bold text-foreground mb-3 leading-snug group-hover:text-primary transition-colors">
-                    {post.title}
-                  </h2>
-                  <p className="text-muted-foreground text-sm flex-1 mb-4 line-clamp-3">{post.excerpt}</p>
-
-                  {/* Meta */}
-                  <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground border-t border-border pt-4 mt-auto">
-                    <span className="flex items-center gap-1">
-                      <User className="h-3 w-3 text-primary" />
-                      {post.author}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Tag className="h-3 w-3 text-primary" />
-                      {format(new Date(post.publishedAt), "dd MMM yyyy", { locale: es })}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Clock className="h-3 w-3 text-primary" />
-                      {post.readingMinutes} min lectura
+                <div className="flex flex-col justify-center">
+                  <div className="flex items-center gap-3">
+                    <span className="h-[2px] w-6 bg-primary" />
+                    <span className="text-[0.7rem] font-medium uppercase tracking-[0.16em] text-faint">
+                      Lo último
                     </span>
                   </div>
+                  <h2 className="mt-5 font-display text-[clamp(1.7rem,3.4vw,2.6rem)] font-bold text-foreground transition-colors group-hover:text-primary">
+                    {featured.title}
+                  </h2>
+                  <p className="mt-4 max-w-[52ch] leading-relaxed text-muted-foreground">
+                    {featured.excerpt}
+                  </p>
+                  <span className="mt-6 text-sm text-faint">{stamp(featured.publishedAt)}</span>
                 </div>
               </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+            )}
 
-      {/* CTA */}
-      <section className="py-16 bg-primary">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-primary-foreground mb-4">¿Listo para tu próximo corte?</h2>
-          <p className="text-primary-foreground/80 text-lg mb-6">
-            Aplica lo que aprendiste y agenda tu cita con Rafa en Ensanche Carmelita.
-          </p>
-          <a
-            href="https://wa.me/18097672490"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-background hover:bg-surface text-foreground font-bold text-lg py-4 px-8 rounded-none transition-colors"
-          >
-            Reservar por WhatsApp
-          </a>
-        </div>
-      </section>
+            <div>
+              {rest.map((post, i) => (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className="group grid grid-cols-[auto_1fr] items-start gap-5 border-b border-border py-8 transition-colors duration-300 hover:bg-surface sm:grid-cols-[3.5rem_minmax(0,9rem)_1fr_auto] sm:gap-8 sm:py-9"
+                >
+                  <span className="tick hidden pt-2 sm:block">
+                    {String(i + 2).padStart(2, "0")}
+                  </span>
+
+                  <div className="relative hidden aspect-[4/3] w-full overflow-hidden bg-surface sm:block">
+                    <Image
+                      src={post.coverImage}
+                      alt={post.title}
+                      fill
+                      sizes="9rem"
+                      className="object-cover transition-transform duration-[600ms] ease-out group-hover:scale-[1.06]"
+                    />
+                  </div>
+
+                  <div>
+                    <h2 className="font-display text-xl font-semibold text-foreground transition-colors group-hover:text-primary sm:text-2xl">
+                      {post.title}
+                    </h2>
+                    <p className="mt-2 max-w-[62ch] text-[0.95rem] leading-relaxed text-muted-foreground">
+                      {post.excerpt}
+                    </p>
+                    <span className="mt-3 block text-sm text-faint">
+                      {stamp(post.publishedAt)}
+                    </span>
+                  </div>
+
+                  <ArrowUpRight
+                    size={20}
+                    weight="bold"
+                    className="hidden shrink-0 self-center text-faint transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary sm:block"
+                  />
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
 
       <Footer />
     </div>

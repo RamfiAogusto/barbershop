@@ -117,12 +117,12 @@ export default async function BlogPostPage({ params }: Props) {
       />
       <Header />
 
-      <main className="pt-24 pb-16">
-        <div className="container mx-auto px-4 max-w-3xl">
+      <main className="pb-20 pt-32">
+        <div className="mx-auto max-w-[46rem] px-5 sm:px-8">
           <Breadcrumbs items={breadcrumbs} className="text-muted-foreground mb-8" />
 
           {/* Cover image */}
-          <div className="relative aspect-[16/9] rounded-none overflow-hidden mb-8">
+          <div className="relative mb-10 aspect-[16/9] overflow-hidden bg-surface">
             <Image
               src={post.coverImage}
               alt={post.title}
@@ -135,7 +135,7 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
 
           {/* H1 */}
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4 leading-tight">
+          <h1 className="mb-5 font-display text-[clamp(2.1rem,5vw,3.2rem)] font-bold text-foreground">
             {post.title}
           </h1>
 
@@ -170,11 +170,11 @@ export default async function BlogPostPage({ params }: Props) {
           {/* Article body */}
           <article>
             <div
-              className="prose prose-invert prose-amber max-w-none
+              className="prose prose-invert max-w-none
                 prose-headings:text-foreground
-                prose-h2:text-2xl prose-h2:font-bold prose-h2:mt-8 prose-h2:mb-4 prose-h2:text-foreground
-                prose-h3:text-xl prose-h3:font-semibold prose-h3:mt-6 prose-h3:mb-3 prose-h3:text-primary
-                prose-p:text-muted-foreground prose-p:leading-relaxed prose-p:mb-4
+                prose-h2:font-display prose-h2:text-3xl prose-h2:font-bold prose-h2:mt-12 prose-h2:mb-4 prose-h2:text-foreground
+                prose-h3:font-display prose-h3:text-2xl prose-h3:font-semibold prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-primary
+                prose-p:text-muted-foreground prose-p:leading-[1.75] prose-p:mb-5
                 prose-ul:text-muted-foreground prose-ul:my-4
                 prose-ol:text-muted-foreground prose-ol:my-4
                 prose-li:mb-2
