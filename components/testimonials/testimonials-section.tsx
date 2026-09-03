@@ -12,6 +12,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import { SectionHeading } from "@/components/sections/section-heading"
 import {
   FALLBACK_PAYLOAD,
   type Review,
@@ -42,7 +43,7 @@ function StarRating({ rating }: { rating: number }) {
         <svg
           key={index}
           xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5 text-amber-500"
+          className="h-5 w-5 text-primary"
           viewBox="0 0 20 20"
           fill="currentColor"
           aria-hidden="true"
@@ -73,7 +74,7 @@ function ReviewAvatar({ review }: { review: Review }) {
   }
 
   return (
-    <div className="w-10 h-10 rounded-full bg-amber-500 flex items-center justify-center text-black font-bold mr-3 shrink-0">
+    <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold mr-3 shrink-0">
       {review.author.charAt(0)}
     </div>
   )
@@ -81,10 +82,10 @@ function ReviewAvatar({ review }: { review: Review }) {
 
 function ReviewCard({ review }: { review: Review }) {
   return (
-    <Card className="border-gray-800 bg-gray-900 h-full">
+    <Card className="border-border bg-surface h-full">
       <CardContent className="p-6 flex flex-col h-full">
         <StarRating rating={review.rating} />
-        <p className="text-gray-300 mb-4 flex-grow italic">&quot;{review.text}&quot;</p>
+        <p className="text-muted-foreground mb-4 flex-grow italic">&quot;{review.text}&quot;</p>
         <div className="flex items-center">
           <ReviewAvatar review={review} />
           <div className="min-w-0">
@@ -94,7 +95,7 @@ function ReviewCard({ review }: { review: Review }) {
                 href={review.authorUrl}
                 target="_blank"
                 rel="noopener noreferrer nofollow"
-                className="font-medium hover:text-amber-500 transition-colors"
+                className="font-medium hover:text-primary transition-colors"
               >
                 {review.author}
               </a>
@@ -102,7 +103,7 @@ function ReviewCard({ review }: { review: Review }) {
               <span className="font-medium">{review.author}</span>
             )}
             {review.publishedAt && (
-              <p className="text-xs text-gray-500">{review.publishedAt}</p>
+              <p className="text-xs text-muted-foreground">{review.publishedAt}</p>
             )}
           </div>
         </div>
@@ -111,14 +112,18 @@ function ReviewCard({ review }: { review: Review }) {
   )
 }
 
-export function TestimonialsSection() {
-  // Arranca con el respaldo para que la sección nunca renderice vacía.
-  const [payload, setPayload] = useState<ReviewsPayload>(FALLBACK_PAYLOAD)
+export function TestimonialsSection({ initialPayload }: { initialPayload?: ReviewsPayload }) {
+  // El servidor ya trae las reseñas reales, así que el primer render muestra
+  // las verdaderas y no los nombres de respaldo. El fetch de cliente queda
+  // solo por si el servidor no pudo resolverlas.
+  const [payload, setPayload] = useState<ReviewsPayload>(initialPayload ?? FALLBACK_PAYLOAD)
   // El carousel de Embla mide el DOM, así que se monta solo en el cliente.
   const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
     setIsMounted(true)
+
+    if (initialPayload && !initialPayload.isFallback) return
 
     const controller = new AbortController()
 
@@ -134,41 +139,34 @@ export function TestimonialsSection() {
       })
 
     return () => controller.abort()
-  }, [])
+  }, [initialPayload])
+
+  // Sin reseñas verificadas de Google la sección no se dibuja. Publicar
+  // testimonios de relleno con nombres inventados como si fueran de clientes
+  // reales es engañoso, y ademas es lo que Google penaliza. Mejor una sección
+  // menos que una sección falsa.
+  if (payload.isFallback) {
+    return null
+  }
 
   return (
-    <section className="py-20 bg-black">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={staggerContainer}
-          className="text-center mb-16"
-        >
-          <motion.h2 variants={fadeInUp} className="text-3xl md:text-4xl font-bold mb-4">
-            Lo Que Dicen <span className="text-amber-500">Nuestros Clientes</span>
-          </motion.h2>
-          <motion.div variants={fadeInUp} className="w-20 h-1 bg-amber-500 mx-auto mb-6" />
+    <section className="border-t border-border py-24 lg:py-32">
+      <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-10">
+        <SectionHeading title="Lo que dicen" ghost="Reseñas" />
 
-          {/* El resumen solo aparece con datos reales de Google. */}
-          {!payload.isFallback && payload.rating !== null && (
-            <motion.div
-              variants={fadeInUp}
-              className="flex flex-wrap items-center justify-center gap-2 text-gray-400"
-            >
-              <span className="text-2xl font-bold text-amber-500">
-                {payload.rating.toFixed(1)}
-              </span>
-              <StarRating rating={Math.round(payload.rating)} />
-              {payload.totalRatings !== null && (
-                <span>
-                  {payload.totalRatings} reseñas en Google
-                </span>
-              )}
-            </motion.div>
-          )}
-        </motion.div>
+        {/* El resumen solo aparece con datos reales de Google. */}
+        {!payload.isFallback && payload.rating !== null && (
+          <div className="mt-7 flex flex-wrap items-center gap-3 text-muted-foreground">
+            <span className="font-display text-3xl font-bold text-primary">
+              {payload.rating.toFixed(1)}
+            </span>
+            <StarRating rating={Math.round(payload.rating)} />
+            {payload.totalRatings !== null && (
+              <span className="text-sm">{payload.totalRatings} reseñas en Google</span>
+            )}
+          </div>
+        )}
+        <div className="mb-16" />
 
         {isMounted && (
           <Carousel className="w-full">
@@ -184,8 +182,8 @@ export function TestimonialsSection() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="hidden md:flex text-amber-500 border-amber-500 hover:bg-amber-500 hover:text-black" />
-            <CarouselNext className="hidden md:flex text-amber-500 border-amber-500 hover:bg-amber-500 hover:text-black" />
+            <CarouselPrevious className="hidden md:flex text-primary border-primary hover:bg-primary hover:text-primary-foreground" />
+            <CarouselNext className="hidden md:flex text-primary border-primary hover:bg-primary hover:text-primary-foreground" />
           </Carousel>
         )}
 
@@ -195,7 +193,7 @@ export function TestimonialsSection() {
               href={payload.googleMapsUri}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-amber-500 hover:text-amber-400 transition-colors underline underline-offset-4"
+              className="text-primary hover:text-primary transition-colors underline underline-offset-4"
             >
               Ver todas las reseñas en Google
             </a>
