@@ -2,54 +2,26 @@
 
 import { useEffect, useState } from "react"
 import Image from "next/image"
-import { motion } from "framer-motion"
+import { Quotes, Star } from "@phosphor-icons/react"
 
-import { Card, CardContent } from "@/components/ui/card"
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
 import { SectionHeading } from "@/components/sections/section-heading"
+import { BUSINESS } from "@/lib/site-content"
 import {
   FALLBACK_PAYLOAD,
   type Review,
   type ReviewsPayload,
 } from "@/lib/google-reviews"
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 60 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6 },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.2 },
-  },
-}
-
 function StarRating({ rating }: { rating: number }) {
   return (
-    <div className="flex gap-1 mb-4" aria-label={`${rating} de 5 estrellas`}>
-      {Array.from({ length: rating }, (_, index) => (
-        <svg
-          key={index}
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5 text-primary"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          aria-hidden="true"
-        >
-          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
+    <div className="flex gap-1" aria-label={`${rating} de 5 estrellas`}>
+      {Array.from({ length: 5 }, (_, i) => (
+        <Star
+          key={i}
+          size={15}
+          weight={i < rating ? "fill" : "regular"}
+          className={i < rating ? "text-primary" : "text-faint"}
+        />
       ))}
     </div>
   )
@@ -58,23 +30,22 @@ function StarRating({ rating }: { rating: number }) {
 function ReviewAvatar({ review }: { review: Review }) {
   // Las fotos de perfil de Google caducan; ante un 404 caemos a la inicial.
   const [photoFailed, setPhotoFailed] = useState(false)
-  const showPhoto = Boolean(review.authorPhotoUrl) && !photoFailed
 
-  if (showPhoto) {
+  if (review.authorPhotoUrl && !photoFailed) {
     return (
       <Image
-        src={review.authorPhotoUrl as string}
+        src={review.authorPhotoUrl}
         alt=""
         width={40}
         height={40}
-        className="w-10 h-10 rounded-full object-cover mr-3"
+        className="h-10 w-10 shrink-0 object-cover"
         onError={() => setPhotoFailed(true)}
       />
     )
   }
 
   return (
-    <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold mr-3 shrink-0">
+    <div className="flex h-10 w-10 shrink-0 items-center justify-center bg-primary font-display text-lg font-bold text-primary-foreground">
       {review.author.charAt(0)}
     </div>
   )
@@ -82,47 +53,54 @@ function ReviewAvatar({ review }: { review: Review }) {
 
 function ReviewCard({ review }: { review: Review }) {
   return (
-    <Card className="border-border bg-surface h-full">
-      <CardContent className="p-6 flex flex-col h-full">
+    <article className="group relative flex flex-col bg-surface p-8 transition-colors duration-300 hover:bg-surface-raised lg:p-10">
+      <div className="flex items-start justify-between">
         <StarRating rating={review.rating} />
-        <p className="text-muted-foreground mb-4 flex-grow italic">&quot;{review.text}&quot;</p>
-        <div className="flex items-center">
-          <ReviewAvatar review={review} />
-          <div className="min-w-0">
-            {/* Los ToS de Google exigen enlazar al perfil del autor cuando está disponible. */}
-            {review.authorUrl ? (
-              <a
-                href={review.authorUrl}
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-                className="font-medium hover:text-primary transition-colors"
-              >
-                {review.author}
-              </a>
-            ) : (
-              <span className="font-medium">{review.author}</span>
-            )}
-            {review.publishedAt && (
-              <p className="text-xs text-muted-foreground">{review.publishedAt}</p>
-            )}
-          </div>
+        <Quotes
+          size={26}
+          weight="fill"
+          className="text-border transition-colors duration-300 group-hover:text-primary"
+        />
+      </div>
+
+      <p className="mt-6 flex-grow leading-relaxed text-muted-foreground">{review.text}</p>
+
+      <footer className="mt-8 flex items-center gap-4 border-t border-border pt-6">
+        <ReviewAvatar review={review} />
+        <div className="min-w-0">
+          {/* Los ToS de Google exigen enlazar al perfil del autor cuando esta disponible. */}
+          {review.authorUrl ? (
+            <a
+              href={review.authorUrl}
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              className="font-display text-lg font-semibold text-foreground transition-colors hover:text-primary"
+            >
+              {review.author}
+            </a>
+          ) : (
+            <span className="font-display text-lg font-semibold text-foreground">
+              {review.author}
+            </span>
+          )}
+          {review.publishedAt && (
+            <p className="text-[0.8rem] text-faint">{review.publishedAt}</p>
+          )}
         </div>
-      </CardContent>
-    </Card>
+      </footer>
+
+      <span className="absolute bottom-0 left-0 h-[3px] w-0 bg-primary transition-all duration-300 group-hover:w-full" />
+    </article>
   )
 }
 
 export function TestimonialsSection({ initialPayload }: { initialPayload?: ReviewsPayload }) {
-  // El servidor ya trae las reseñas reales, así que el primer render muestra
-  // las verdaderas y no los nombres de respaldo. El fetch de cliente queda
-  // solo por si el servidor no pudo resolverlas.
+  // El servidor ya trae las resenas reales, asi que el primer render muestra
+  // las verdaderas. El fetch de cliente queda solo por si el servidor no pudo
+  // resolverlas.
   const [payload, setPayload] = useState<ReviewsPayload>(initialPayload ?? FALLBACK_PAYLOAD)
-  // El carousel de Embla mide el DOM, así que se monta solo en el cliente.
-  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
-    setIsMounted(true)
-
     if (initialPayload && !initialPayload.isFallback) return
 
     const controller = new AbortController()
@@ -135,17 +113,16 @@ export function TestimonialsSection({ initialPayload }: { initialPayload?: Revie
         }
       })
       .catch(() => {
-        // Silencioso a propósito: el respaldo ya está en pantalla.
+        // Silencioso a proposito: sin datos la seccion no se dibuja.
       })
 
     return () => controller.abort()
   }, [initialPayload])
 
-  // Sin reseñas verificadas de Google la sección no se dibuja. Publicar
-  // testimonios de relleno con nombres inventados como si fueran de clientes
-  // reales es engañoso, y ademas es lo que Google penaliza. Mejor una sección
-  // menos que una sección falsa.
-  if (payload.isFallback) {
+  // Sin resenas verificadas de Google la seccion no existe. Publicar
+  // testimonios de relleno como si fueran de clientes reales es enganoso, y es
+  // ademas lo que Google penaliza.
+  if (payload.isFallback || payload.reviews.length === 0) {
     return null
   }
 
@@ -154,51 +131,37 @@ export function TestimonialsSection({ initialPayload }: { initialPayload?: Revie
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-10">
         <SectionHeading title="Lo que dicen" ghost="Reseñas" />
 
-        {/* El resumen solo aparece con datos reales de Google. */}
-        {!payload.isFallback && payload.rating !== null && (
-          <div className="mt-7 flex flex-wrap items-center gap-3 text-muted-foreground">
-            <span className="font-display text-3xl font-bold text-primary">
+        {payload.rating !== null && (
+          <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
+            <span className="font-display text-[3.2rem] font-bold leading-none text-primary">
               {payload.rating.toFixed(1)}
             </span>
-            <StarRating rating={Math.round(payload.rating)} />
-            {payload.totalRatings !== null && (
-              <span className="text-sm">{payload.totalRatings} reseñas en Google</span>
-            )}
-          </div>
-        )}
-        <div className="mb-16" />
-
-        {isMounted && (
-          <Carousel className="w-full">
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {payload.reviews.map((review) => (
-                <CarouselItem
-                  key={review.id}
-                  className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3"
-                >
-                  <div className="p-1 h-full">
-                    <ReviewCard review={review} />
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="hidden md:flex text-primary border-primary hover:bg-primary hover:text-primary-foreground" />
-            <CarouselNext className="hidden md:flex text-primary border-primary hover:bg-primary hover:text-primary-foreground" />
-          </Carousel>
-        )}
-
-        {payload.googleMapsUri && (
-          <div className="text-center mt-8">
+            <div>
+              <StarRating rating={Math.round(payload.rating)} />
+              {payload.totalRatings !== null && (
+                <p className="mt-1.5 text-sm text-muted-foreground">
+                  {payload.totalRatings} reseñas en Google
+                </p>
+              )}
+            </div>
             <a
-              href={payload.googleMapsUri}
+              href={payload.googleMapsUri ?? BUSINESS.maps}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary hover:text-primary transition-colors underline underline-offset-4"
+              className="ml-auto border border-border px-6 py-3 text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-foreground transition-colors hover:border-primary hover:text-primary"
             >
-              Ver todas las reseñas en Google
+              Ver en Google
             </a>
           </div>
         )}
+
+        {/* Las resenas van en reja de hairlines, igual que los servicios: es el
+            mismo tipo de contenido repetido y merece el mismo tratamiento. */}
+        <div className="mt-14 grid grid-cols-1 gap-px bg-border md:grid-cols-2 lg:grid-cols-3">
+          {payload.reviews.map((review) => (
+            <ReviewCard key={review.id} review={review} />
+          ))}
+        </div>
       </div>
     </section>
   )

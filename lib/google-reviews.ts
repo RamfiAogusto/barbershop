@@ -73,43 +73,18 @@ interface PlacesApiResponse {
  * No se emiten como structured data: publicar reseñas inventadas en JSON-LD
  * viola las guidelines de Google y expone el sitio a una acción manual.
  */
-export const FALLBACK_REVIEWS: Review[] = [
-  {
-    id: 'fallback-1',
-    author: 'Alejandro Gómez',
-    rating: 5,
-    text:
-      'El mejor lugar para un corte de pelo. Rafa es un profesional que sabe lo que hace y te aconseja según tu tipo de rostro. Ambiente increíble.',
-    publishedAt: '',
-  },
-  {
-    id: 'fallback-2',
-    author: 'David Fernández',
-    rating: 5,
-    text:
-      'Experiencia de primera clase. El servicio es espectacular, te hacen sentir como en casa. Volveré sin duda.',
-    publishedAt: '',
-  },
-  {
-    id: 'fallback-3',
-    author: 'Marcos López',
-    rating: 5,
-    text:
-      'Llevo años buscando una peluquería donde me entiendan y por fin la encontré. Excelente atención y resultados impecables.',
-    publishedAt: '',
-  },
-  {
-    id: 'fallback-4',
-    author: 'Roberto Sánchez',
-    rating: 5,
-    text:
-      'Ambiente exclusivo, atención personalizada y resultados profesionales. Vale cada peso que pagas.',
-    publishedAt: '',
-  },
-]
-
+/**
+ * Respaldo VACÍO a propósito.
+ *
+ * Antes traía cuatro reseñas escritas a mano con nombres de clientes que no
+ * existen. Se veían idénticas a las verdaderas, así que un fallo de la API de
+ * Google pasaba inadvertido mientras el sitio mostraba testimonios falsos.
+ *
+ * Sin reseñas la sección directamente no se dibuja: el fallo se nota y nadie
+ * lee un testimonio inventado.
+ */
 export const FALLBACK_PAYLOAD: ReviewsPayload = {
-  reviews: FALLBACK_REVIEWS,
+  reviews: [],
   rating: null,
   totalRatings: null,
   googleMapsUri: null,
