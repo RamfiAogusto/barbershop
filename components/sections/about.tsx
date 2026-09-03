@@ -61,7 +61,7 @@ export function About() {
                 la misma gente, y ahora de sus hijos.
               </p>
               <p>
-                Acá nadie te apura para pasar al siguiente. Se corta a máquina, a tijera
+                Aquí nadie te apura para pasar al siguiente. Se corta a máquina, a tijera
                 y a navaja según lo que pida la cabeza que está en la silla, no según lo
                 que sea más rápido de despachar.
               </p>

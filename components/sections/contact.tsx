@@ -37,7 +37,7 @@ export function Contact() {
     <section id="contacto" className="border-t border-border bg-surface py-24 lg:py-32">
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-10">
         <SectionHeading
-          title="Pasá por el local"
+          title="Pasa por el local"
           ghost="Contacto"
           lead="Estamos en Ensanche Carmelita, a pocos minutos de cualquier punto del Distrito Nacional."
         />

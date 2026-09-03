@@ -39,7 +39,7 @@ export function HoursBand() {
             <h2 className="mt-5 font-display text-[clamp(2.1rem,5vw,3.4rem)] font-bold text-foreground">
               La silla está lista
               <br />
-              cuando vos quieras
+              cuando tú quieras
             </h2>
             <p className="mt-6 max-w-[46ch] leading-relaxed text-muted-foreground">
               Aceptamos clientes sin cita, pero los fines de semana se llena. Un mensaje
