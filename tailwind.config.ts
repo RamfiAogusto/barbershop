@@ -19,7 +19,17 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        // Superfamilia Barlow: la condensada para display y la normal para
+        // lectura. Nace de la senaletica vial, que es de donde viene el aire
+        // industrial que pide la referencia.
+        display: ["var(--font-display)", "Arial Narrow", "sans-serif"],
+        sans: ["var(--font-body)", "ui-sans-serif", "system-ui", "sans-serif"],
+      },
       colors: {
+        surface: "hsl(var(--surface))",
+        "surface-raised": "hsl(var(--surface-raised))",
+        faint: "hsl(var(--faint))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -28,6 +38,7 @@ const config = {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          hot: "hsl(var(--primary-hot))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",

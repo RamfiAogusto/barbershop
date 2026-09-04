@@ -1,130 +1,123 @@
-'use client'
-
 import Link from "next/link"
-import Image from "next/image"
-import { Scissors, Instagram, Facebook } from "lucide-react"
+import { FacebookLogo, InstagramLogo, MapPin, Phone } from "@phosphor-icons/react/dist/ssr"
+
+import { BUSINESS, HOURS, NAV_LINKS } from "@/lib/site-content"
 
 export function Footer() {
+  const year = new Date().getFullYear()
+
   return (
-    <footer className="bg-black py-12 border-t border-gray-800">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className="border-t border-border bg-background">
+      <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
+        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.4fr)_repeat(3,minmax(0,1fr))] lg:gap-10">
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <Scissors className="h-6 w-6 text-amber-500" />
-              <span className="text-xl font-bold">
-                D' RAFA<span className="text-amber-500">PELUQUERÍA</span>
+            <Link href="/" className="flex items-center gap-3">
+              <span className="block h-7 w-[3px] bg-primary" />
+              <span className="font-display text-2xl font-bold leading-none text-foreground">
+                D&apos;RAFA
               </span>
-            </div>
-            <p className="text-gray-400 mb-4">
-              El don del corte. Más de 20 años de experiencia en el arte de la barbería.
+            </Link>
+            <p className="mt-5 max-w-[34ch] text-[0.95rem] leading-relaxed text-muted-foreground">
+              {BUSINESS.tagline}. Barbería en {BUSINESS.neighborhood}, {BUSINESS.city}, desde
+              hace más de {BUSINESS.yearsOfCraft} años.
             </p>
-            <div className="flex gap-4">
+
+            <div className="mt-7 flex items-center gap-4">
               <a
-                href="https://www.instagram.com/rafa_eldon/"
+                href={BUSINESS.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-amber-500 transition-colors"
+                aria-label="Instagram de D' Rafa Peluquería"
+                className="text-muted-foreground transition-colors hover:text-primary"
               >
-                <Instagram className="h-5 w-5" />
+                <InstagramLogo size={22} weight="light" />
               </a>
               <a
-                href="https://www.facebook.com/RafaelDondelcorte"
+                href={BUSINESS.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-amber-500 transition-colors"
+                aria-label="Facebook de D' Rafa Peluquería"
+                className="text-muted-foreground transition-colors hover:text-primary"
               >
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a
-                href="https://wa.me/18097672490"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-amber-500 transition-colors"
-              >
-                <Image
-                  src="/assets/whatsapp.svg"
-                  alt="WhatsApp"
-                  width={20}
-                  height={20}
-                  className="h-5 w-5 filter invert brightness-0 contrast-100 opacity-60 hover:opacity-100 transition-all duration-200 hover:brightness-200 hover:sepia hover:saturate-200 hover:hue-rotate-15"
-                />
+                <FacebookLogo size={22} weight="light" />
               </a>
             </div>
           </div>
 
-          <div>
-            <h3 className="text-lg font-bold mb-4">Enlaces Rápidos</h3>
-            <ul className="space-y-2">
-              {["Inicio", "Nosotros", "Servicios", "FAQ", "Blog", "Galería", "Contacto"].map((item) => (
-                <li key={item}>
+          <nav aria-label="Navegación del pie">
+            <h2 className="font-display text-sm font-semibold tracking-[0.14em] text-foreground">
+              Navegación
+            </h2>
+            <ul className="mt-5 space-y-3">
+              {NAV_LINKS.map((link) => (
+                <li key={link.href}>
                   <Link
-                    href={
-                      item === "Servicios" ? "/servicios" :
-                      item === "FAQ" ? "/faq" :
-                      item === "Blog" ? "/blog" :
-                      `/#${item.toLowerCase()}`
-                    }
-                    className="text-gray-400 hover:text-amber-500 transition-colors"
+                    href={link.href}
+                    className="text-[0.95rem] text-muted-foreground transition-colors hover:text-primary"
                   >
-                    {item}
+                    {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
+          </nav>
+
+          <div>
+            <h2 className="font-display text-sm font-semibold tracking-[0.14em] text-foreground">
+              Horarios
+            </h2>
+            <dl className="mt-5 space-y-3">
+              {HOURS.map((slot) => (
+                <div key={slot.days}>
+                  <dt className="text-[0.95rem] text-muted-foreground">{slot.days}</dt>
+                  <dd className="text-[0.95rem] text-foreground">{slot.time}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
 
           <div>
-            <h3 className="text-lg font-bold mb-4">Servicios</h3>
-            <ul className="space-y-2">
-              {["Corte", "Corte a Tijera", "Corte a Adolescentes", "Corte a Niños", "Cerquillos", "Cejas"].map(
-                (item) => (
-                  <li key={item}>
-                    <Link href="/servicios" className="text-gray-400 hover:text-amber-500 transition-colors">
-                      {item}
-                    </Link>
-                  </li>
-                ),
-              )}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-bold mb-4">Horario</h3>
-            <ul className="space-y-2">
-              <li className="flex justify-between">
-                <span className="text-gray-400">Martes - Sábado</span>
-                <span className="text-amber-500">8:00 - 20:00</span>
+            <h2 className="font-display text-sm font-semibold tracking-[0.14em] text-foreground">
+              Contacto
+            </h2>
+            <ul className="mt-5 space-y-4">
+              <li>
+                <a
+                  href={BUSINESS.maps}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-2.5 text-[0.95rem] text-muted-foreground transition-colors hover:text-primary"
+                >
+                  <MapPin size={17} weight="bold" className="mt-0.5 shrink-0 text-primary" />
+                  <span>
+                    {BUSINESS.street}, {BUSINESS.neighborhood}
+                    <br />
+                    {BUSINESS.city}
+                  </span>
+                </a>
               </li>
-              <li className="flex justify-between">
-                <span className="text-gray-400">Domingo</span>
-                <span className="text-amber-500">8:00 - 19:00</span>
-              </li>
-              <li className="flex justify-between">
-                <span className="text-gray-400">Lunes</span>
-                <span className="text-amber-500">Cerrado</span>
+              <li>
+                <a
+                  href={`tel:${BUSINESS.phoneRaw}`}
+                  className="flex items-center gap-2.5 text-[0.95rem] text-muted-foreground transition-colors hover:text-primary"
+                >
+                  <Phone size={17} weight="bold" className="shrink-0 text-primary" />
+                  {BUSINESS.phone}
+                </a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-12 pt-8 text-center">
-          <p className="text-gray-500 mb-2">
-            &copy; {new Date().getFullYear()} D' Rafa Peluquería. Todos los derechos reservados.
+        <div className="mt-14 flex flex-col gap-3 border-t border-border pt-7 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-[0.85rem] text-faint">
+            {year} {BUSINESS.name}. Todos los derechos reservados.
           </p>
-          <p className="text-gray-600 text-sm">
-            Powered by{" "}
-            <a
-              href="https://www.instagram.com/vityde_web/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-amber-500 hover:text-amber-400 transition-colors font-medium"
-            >
-              @vityde_web
-            </a>
+          <p className="text-[0.85rem] text-faint">
+            {BUSINESS.neighborhood}, {BUSINESS.city}, {BUSINESS.region}
           </p>
         </div>
       </div>
     </footer>
   )
-} 
+}

@@ -13,19 +13,15 @@ export function FloatingWhatsApp() {
       rel="noopener noreferrer"
       aria-label="Reservar por WhatsApp"
       onClick={() => trackWhatsAppClick('floating-button')}
-      className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 sm:w-[60px] sm:h-[60px] rounded-full shadow-lg hover:scale-110 transition-transform duration-200"
-      style={{ backgroundColor: "#25D366" }}
+      className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center bg-primary transition-colors duration-200 hover:bg-primary-hot sm:h-16 sm:w-16"
     >
-      <span
-        className="absolute inline-flex w-full h-full rounded-full opacity-75 animate-ping"
-        style={{ backgroundColor: "#25D366" }}
-      />
       <Image
         src="/assets/whatsapp.svg"
-        alt="WhatsApp"
-        width={30}
-        height={30}
-        className="relative z-10 brightness-0 invert"
+        alt=""
+        aria-hidden
+        width={28}
+        height={28}
+        className="brightness-0 invert"
       />
     </a>
   )
