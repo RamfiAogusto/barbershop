@@ -17,7 +17,11 @@ const FIELD_MASK = 'rating,userRatingCount,googleMapsUri,reviews'
  * Los ToS de Google no permiten almacenar reseñas por más de 30 días.
  * 24h mantiene el contenido fresco con un costo de API despreciable.
  */
-export const REVIEWS_REVALIDATE_SECONDS = 60 * 60 * 24
+// Seis horas, no veinticuatro. Las resenas de Google casi no cambian, pero el
+// intervalo tambien decide cuanto tarda el sitio en recuperarse de un fallo de
+// la API: con un dia entero, una caida puntual deja la seccion vacia hasta el
+// dia siguiente. Cuatro peticiones diarias entran de sobra en la cuota.
+export const REVIEWS_REVALIDATE_SECONDS = 60 * 60 * 6
 
 /** Reseña ya normalizada para consumo de la UI. */
 export interface Review {

@@ -18,16 +18,16 @@ import {
 // Tiene que ser un literal: Next.js analiza los route segment config de forma
 // estática en build time y no resuelve identificadores importados. Usar
 // REVIEWS_REVALIDATE_SECONDS acá rompe `next build`, aunque `next dev` y
-// `tsc --noEmit` no lo detecten. Mantener sincronizado con esa constante (24h).
-export const revalidate = 86400
+// `tsc --noEmit` no lo detecten. Mantener sincronizado con esa constante (6h).
+export const revalidate = 21600
 
 export async function GET() {
   const payload = await fetchGoogleReviews()
 
   return NextResponse.json(payload, {
     headers: {
-      // Alineado con el revalidate del handler: el navegador puede reusar la
-      // respuesta un día y refrescarla en segundo plano.
+      // Alineado con el revalidate del handler: el navegador reusa la
+      // respuesta seis horas y la refresca en segundo plano.
       'Cache-Control': `public, max-age=${REVIEWS_REVALIDATE_SECONDS}, stale-while-revalidate=${REVIEWS_REVALIDATE_SECONDS}`,
     },
   })
