@@ -4,7 +4,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { format } from "date-fns"
 import { es } from "date-fns/locale"
-import { Clock, User, Calendar, ArrowLeft } from "lucide-react"
+import { Clock, User, Calendar, ArrowLeft } from "@phosphor-icons/react/dist/ssr"
 
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
@@ -160,7 +160,7 @@ export default async function BlogPostPage({ params }: Props) {
             {post.tags.map((tag) => (
               <span
                 key={tag}
-                className="inline-block bg-primary/10 text-primary border border-primary/30 text-xs font-medium px-3 py-1 rounded-full"
+                className="inline-block border border-primary/40 bg-primary/10 px-3 py-1 text-[0.7rem] font-medium uppercase tracking-[0.1em] text-primary"
               >
                 {tag}
               </span>
