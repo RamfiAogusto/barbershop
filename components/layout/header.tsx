@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { motion, useMotionValueEvent, useScroll } from "framer-motion"
 import { List, X, Phone } from "@phosphor-icons/react"
@@ -18,6 +18,17 @@ export function Header() {
   useMotionValueEvent(scrollY, "change", (y) => {
     setScrolled(y > 24)
   })
+
+  // Con el menu abierto el fondo no debe moverse: si no, al arrastrar sobre el
+  // panel se scrollea la pagina de atras y al cerrar apareces en otro lugar.
+  useEffect(() => {
+    if (!open) return
+    const previous = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    return () => {
+      document.body.style.overflow = previous
+    }
+  }, [open])
 
   return (
     <>
