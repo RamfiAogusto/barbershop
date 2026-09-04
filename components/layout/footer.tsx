@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { FacebookLogo, InstagramLogo, MapPin, Phone } from "@phosphor-icons/react/dist/ssr"
 
-import { BUSINESS, HOURS, NAV_LINKS } from "@/lib/site-content"
+import { BUSINESS, HOURS, NAV_LINKS, YEARS_OF_CRAFT } from "@/lib/site-content"
 
 export function Footer() {
   const year = new Date().getFullYear()
@@ -19,7 +19,7 @@ export function Footer() {
             </Link>
             <p className="mt-5 max-w-[34ch] text-[0.95rem] leading-relaxed text-muted-foreground">
               {BUSINESS.tagline}. Barbería en {BUSINESS.neighborhood}, {BUSINESS.city}, desde
-              hace más de {BUSINESS.yearsOfCraft} años.
+              hace más de {YEARS_OF_CRAFT} años.
             </p>
 
             <div className="mt-7 flex items-center gap-4">

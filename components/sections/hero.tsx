@@ -39,8 +39,8 @@ export function Hero() {
           className="hero-rise mt-7 max-w-[46ch] text-[1.02rem] leading-relaxed text-muted-foreground"
           style={{ animationDelay: "0.24s" }}
         >
-          Veinte años cortando en el mismo barrio. Máquina, tijera y navaja, sin
-          apuro y sin improvisar.
+          Cortando en Ensanche Carmelita desde 2003. Máquina, tijera y navaja,
+          sin apuro y sin improvisar.
         </p>
 
         <div className="hero-rise mt-9 flex flex-wrap items-center gap-3" style={{ animationDelay: "0.32s" }}>

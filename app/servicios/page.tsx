@@ -15,7 +15,7 @@ import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { Breadcrumbs } from "@/components/seo/breadcrumbs"
 import { SectionHeading } from "@/components/sections/section-heading"
-import { BUSINESS, SERVICES } from "@/lib/site-content"
+import { BUSINESS, SERVICES, YEARS_OF_CRAFT } from "@/lib/site-content"
 
 const ICONS: Record<string, Icon> = {
   scissors: Scissors,
@@ -28,7 +28,7 @@ const ICONS: Record<string, Icon> = {
 
 /** Razones que ya declaraba el sitio; ninguna es inventada aquí. */
 const REASONS = [
-  `Más de ${BUSINESS.yearsOfCraft} años de oficio en la misma silla`,
+  `Más de ${YEARS_OF_CRAFT} años de oficio en la misma silla`,
   `Local propio en ${BUSINESS.neighborhood}, a minutos del Distrito Nacional`,
   "Asesoramiento según la forma del rostro, no según la moda del mes",
   "Se atiende sin cita, aunque el fin de semana conviene avisar",
@@ -86,6 +86,7 @@ export default function ServiciosPage() {
             <div className="mt-14 border-t border-border">
               {SERVICES.map((service, i) => {
                 const IconGlyph = ICONS[service.icon] ?? Scissors
+                const unavailable = "unavailable" in service && service.unavailable
                 return (
                   <article
                     key={service.id}
@@ -97,11 +98,20 @@ export default function ServiciosPage() {
                     <IconGlyph
                       size={32}
                       weight="light"
-                      className="mt-1 shrink-0 text-primary transition-transform duration-300 group-hover:scale-110"
+                      className={`mt-1 shrink-0 transition-transform duration-300 group-hover:scale-110 ${
+                        unavailable ? "text-faint" : "text-primary"
+                      }`}
                     />
-                    <h2 className="font-display text-2xl font-semibold text-foreground sm:text-3xl">
-                      {service.name}
-                    </h2>
+                    <div>
+                      <h2 className="font-display text-2xl font-semibold text-foreground sm:text-3xl">
+                        {service.name}
+                      </h2>
+                      {unavailable && (
+                        <span className="mt-2 inline-block border border-border px-2.5 py-1 text-[0.62rem] font-medium uppercase tracking-[0.12em] text-faint">
+                          No disponible por ahora
+                        </span>
+                      )}
+                    </div>
                     <p className="col-span-2 max-w-[62ch] leading-relaxed text-muted-foreground sm:col-span-3 lg:col-span-1 lg:pt-1">
                       {service.description}
                     </p>

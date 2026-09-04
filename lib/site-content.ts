@@ -19,8 +19,14 @@ export const BUSINESS = {
   maps: "https://www.google.com/maps/place/?q=place_id:ChIJqX-RDUiJr44RC2yG2fkCkTM",
   instagram: "https://www.instagram.com/rafa_eldon/",
   facebook: "https://www.facebook.com/RafaelDondelcorte",
-  yearsOfCraft: 20,
+  foundedYear: 2003,
 } as const
+
+/**
+ * Los años de oficio se calculan, no se escriben. Un número fijo en el texto
+ * envejece mal: al año siguiente el sitio sigue diciendo lo mismo.
+ */
+export const YEARS_OF_CRAFT = new Date().getFullYear() - BUSINESS.foundedYear
 
 export const NAV_LINKS = [
   { label: "Inicio", href: "/#inicio" },
@@ -66,6 +72,10 @@ export const SERVICES = [
     name: "Tintura temporal",
     description:
       "Color sin compromiso permanente. Para una ocasión puntual o para probar un tono antes de decidir.",
+    // El servicio no se está prestando por ahora. Se mantiene listado, pero
+    // marcado: anunciar algo que no se puede dar hace perder el viaje al
+    // cliente y cuesta más que no mencionarlo.
+    unavailable: true,
   },
   {
     id: "ninos",
@@ -79,7 +89,7 @@ export const SERVICES = [
     icon: "sparkle",
     name: "Corte femenino",
     description:
-      "Cortes y diseños para mujeres, con la misma mano que sostiene el resto del oficio desde hace veinte años.",
+      "Cortes y diseños para mujeres, con la misma mano que sostiene el resto del oficio desde 2003.",
   },
 ] as const
 

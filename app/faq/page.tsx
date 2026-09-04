@@ -26,7 +26,7 @@ const faqData: FAQItem[] = [
   {
     category: "Servicios",
     question: "¿Qué servicios de barbería ofrecen?",
-    answer: "Ofrecemos corte a tijeras, corte clásico, tintura temporal, corte femenino, corte para niños y adolescentes. Todos nuestros servicios son realizados por nuestro maestro barbero con más de 20 años de experiencia."
+    answer: "Ofrecemos corte a tijera, corte clásico, arreglo de barba, corte femenino y corte para niños y adolescentes. Todos los servicios los realiza nuestro maestro barbero, con más de 20 años de experiencia. La tintura temporal está en el menú pero no se está prestando por ahora."
   },
   {
     category: "Servicios",
@@ -66,7 +66,7 @@ const faqData: FAQItem[] = [
   {
     category: "Precios y Pagos",
     question: "¿Cuánto cuesta un corte de pelo?",
-    answer: "El precio depende del servicio: no es lo mismo un corte a tijera que un corte con tintura temporal. Escríbenos por WhatsApp al +1 (809) 767-2490 y te confirmamos el precio del servicio que necesitas antes de que vengas."
+    answer: "El precio depende del servicio: no es lo mismo un corte a tijera que un corte con arreglo de barba. Escríbenos por WhatsApp al +1 (809) 767-2490 y te confirmamos el precio del servicio que necesitas antes de que vengas."
   },
   {
     category: "Precios y Pagos",
@@ -81,7 +81,7 @@ const faqData: FAQItem[] = [
   {
     category: "Servicios",
     question: "¿Hacen tintura o coloración?",
-    answer: "Sí, ofrecemos tintura temporal, ideal para ocasiones especiales o para probar un color sin compromiso permanente. Consúltanos por WhatsApp para ver qué tono te queda mejor."
+    answer: "Por ahora no. La tintura temporal forma parte de nuestro menú de servicios, pero no la estamos prestando en este momento. Escríbenos por WhatsApp y te avisamos cuando vuelva a estar disponible."
   }
 ]
 

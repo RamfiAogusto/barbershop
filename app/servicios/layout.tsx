@@ -1,8 +1,10 @@
 import type { Metadata } from "next"
 
+import { YEARS_OF_CRAFT } from "@/lib/site-content"
+
 export const metadata: Metadata = {
   title: "Servicios y Cortes en Santo Domingo",
-  description: "Corte a tijera, corte clásico, tintura temporal, corte femenino y de niños en Ensanche Carmelita. Más de 20 años de experiencia. Reserva por WhatsApp.",
+  description: `Corte a tijera, corte clásico, arreglo de barba, corte femenino y de niños en Ensanche Carmelita. Más de ${YEARS_OF_CRAFT} años de experiencia. Reserva por WhatsApp.`,
   keywords: [
     "servicios barbería Santo Domingo",
     "servicios peluquería Santo Domingo",
@@ -21,7 +23,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Servicios de Barbería Premium en Santo Domingo - D' Rafa Peluquería",
-    description: "Cortes profesionales, servicios premium y más de 20 años de experiencia. Desde cortes clásicos hasta estilos modernos para todas las edades.",
+    description: `Cortes profesionales y más de ${YEARS_OF_CRAFT} años de oficio. Desde cortes clásicos hasta estilos modernos, para todas las edades.`,
     images: ['/assets/banner2.webp'],
   },
   alternates: {

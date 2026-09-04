@@ -42,6 +42,7 @@ export function Services() {
         <div className="mt-16 grid grid-cols-1 gap-px bg-border sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((service, i) => {
             const IconGlyph = ICONS[service.icon] ?? Scissors
+            const unavailable = "unavailable" in service && service.unavailable
             return (
               <motion.article
                 key={service.id}
@@ -52,13 +53,22 @@ export function Services() {
                 className="group relative bg-surface p-8 transition-colors duration-300 hover:bg-surface-raised lg:p-10"
               >
                 <div className="flex items-start justify-between">
-                  <IconGlyph size={30} weight="light" className="text-primary" />
+                  <IconGlyph
+                    size={30}
+                    weight="light"
+                    className={unavailable ? "text-faint" : "text-primary"}
+                  />
                   <span className="tick">{String(i + 1).padStart(2, "0")}</span>
                 </div>
 
                 <h3 className="mt-7 font-display text-2xl font-semibold text-foreground">
                   {service.name}
                 </h3>
+                {unavailable && (
+                  <span className="mt-3 inline-block self-start border border-border px-2.5 py-1 text-[0.62rem] font-medium uppercase tracking-[0.12em] text-faint">
+                    No disponible por ahora
+                  </span>
+                )}
                 <p className="mt-3 text-[0.95rem] leading-relaxed text-muted-foreground">
                   {service.description}
                 </p>

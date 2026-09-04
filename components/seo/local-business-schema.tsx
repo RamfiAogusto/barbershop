@@ -118,6 +118,10 @@ export const LocalBusinessSchema = ({
         },
         {
           "@type": "Offer",
+          // El servicio existe en el menu pero no se esta prestando. Declararlo
+          // agotado es mas honesto que borrarlo: Google no lo anuncia como
+          // disponible y el dia que vuelva basta con quitar esta linea.
+          "availability": "https://schema.org/OutOfStock",
           "itemOffered": {
             "@type": "Service", 
             "name": "Tintura Temporal",

@@ -3,11 +3,11 @@
 import Image from "next/image"
 import { motion, useReducedMotion } from "framer-motion"
 
-import { BUSINESS } from "@/lib/site-content"
+import { BUSINESS, YEARS_OF_CRAFT } from "@/lib/site-content"
 import { SectionHeading } from "./section-heading"
 
 const FACTS = [
-  { value: "2005", label: "Cortando en Ensanche Carmelita" },
+  { value: "2003", label: "Cortando en Ensanche Carmelita" },
   { value: "4.9", label: "Calificación en Google" },
   { value: "6", label: "Días abiertos por semana" },
 ]
@@ -40,7 +40,7 @@ export function About() {
             {/* Sello de años, montado sobre el borde de la foto. */}
             <div className="absolute -bottom-5 -right-4 bg-primary px-6 py-4 sm:-right-6 sm:px-8 sm:py-5">
               <span className="block font-display text-4xl font-bold leading-none text-primary-foreground sm:text-5xl">
-                +{BUSINESS.yearsOfCraft}
+                +{YEARS_OF_CRAFT}
               </span>
               <span className="mt-1 block text-[0.68rem] font-medium uppercase tracking-[0.16em] text-primary-foreground/80">
                 Años de oficio
@@ -50,15 +50,15 @@ export function About() {
 
           <div className="flex flex-col justify-center">
             <SectionHeading
-              title="Una barbería, un barbero, veinte años"
+              title={`Una barbería, un barbero, ${YEARS_OF_CRAFT} años`}
               ghost="Oficio"
             />
 
             <div className="mt-8 space-y-5 text-[1.02rem] leading-relaxed text-muted-foreground">
               <p>
                 D&apos; Rafa no es una cadena ni una franquicia. Es un local en{" "}
-                {BUSINESS.neighborhood} donde Rafa lleva dos décadas cortando el pelo de
-                la misma gente, y ahora de sus hijos.
+                {BUSINESS.neighborhood} donde Rafa lleva más de dos décadas cortando el
+                pelo de la misma gente, y ahora de sus hijos.
               </p>
               <p>
                 Aquí nadie te apura para pasar al siguiente. Se corta a máquina, a tijera

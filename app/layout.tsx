@@ -9,6 +9,7 @@ import { GoogleAnalytics } from "@next/third-parties/google"
 import { LocalBusinessSchema } from "@/components/seo/local-business-schema"
 import { GoogleReviewsSchema } from "@/components/seo/google-reviews-schema"
 import { fetchGoogleReviews } from "@/lib/google-reviews"
+import { YEARS_OF_CRAFT } from "@/lib/site-content"
 
 // Superfamilia Barlow. La condensada carga los titulos, la normal el texto
 // de lectura. Sustituye a Inter, que era el tono generico del sitio anterior.
@@ -28,10 +29,10 @@ const body = Barlow({
 
 export const metadata: Metadata = {
   title: {
-    default: "Barbería en Santo Domingo · +20 Años — D' Rafa Peluquería",
+    default: `Barbería en Santo Domingo · +${YEARS_OF_CRAFT} Años — D' Rafa Peluquería`,
     template: "%s | D' Rafa Peluquería"
   },
-  description: "Barbería y peluquería en Ensanche Carmelita, Santo Domingo. Más de 20 años de experiencia en corte masculino, femenino y de niños. Reserva por WhatsApp.",
+  description: `Barbería y peluquería en Ensanche Carmelita, Santo Domingo. Más de ${YEARS_OF_CRAFT} años de experiencia en corte masculino, femenino y de niños. Reserva por WhatsApp.`,
   keywords: [
     "peluquería Santo Domingo",
     "barbería Santo Domingo",
@@ -69,7 +70,7 @@ export const metadata: Metadata = {
     locale: 'es_DO',
     url: 'https://www.drafapeluqueria.com',
     title: "D' Rafa Peluquería - Barbería Premium en Santo Domingo",
-    description: "Barbería premium con más de 20 años de experiencia en Santo Domingo. Cortes profesionales, tintura temporal y servicios de alta calidad.",
+    description: `Barbería en Santo Domingo con más de ${YEARS_OF_CRAFT} años de oficio. Corte a tijera, corte clásico, arreglo de barba y corte para niños en Ensanche Carmelita.`,
     siteName: "D' Rafa Peluquería",
     images: [
       {
