@@ -1,6 +1,13 @@
 export type BlogPost = {
   slug: string
   title: string
+  /**
+   * Titulo corto solo para el <title> del documento. El h1, las tarjetas y el
+   * Open Graph siguen usando `title`: ahi el largo no molesta, pero Google
+   * corta el <title> alrededor de los 60 caracteres y la plantilla del layout
+   * ya suma 21 con la marca.
+   */
+  seoTitle?: string
   excerpt: string
   coverImage: string
   author: string
@@ -14,6 +21,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "tendencias-cortes-masculinos-2026",
     title: "Tendencias en cortes masculinos para 2026: lo que se está pidiendo en Santo Domingo",
+    seoTitle: "Tendencias en cortes masculinos 2026",
     excerpt:
       "Desde el fade skin hasta el mullet renovado, estos son los cortes que están dominando las barberías en 2026 — y cuáles funcionan mejor en el clima tropical dominicano.",
     coverImage: "/assets/bw/corte2.webp",
@@ -85,6 +93,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "como-elegir-corte-segun-forma-de-rostro",
     title: "Cómo elegir el corte ideal según la forma de tu rostro",
+    seoTitle: "El corte ideal según tu forma de rostro",
     excerpt:
       "Tu forma de rostro es el punto de partida para cualquier buen corte. Aprende a identificarla y a elegir el estilo que mejor te favorece.",
     coverImage: "/assets/bw/corte1.webp",
@@ -165,6 +174,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "cuidado-barba-clima-tropical",
     title: "Cómo cuidar tu barba en clima tropical: guía para hombres en República Dominicana",
+    seoTitle: "Cuidar la barba en clima tropical",
     excerpt:
       "La humedad, el calor y el salitre son los peores enemigos de una barba bien arreglada. Esta guía práctica te explica cómo mantenerla impecable todo el año en Santo Domingo.",
     coverImage: "/assets/bw/interior.webp",
@@ -249,6 +259,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "fade-vs-corte-clasico",
     title: "Fade vs corte clásico: ¿cuál te queda mejor?",
+    seoTitle: "Fade vs corte clásico: cuál te queda",
     excerpt:
       "El fade y el corte clásico son los dos grandes estilos de la barbería moderna. Te explicamos las diferencias reales para que elijas según tu vida, no solo tu gusto.",
     coverImage: "/assets/bw/hero.webp",
@@ -311,6 +322,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "corte-pelo-ninos-tips-padres",
     title: "El primer corte de pelo de tu hijo: tips para que sea una buena experiencia",
+    seoTitle: "El primer corte de pelo de tu hijo",
     excerpt:
       "El primer corte de pelo puede ser emocionante o traumático según cómo se prepare. Esta guía para padres te ayuda a que sea una experiencia positiva de principio a fin.",
     coverImage: "/assets/bw/corte4.webp",
@@ -390,6 +402,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "rutina-mantenimiento-corte-en-casa",
     title: "Cómo mantener tu corte impecable entre visitas a la barbería",
+    seoTitle: "Mantener tu corte entre visitas",
     excerpt:
       "El trabajo de tu barbero dura más cuando tú lo cuidas en casa. Aquí te enseñamos la rutina diaria y semanal para que tu corte siempre luzca fresco.",
     coverImage: "/assets/bw/nosotros.webp",

@@ -84,7 +84,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: "D' Rafa Peluquería - Barbería Premium en Santo Domingo",
-    description: "Barbería premium con más de 20 años de experiencia. Cortes profesionales y servicios de alta calidad.",
+    description: `Barbería premium con más de ${YEARS_OF_CRAFT} años de experiencia. Cortes profesionales y servicios de alta calidad.`,
     images: ['/assets/og-image.jpg'],
   },
   robots: {

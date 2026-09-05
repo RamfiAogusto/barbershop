@@ -26,20 +26,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!post) {
     return {
-      title: "Artículo no encontrado | Blog D' Rafa Peluquería",
+      title: "Artículo no encontrado",
     }
   }
 
   const baseUrl = "https://www.drafapeluqueria.com"
 
   return {
-    title: `${post.title} | Blog D' Rafa Peluquería`,
+    // El template del root layout ya anade " | D' Rafa Peluqueria". Repetirlo
+    // aqui daba titulos de 130 caracteres que Google cortaba a los 60, dejando
+    // fuera justo las palabras por las que se busca.
+    title: post.seoTitle ?? post.title,
     description: post.excerpt,
     alternates: {
       canonical: `/blog/${post.slug}`,
     },
     openGraph: {
-      title: `${post.title} | Blog D' Rafa Peluquería`,
+      // Open Graph no pasa por el template y no se trunca a 60: titulo completo.
+      title: post.title,
       description: post.excerpt,
       url: `${baseUrl}/blog/${post.slug}`,
       siteName: "D' Rafa Peluquería",

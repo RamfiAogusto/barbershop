@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import {
   ArrowUpRight,
   Baby,
@@ -34,6 +35,33 @@ const REASONS = [
   "Se atiende sin cita, aunque el fin de semana conviene avisar",
   "Bebidas y algo de picar mientras esperas",
   "Efectivo y tarjeta de crédito",
+]
+
+/**
+ * Lecturas del blog atadas a un servicio concreto de los de arriba.
+ *
+ * No es relleno de SEO: son los tres posts que Google rastrea y decide no
+ * indexar, y hasta ahora ninguna pagina fuerte del sitio les pasaba senal.
+ * El widget "Otros articulos" de cada post solo alcanza a los cuatro mas
+ * recientes, asi que `tendencias-cortes-masculinos-2026` no recibia un solo
+ * enlace interno fuera del indice del blog.
+ */
+const READINGS = [
+  {
+    context: "Corte de niños",
+    title: "El primer corte de pelo de tu hijo",
+    href: "/blog/corte-pelo-ninos-tips-padres",
+  },
+  {
+    context: "Máquina y tijera",
+    title: "Tendencias en cortes masculinos 2026",
+    href: "/blog/tendencias-cortes-masculinos-2026",
+  },
+  {
+    context: "Después del corte",
+    title: "Mantener tu corte entre visitas",
+    href: "/blog/rutina-mantenimiento-corte-en-casa",
+  },
 ]
 
 export default function ServiciosPage() {
@@ -118,6 +146,39 @@ export default function ServiciosPage() {
                   </article>
                 )
               })}
+            </div>
+          </div>
+        </section>
+
+        {/* Lecturas: misma lista con tick y hairline que los servicios de arriba,
+            para que se lea como continuacion y no como un bloque pegado. */}
+        <section className="border-t border-border py-20 lg:py-28">
+          <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-10">
+            <SectionHeading title="Lee antes de venir" ghost="Blog" />
+
+            <div className="mt-14 border-t border-border">
+              {READINGS.map((reading, i) => (
+                <Link
+                  key={reading.href}
+                  href={reading.href}
+                  className="group grid grid-cols-[auto_1fr] items-start gap-6 border-b border-border py-8 transition-colors duration-300 hover:bg-surface sm:grid-cols-[3.5rem_minmax(0,14rem)_1fr_auto] sm:gap-8"
+                >
+                  <span className="tick hidden pt-2 sm:block">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-[0.7rem] font-medium uppercase tracking-[0.16em] text-faint sm:pt-2.5">
+                    {reading.context}
+                  </span>
+                  <h2 className="col-span-2 font-display text-xl font-semibold text-foreground transition-colors group-hover:text-primary sm:col-span-1 sm:text-2xl">
+                    {reading.title}
+                  </h2>
+                  <ArrowUpRight
+                    size={20}
+                    weight="bold"
+                    className="hidden shrink-0 self-center text-faint transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary sm:block"
+                  />
+                </Link>
+              ))}
             </div>
           </div>
         </section>
