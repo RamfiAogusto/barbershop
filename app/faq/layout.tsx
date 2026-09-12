@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "FAQ - Barbería D' Rafa Santo Domingo",
     description: "Respuestas a preguntas frecuentes sobre la mejor barbería en Santo Domingo, República Dominicana.",
+    images: ['/assets/og-image.jpg'],
   },
   alternates: {
     canonical: '/faq',

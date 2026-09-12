@@ -1,3 +1,5 @@
+import { YEARS_OF_CRAFT } from "@/lib/site-content"
+
 interface LocalBusinessSchemaProps {
   organizationType?: string
   additionalServices?: Array<{
@@ -16,7 +18,7 @@ export const LocalBusinessSchema = ({
     "@type": organizationType,
     "@id": "https://www.drafapeluqueria.com/#business",
     "name": "D' Rafa Peluquería",
-    "description": "Barbería y peluquería premium en Santo Domingo, República Dominicana con más de 20 años de experiencia. La mejor barbería cerca de ti en Ensanche Carmelita. Especialistas en cortes masculinos y femeninos, servicios profesionales de alta calidad.",
+    "description": `Barbería y peluquería premium en Santo Domingo, República Dominicana con más de ${YEARS_OF_CRAFT} años de experiencia. La mejor barbería cerca de ti en Ensanche Carmelita. Especialistas en cortes masculinos y femeninos, servicios profesionales de alta calidad.`,
     "url": "https://www.drafapeluqueria.com",
     "telephone": "+1-809-767-2490",
     "priceRange": "$$",

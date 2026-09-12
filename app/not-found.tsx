@@ -1,9 +1,16 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr"
 
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { BUSINESS, NAV_LINKS } from "@/lib/site-content"
+
+// Drops the root layout's canonical '/' and index robots; Next already injects noindex on 404.
+export const metadata: Metadata = {
+  robots: null,
+  alternates: { canonical: null },
+}
 
 /**
  * Una URL rota es una visita que ya llegó. La página por defecto de Next la

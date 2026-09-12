@@ -59,6 +59,14 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/faq"
+                  className="text-[0.95rem] text-muted-foreground transition-colors hover:text-primary"
+                >
+                  Preguntas frecuentes
+                </Link>
+              </li>
             </ul>
           </nav>
 

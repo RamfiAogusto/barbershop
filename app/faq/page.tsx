@@ -4,7 +4,7 @@ import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { Breadcrumbs } from "@/components/seo/breadcrumbs"
 import { SectionHeading } from "@/components/sections/section-heading"
-import { BUSINESS } from "@/lib/site-content"
+import { BUSINESS, YEARS_OF_CRAFT } from "@/lib/site-content"
 
 interface FAQItem {
   question: string
@@ -26,7 +26,7 @@ const faqData: FAQItem[] = [
   {
     category: "Servicios",
     question: "¿Qué servicios de barbería ofrecen?",
-    answer: "Ofrecemos corte a tijera, corte clásico, arreglo de barba, corte femenino y corte para niños y adolescentes. Todos los servicios los realiza nuestro maestro barbero, con más de 20 años de experiencia. La tintura temporal está en el menú pero no se está prestando por ahora."
+    answer: `Ofrecemos corte a tijera, corte clásico, arreglo de barba, corte femenino y corte para niños y adolescentes. Todos los servicios los realiza nuestro maestro barbero, con más de ${YEARS_OF_CRAFT} años de experiencia. La tintura temporal está en el menú pero no se está prestando por ahora.`
   },
   {
     category: "Servicios",
@@ -46,12 +46,12 @@ const faqData: FAQItem[] = [
   {
     category: "Experiencia",
     question: "¿Por qué elegir D' Rafa Peluquería?",
-    answer: "Somos la barbería con más experiencia en Ensanche Carmelita, con más de 20 años sirviendo a la comunidad de Santo Domingo. Nuestro maestro barbero Rafa es reconocido por su técnica y profesionalismo."
+    answer: `Somos la barbería con más experiencia en Ensanche Carmelita, con más de ${YEARS_OF_CRAFT} años sirviendo a la comunidad de Santo Domingo. Nuestro maestro barbero Rafa es reconocido por su técnica y profesionalismo.`
   },
   {
     category: "Experiencia",
     question: "¿Qué los diferencia de otras barberías?",
-    answer: "Nos diferenciamos por nuestra experiencia de más de 20 años, ubicación estratégica en Santo Domingo, atención personalizada, y técnicas tanto tradicionales como modernas para lograr el corte perfecto."
+    answer: `Nos diferenciamos por nuestra experiencia de más de ${YEARS_OF_CRAFT} años, ubicación estratégica en Santo Domingo, atención personalizada, y técnicas tanto tradicionales como modernas para lograr el corte perfecto.`
   },
   {
     category: "Ubicación y Horarios",
