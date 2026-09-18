@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { motion, useReducedMotion } from "framer-motion"
+import { m, useReducedMotion } from "framer-motion"
 import { Clock } from "@phosphor-icons/react"
 
 import { BUSINESS, HOURS } from "@/lib/site-content"
@@ -27,7 +27,7 @@ export function HoursBand() {
       />
 
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-10">
-        <motion.div
+        <m.div
           initial={reduce ? false : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
@@ -81,7 +81,7 @@ export function HoursBand() {
               ))}
             </dl>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   )

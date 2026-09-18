@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { motion, useReducedMotion } from "framer-motion"
+import { m, useReducedMotion } from "framer-motion"
 import {
   ArrowUpRight,
   Baby,
@@ -44,7 +44,7 @@ export function Services() {
             const IconGlyph = ICONS[service.icon] ?? Scissors
             const unavailable = "unavailable" in service && service.unavailable
             return (
-              <motion.article
+              <m.article
                 key={service.id}
                 initial={reduce ? false : { opacity: 0, y: 22 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -76,7 +76,7 @@ export function Services() {
                 {/* La linea crece bajo el titulo al pasar el cursor: confirma
                     cual tarjeta esta activa sin mover el layout. */}
                 <span className="absolute bottom-0 left-0 h-[3px] w-0 bg-primary transition-all duration-300 group-hover:w-full" />
-              </motion.article>
+              </m.article>
             )
           })}
         </div>

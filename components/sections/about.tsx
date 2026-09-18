@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { motion, useReducedMotion } from "framer-motion"
+import { m, useReducedMotion } from "framer-motion"
 
 import { BUSINESS, YEARS_OF_CRAFT } from "@/lib/site-content"
 import { SectionHeading } from "./section-heading"
@@ -21,7 +21,7 @@ export function About() {
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-20">
           {/* La foto va primero en pantallas grandes: es la que sostiene el
               argumento de oficio antes que el texto. */}
-          <motion.div
+          <m.div
             initial={reduce ? false : { opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
@@ -33,7 +33,7 @@ export function About() {
                 src="/assets/bw/nosotros.webp"
                 alt="Rafa, maestro barbero de D' Rafa Peluquería, trabajando en su silla"
                 fill
-                sizes="(max-width: 1024px) 100vw, 42vw"
+                sizes="(max-width: 640px) calc(100vw - 2.5rem), (max-width: 1024px) calc(100vw - 4rem), 42vw"
                 className="object-cover"
               />
             </div>
@@ -46,7 +46,7 @@ export function About() {
                 Años de oficio
               </span>
             </div>
-          </motion.div>
+          </m.div>
 
           <div className="flex flex-col justify-center">
             <SectionHeading
@@ -69,7 +69,7 @@ export function About() {
 
             <dl className="mt-12 grid grid-cols-3 gap-6 border-t border-border pt-8">
               {FACTS.map((fact, i) => (
-                <motion.div
+                <m.div
                   key={fact.value}
                   initial={reduce ? false : { opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -80,7 +80,7 @@ export function About() {
                     {fact.value}
                   </dt>
                   <dd className="mt-2 text-[0.8rem] leading-snug text-faint">{fact.label}</dd>
-                </motion.div>
+                </m.div>
               ))}
             </dl>
           </div>

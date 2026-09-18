@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
-import { motion, useMotionValueEvent, useScroll } from "framer-motion"
+import { m, useMotionValueEvent, useScroll } from "framer-motion"
 import { List, X, Phone } from "@phosphor-icons/react"
 
 import { BUSINESS, NAV_LINKS } from "@/lib/site-content"
@@ -98,7 +98,7 @@ export function Header() {
 
       {/* Menú móvil */}
       {open && (
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="fixed inset-0 z-[70] bg-background lg:hidden"
@@ -112,7 +112,7 @@ export function Header() {
 
           <nav className="flex flex-col px-5 pt-6">
             {NAV_LINKS.map((link, i) => (
-              <motion.div
+              <m.div
                 key={link.href}
                 initial={{ opacity: 0, x: -16 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -126,7 +126,7 @@ export function Header() {
                   <span className="tick">{String(i + 1).padStart(2, "0")}</span>
                   {link.label}
                 </Link>
-              </motion.div>
+              </m.div>
             ))}
           </nav>
 
@@ -147,7 +147,7 @@ export function Header() {
               {BUSINESS.phone}
             </a>
           </div>
-        </motion.div>
+        </m.div>
       )}
     </>
   )

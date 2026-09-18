@@ -1,6 +1,6 @@
 "use client"
 
-import { motion, useReducedMotion } from "framer-motion"
+import { m, useReducedMotion } from "framer-motion"
 
 import { cn } from "@/lib/utils"
 
@@ -32,7 +32,7 @@ export function SectionHeading({ title, ghost, lead, align = "left", className }
         </span>
       )}
 
-      <motion.div
+      <m.div
         initial={reduce ? false : { opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}
@@ -53,7 +53,7 @@ export function SectionHeading({ title, ghost, lead, align = "left", className }
             {lead}
           </p>
         )}
-      </motion.div>
+      </m.div>
     </div>
   )
 }

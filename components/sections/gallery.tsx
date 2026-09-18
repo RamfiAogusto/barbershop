@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { motion, useReducedMotion } from "framer-motion"
+import { m, useReducedMotion } from "framer-motion"
 
 import { GALLERY } from "@/lib/site-content"
 import { SectionHeading } from "./section-heading"
@@ -28,7 +28,7 @@ export function Gallery() {
 
         <div className="mt-16 grid auto-rows-[190px] grid-cols-2 gap-3 sm:auto-rows-[230px] sm:grid-cols-4 sm:gap-4 lg:auto-rows-[280px]">
           {GALLERY.map((shot, i) => (
-            <motion.figure
+            <m.figure
               key={shot.src}
               initial={reduce ? false : { opacity: 0, scale: 0.97 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -49,7 +49,7 @@ export function Gallery() {
               {/* El acento solo aparece al enfocar la pieza, para que el rojo
                   no compita con la fotografia en reposo. */}
               <span className="pointer-events-none absolute inset-0 border-2 border-transparent transition-colors duration-300 group-hover:border-primary" />
-            </motion.figure>
+            </m.figure>
           ))}
         </div>
       </div>

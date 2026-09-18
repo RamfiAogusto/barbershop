@@ -1,11 +1,11 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Barlow, Barlow_Condensed } from "next/font/google"
+import Script from "next/script"
 import "./globals.css"
 import { Providers } from "@/components/providers"
 import { Toaster } from "@/components/ui/toaster"
 import { FloatingWhatsApp } from "@/components/layout/floating-whatsapp"
-import { GoogleAnalytics } from "@next/third-parties/google"
 import { LocalBusinessSchema } from "@/components/seo/local-business-schema"
 import { GoogleReviewsSchema } from "@/components/seo/google-reviews-schema"
 import { fetchGoogleReviews } from "@/lib/google-reviews"
@@ -138,7 +138,18 @@ export default async function RootLayout({
           <FloatingWhatsApp />
           <Toaster />
         </Providers>
-        {gaId && <GoogleAnalytics gaId={gaId} />}
+        {gaId && (
+          <>
+            <Script
+              id="google-analytics-loader"
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+              strategy="lazyOnload"
+            />
+            <Script id="google-analytics-init" strategy="lazyOnload">
+              {`window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '${gaId}');`}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   )

@@ -1,6 +1,6 @@
 "use client"
 
-import { motion, useReducedMotion } from "framer-motion"
+import { m, useReducedMotion } from "framer-motion"
 import { FacebookLogo, InstagramLogo, MapPin, Phone, WhatsappLogo } from "@phosphor-icons/react"
 
 import { BUSINESS } from "@/lib/site-content"
@@ -44,7 +44,7 @@ export function Contact() {
 
         <div className="mt-16 grid grid-cols-1 gap-px bg-border md:grid-cols-3">
           {CHANNELS.map((channel, i) => (
-            <motion.a
+            <m.a
               key={channel.label}
               href={channel.href}
               target={channel.href.startsWith("http") ? "_blank" : undefined}
@@ -66,7 +66,7 @@ export function Contact() {
                 {channel.detail}
               </span>
               <span className="absolute bottom-0 left-0 h-[3px] w-0 bg-primary transition-all duration-300 group-hover:w-full" />
-            </motion.a>
+            </m.a>
           ))}
         </div>
 
