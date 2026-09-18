@@ -14,13 +14,14 @@ import {
 
 function StarRating({ rating }: { rating: number }) {
   return (
-    <div className="flex gap-1" aria-label={`${rating} de 5 estrellas`}>
+    <div className="flex gap-1" role="img" aria-label={`${rating} de 5 estrellas`}>
       {Array.from({ length: 5 }, (_, i) => (
         <Star
           key={i}
           size={15}
           weight={i < rating ? "fill" : "regular"}
           className={i < rating ? "text-primary" : "text-faint"}
+          aria-hidden
         />
       ))}
     </div>
